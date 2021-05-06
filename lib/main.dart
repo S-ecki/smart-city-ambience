@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_city_ambience/Authentification/AuthService.dart';
+import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 
 Future<void> main() async {
@@ -50,7 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: AuthWrapper(),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Text("out"),
+        onPressed: () async {
+          await FirebaseAuth.instance.signOut();
+        },
+      ),
     );
   }
 }

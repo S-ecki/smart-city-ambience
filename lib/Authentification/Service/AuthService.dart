@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+enum FireBaseSignInResponse { Success, Failed }
+
 /**
  * 
  */
@@ -13,24 +15,26 @@ class AuthServcice {
   /**
    * 
    */
-  Future<String> signIn({String mail, String password}) async {
+  Future<FireBaseSignInResponse> signIn({String mail, String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: mail, password: password);
+      return FireBaseSignInResponse.Success;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return FireBaseSignInResponse.Failed;
     }
   }
 
   /**
    * 
    */
-  Future<String> signUp({String mail, String password}) async {
+  Future<FireBaseSignInResponse> signUp({String mail, String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: mail, password: password);
+      return FireBaseSignInResponse.Success;
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return FireBaseSignInResponse.Failed;
     }
   }
 }

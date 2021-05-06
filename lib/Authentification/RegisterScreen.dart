@@ -1,14 +1,13 @@
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
-
 import 'Widgets/AuthActionButton.dart';
 import 'Widgets/AuthHeaderContainer.dart';
 import 'Widgets/AuthInputField.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -56,11 +55,20 @@ class LoginPage extends StatelessWidget {
                           isPasswordField: true,
                         ),
                       ),
+                      Container(
+                        margin: EdgeInsets.only(top: 16),
+                        child: AuthInputField(
+                          passwordController: passwordController,
+                          controller: confirmPasswordController,
+                          label: "Confirm Password",
+                          isPasswordField: true,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 AuthActionButton(
-                  label: "Log In",
+                  label: "Register",
                   formKey: _formKey,
                   emailController: emailController,
                   passwordController: passwordController,
@@ -69,17 +77,17 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "No Account?",
+                      "Already have an Account?",
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
                     TextButton(
                       onPressed: () {
-                        // navigate to register page
+                        // navigate to login page
                       },
                       child: Text(
-                        "Register",
+                        "Log in",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
