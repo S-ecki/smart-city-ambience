@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class AuthInputField extends StatelessWidget {
@@ -19,6 +20,11 @@ class AuthInputField extends StatelessWidget {
       controller: controller,
       validator: (value) {
         if (controller.text.isEmpty) return "Can't be empty";
+        if (label.toLowerCase() == "email") {
+          return EmailValidator.validate(controller.text)
+              ? ""
+              : "Not valid email";
+        }
         return "";
       },
       decoration: InputDecoration(

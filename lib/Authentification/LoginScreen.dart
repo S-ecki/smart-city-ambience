@@ -7,16 +7,17 @@ import 'Widgets/AuthHeaderContainer.dart';
 import 'Widgets/AuthInputField.dart';
 
 class LoginPage extends StatelessWidget {
-  @override
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: 400,
+          height: 500,
           decoration: BoxDecoration(
             color: Colors.lightBlue,
             borderRadius: BorderRadius.only(
@@ -28,7 +29,7 @@ class LoginPage extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: Offset(0, 3),
               ),
             ],
           ),
@@ -38,23 +39,52 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AuthHeaderContainer(),
-                AuthInputField(
-                  controller: emailController,
-                  label: "Email",
-                  isPasswordField: false,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 16),
-                  child: AuthInputField(
-                    controller: passwordController,
-                    label: "Password",
-                    isPasswordField: true,
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      AuthInputField(
+                        controller: emailController,
+                        label: "Email",
+                        isPasswordField: false,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 16),
+                        child: AuthInputField(
+                          controller: passwordController,
+                          label: "Password",
+                          isPasswordField: true,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 AuthActionButton(
+                  formKey: _formKey,
                   emailController: emailController,
                   passwordController: passwordController,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "No Account?",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Register",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

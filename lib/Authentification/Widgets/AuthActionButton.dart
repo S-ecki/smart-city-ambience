@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/AuthService.dart';
 
 class AuthActionButton extends StatelessWidget {
-  const AuthActionButton({
-    Key key,
-    @required this.emailController,
-    @required this.passwordController,
-  }) : super(key: key);
+  const AuthActionButton(
+      {Key key,
+      @required this.emailController,
+      @required this.passwordController,
+      @required this.formKey})
+      : super(key: key);
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,7 @@ class AuthActionButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
         ),
         onPressed: () {
-          if (!(emailController.text.isNotEmpty &&
-              passwordController.text.isNotEmpty)) {
+          if (!formKey.currentState.validate()) {
             return;
           }
           context.read<AuthServcice>().signIn(

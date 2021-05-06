@@ -18,5 +18,6 @@ class AuthWrapper extends StatelessWidget {
       return LoginPage();
     }
     return LoginPage();
+    //return Text("Logged In");
   }
 }
