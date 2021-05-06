@@ -1,7 +1,4 @@
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
-
 import 'Widgets/AuthActionButton.dart';
 import 'Widgets/AuthHeaderContainer.dart';
 import 'Widgets/AuthInputField.dart';
