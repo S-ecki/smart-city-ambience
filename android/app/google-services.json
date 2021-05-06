@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "452865300405",
+    "project_id": "samrt-city-ambience",
+    "storage_bucket": "samrt-city-ambience.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452865300405:android:9957b8732671f3c148ebfc",
+        "android_client_info": {
+          "package_name": "com.example.smart_city_ambience"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452865300405-j5hgl5qk4h7f5o7b4c4da6ontisovv5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0Fs2lt2WU_neGiGkpFld-jUX-tgPhv2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452865300405-j5hgl5qk4h7f5o7b4c4da6ontisovv5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
