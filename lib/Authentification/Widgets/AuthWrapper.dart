@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/Authentification/LoginScreen.dart';
-import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 
 /**
  * Listens to changes of authState and then decides
@@ -18,7 +17,7 @@ class AuthWrapper extends StatelessWidget {
     if (fireUser == null) {
       return LoginPage();
     }
-    return RegisterPage();
-    //return Text("Logged In");
+    //return RegisterPage();
+    return Text("Logged In");
   }
 }
