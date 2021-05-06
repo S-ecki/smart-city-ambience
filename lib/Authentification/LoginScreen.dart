@@ -2,6 +2,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/AuthService.dart';
 
+import 'Widgets/AuthActionButton.dart';
+import 'Widgets/AuthHeaderContainer.dart';
 import 'Widgets/AuthInputField.dart';
 
 class LoginPage extends StatelessWidget {
@@ -35,59 +37,24 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 8),
-                  width: double.infinity,
-                  child: Icon(
-                    Icons.supervisor_account_rounded,
-                    color: Colors.white,
-                    size: 100,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.lightBlue,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
+                AuthHeaderContainer(),
                 AuthInputField(
                   controller: emailController,
                   label: "Email",
+                  isPasswordField: false,
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 16),
                   child: AuthInputField(
                     controller: passwordController,
                     label: "Password",
+                    isPasswordField: true,
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(top: 16),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          side: BorderSide(color: Colors.lightBlue),
-                        ),
-                      ),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                    ),
-                    onPressed: () {
-                      if (!(emailController.text.isNotEmpty &&
-                          passwordController.text.isNotEmpty)) {
-                        return;
-                      }
-                      context.read<AuthServcice>().signIn(
-                          mail: emailController.text,
-                          password: passwordController.text);
-                    },
-                    child: Text(
-                      "LOG IN",
-                      style: TextStyle(color: Colors.lightBlue),
-                    ),
-                  ),
-                )
+                AuthActionButton(
+                  emailController: emailController,
+                  passwordController: passwordController,
+                ),
               ],
             ),
           ),
