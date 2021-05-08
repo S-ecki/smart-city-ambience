@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
+import 'package:smart_city_ambience/routing/smort_routes.dart';
+import 'package:smart_city_ambience/theme/smort_theme.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 
 Future<void> main() async {
@@ -24,10 +26,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        debugShowCheckedModeBanner: false,
+        theme: smortTheme(context),
         home: MyHomePage(title: 'Flutter Demo Home Page'),
+        routes: SmortRoutes.myRoutes,
       ),
     );
   }
@@ -45,14 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Title"),
-      ),
       body: Center(
         child: AuthWrapper(),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Text("out"),
+        child: Icon(Icons.logout),
         onPressed: () async {
           await FirebaseAuth.instance.signOut();
         },
