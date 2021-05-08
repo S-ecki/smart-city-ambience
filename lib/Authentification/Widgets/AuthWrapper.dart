@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/Authentification/LoginScreen.dart';
-import 'package:smart_city_ambience/tab_screen/tab_screen.dart';
+import 'package:smart_city_ambience/navbar/navbar_screen.dart';
 
 /**
  * Listens to changes of authState and then decides
@@ -21,6 +21,6 @@ class AuthWrapper extends StatelessWidget {
     // ! new 
     // routes to tabscreen, which contains bottom nav bar
     // with chat / home / event screen
-    return TabScreen();
+    return NavbarScreen();
   }
 }

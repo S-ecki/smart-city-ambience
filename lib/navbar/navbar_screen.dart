@@ -1,20 +1,20 @@
 // TabScreen provides the Scaffold and Bottom Nav Bar for the Main Screen
-// It launches the 5 respective screen, which are defined in _pages
-// components can be found in /tabs/scaffold
+// It launches the 3 respective screen, which are defined in _pages
 
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/tab_screen/chat_screen.dart';
-import 'package:smart_city_ambience/tab_screen/event_screen.dart';
-import 'package:smart_city_ambience/tab_screen/home_screen.dart';
-import 'package:smart_city_ambience/tab_screen/tab_screen_components.dart';
+import 'package:smart_city_ambience/navbar/navbar_screen_components.dart';
+import 'package:smart_city_ambience/routing/smort_routes.dart';
+import 'package:smart_city_ambience/screens/chats/chat_screen.dart';
+import 'package:smart_city_ambience/screens/events/event_screen.dart';
+import 'package:smart_city_ambience/screens/home/home_screen.dart';
 
-class TabScreen extends StatefulWidget {
+class NavbarScreen extends StatefulWidget {
   @override
-  _TabScreenState createState() => _TabScreenState();
+  _NavbarScreenState createState() => _NavbarScreenState();
 }
 
-class _TabScreenState extends State<TabScreen> {
-  int _selectedPageIndex = 0;
+class _NavbarScreenState extends State<NavbarScreen> {
+  int _selectedPageIndex = 1;
 
   void _selectPage(int index) {
     setState(() {
@@ -33,17 +33,16 @@ class _TabScreenState extends State<TabScreen> {
       unselectedLabelStyle: TextStyle(color: Colors.grey),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.content_paste_outlined),
-          label: "1",
-          backgroundColor: Colors.blue,
+          icon: Icon(Icons.emoji_symbols),
+          label: "Events",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.layers_outlined),
-          label: "2",
+          icon: Icon(Icons.emoji_people),
+          label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add_circle_outline_outlined),
-          label: "3",
+          icon: Icon(Icons.chat),
+          label: "Chats",
         ),
       ],
     );
@@ -55,32 +54,35 @@ class _TabScreenState extends State<TabScreen> {
     // moved into build to get context
     final List<Map<String, Object>> _pages = [
       {
-        "page": ChatScreen(),
-        "title": "1",
+        "page": EventScreen(),
+        "title": "Events",
         "buttons": [
           OptionsButton(),
         ],
       },
       {
         "page": HomeScreen(),
-        "title": "2",
+        "title": "Smort City Ambience",
         "buttons": [
           OptionsButton(),
         ],
       },
       {
-        "page": EventScreen(),
-        "title": "3",
+        "page": ChatScreen(),
+        "title": "Chats",
         "buttons": [
           OptionsButton(),
         ],
       },
     ];
-    // this provides the ExpenseList to all descendants
-    // also formKey can get accessed with this provider
     return Scaffold(
-      // we use the respective title here
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.account_circle),
+          onPressed: () {
+            Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
+          },
+        ),
         actions: _pages[_selectedPageIndex]['buttons'],
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
