@@ -7,6 +7,8 @@ ThemeData smortTheme(BuildContext context) {
 
     primarySwatch: Colors.blue,
 
+    backgroundColor: Colors.grey[200],
+
     // Material Color with own Color Palette can be created as follows
     // primarySwatch: generateMaterialColor(Color.fromRGBO(15, 54, 246, 1.0)),
 
