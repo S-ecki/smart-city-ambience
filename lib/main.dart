@@ -28,33 +28,8 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: smortTheme(context),
-        home: MyHomePage(title: 'Flutter Demo Home Page'),
+        home: AuthWrapper(),
         routes: SmortRoutes.myRoutes,
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: AuthWrapper(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.logout),
-        onPressed: () async {
-          await FirebaseAuth.instance.signOut();
-        },
       ),
     );
   }

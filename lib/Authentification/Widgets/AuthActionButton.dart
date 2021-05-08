@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
+import 'package:smart_city_ambience/routing/smort_routes.dart';
 
 class AuthActionButton extends StatelessWidget {
   const AuthActionButton(
@@ -20,7 +21,7 @@ class AuthActionButton extends StatelessWidget {
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       title: Text(
-        label.toLowerCase() == "login"
+        label.toLowerCase() == "log in"
             ? "No user found"
             : "Registration failed",
       ),
@@ -44,13 +45,15 @@ class AuthActionButton extends StatelessWidget {
     if (!formKey.currentState.validate()) {
       return;
     }
-    if (label.toLowerCase() == "login") {
+    if (label.toLowerCase() == "log in") {
       FireBaseSignInResponse response = await context
           .read<AuthServcice>()
           .signIn(
               mail: emailController.text, password: passwordController.text);
       if (response == FireBaseSignInResponse.Failed) {
         showAlertDialog(context);
+      } else {
+        Navigator.of(context).pushNamed(SmortRoutes.navBarScreen);
       }
     } else {
       FireBaseSignInResponse response = await context
@@ -59,6 +62,8 @@ class AuthActionButton extends StatelessWidget {
               mail: emailController.text, password: passwordController.text);
       if (response == FireBaseSignInResponse.Failed) {
         showAlertDialog(context);
+      } else {
+        Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
       }
     }
   }
