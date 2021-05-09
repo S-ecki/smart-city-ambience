@@ -17,7 +17,8 @@ class AuthInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextFormField( 
+      keyboardType: label == "Email" ? TextInputType.emailAddress : TextInputType.text,
       obscureText: isPasswordField,
       controller: controller,
       validator: (value) {

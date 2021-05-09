@@ -2,6 +2,7 @@
 // It launches the 3 respective screen, which are defined in _pages
 
 import 'package:flutter/material.dart';
+import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen_components.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/chat_screen.dart';
