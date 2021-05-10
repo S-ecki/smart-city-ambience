@@ -20,13 +20,13 @@ class EventScreen extends StatelessWidget {
         // resulting padding = 12
         child: Padding(
           padding: const EdgeInsets.all(6),
-          child: Column(children: [
-            EventCard(child: Text("test")),
-            EventCard(child: Text("test")),
-            EventCard(child: Text("test")),
-            EventCard(child: Text("test")),
-            EventCard(child: Text("test")),
-          ],),
+          child: Column(
+            children: [
+              EventCard(
+                child: Event(image: 'lib/images/test_image.jpg', title: "test"),
+              ),
+            ],
+          ),
         ),
       ),
     );

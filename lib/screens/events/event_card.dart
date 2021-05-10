@@ -4,10 +4,9 @@ import "package:flutter/material.dart";
 // Card without a header can be achieved by not providing title property
 
 class EventCard extends StatelessWidget {
-  final Widget child;
-  final String title;
+  final Event child;
 
-  EventCard({@required this.child, this.title});
+  EventCard({@required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +20,21 @@ class EventCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         elevation: 2,
         // return card without header if no title is provided
-        child: title == null
+        child: child.title == null
             ? child
             // otherwise return header with fullscreen icon
             : Column(
                 children: [
+                  //TODO: alignment
+                  
+                  Image.asset(
+                    child.image,
+                    height: 100,
+                  ),
+
                   ListTile(
                     title: Text(
-                      title,
+                      child.title,
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     trailing: IconButton(
@@ -39,10 +45,20 @@ class EventCard extends StatelessWidget {
                   Divider(
                     thickness: 1,
                   ),
-                  child,
                 ],
               ),
       ),
     );
+  }
+}
+
+class Event {
+  final String image;
+  final String title;
+
+  Event({@required this.image, this.title});
+
+  getImage() {
+    return this.image;
   }
 }
