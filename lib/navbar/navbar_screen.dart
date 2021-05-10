@@ -29,9 +29,6 @@ class _NavbarScreenState extends State<NavbarScreen> {
       currentIndex: _selectedPageIndex,
       type: BottomNavigationBarType.fixed,
       backgroundColor: Theme.of(context).primaryColor,
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Colors.grey,
-      unselectedLabelStyle: TextStyle(color: Colors.grey),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.emoji_symbols),

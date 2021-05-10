@@ -33,11 +33,12 @@ class EventCard extends StatelessWidget {
                     ),
                     trailing: IconButton(
                       icon: Icon(Icons.fullscreen),
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                     ),
                   ),
-                  Divider(thickness: 1,),
+                  Divider(
+                    thickness: 1,
+                  ),
                   child,
                 ],
               ),
