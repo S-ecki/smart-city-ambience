@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/LoginScreen.dart';
 import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen.dart';
-import 'package:smart_city_ambience/screens/home/home_screen.dart';
 import 'package:smart_city_ambience/screens/profile/profile_screen.dart';
 
 class SmortRoutes {
