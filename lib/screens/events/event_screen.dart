@@ -23,12 +23,30 @@ class EventScreen extends StatelessWidget {
           child: Column(
             children: [
               EventCard(
-                child: Event(image: 'lib/images/test_image.jpg', title: "test"),
+                child: Event(
+                    image: 'lib/images/test_image.jpg',
+                    title: "test",
+                    description:
+                        "this is an event adlösfalö sdlöfkaöl alösdlfalösk with a lot of text aklsdfjakls aklösdfj kljaaklösdfjak ljaklösdfakls jalösdkfaklösdj aklösddfj kla aklösdfjaklösdjfkjl aklösddf klasdjflaköks aklösdfj klöasdjf klasjsfaklöjadslk jafklsdjfalks j adlksfj"),
               ),
+              EventCard(
+                child: Event(
+                    image: 'lib/images/test_image.jpg',
+                    title: "test",
+                    description:
+                        "this is an event adlösfalö sdlöfkaöl alösdlfalösk with a lot of text aklsdfjakls aklösdfj kljaaklösdfjak ljaklösdfakls jalösdkfaklösdj aklösddfj kla aklösdfjaklösdjfkjl aklösddf klasdjflaköks aklösdfj klöasdjf klasjsfaklöjadslk jafklsdjfalks j adlksfj"),
+              ),
+              FloatingActionButton(
+                  child: const Icon(Icons.add),
+                  backgroundColor: Colors.blue,
+                  onPressed: () {}),
             ],
           ),
+          
         ),
+        
       ),
+      
     );
   }
 }
