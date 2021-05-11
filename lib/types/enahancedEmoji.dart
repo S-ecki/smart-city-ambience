@@ -14,6 +14,12 @@ class EnhancedEmoji {
   EmojiType type;
 
   EnhancedEmoji({this.emoji, this.type});
+
+  @override
+  bool operator ==(dynamic other) {
+    if (!(other is EnhancedEmoji)) return false;
+    return other.emoji.name == this.emoji.name;
+  }
 }
 
 /**

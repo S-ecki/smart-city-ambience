@@ -9,9 +9,9 @@ import 'package:smart_city_ambience/types/enahancedEmoji.dart';
  * 
  */
 class EmojiReactList extends StatelessWidget {
-  EmojiReactList({this.currentEventId});
+  EmojiReactList({this.eventId});
 
-  final String currentEventId;
+  final String eventId;
 
   @override
   Widget build(BuildContext context) {
@@ -19,25 +19,27 @@ class EmojiReactList extends StatelessWidget {
         converter: (store) => store.state.enhancedEmojis,
         builder: (context, Map<String, List<EnhancedEmoji>> reactions) {
           print(reactions);
-          List<EnhancedEmoji> emojisOfEvent =
-              reactions.containsKey(currentEventId)
-                  ? reactions[currentEventId]
-                  : [];
+          List<EnhancedEmoji> emojisOfEvent = reactions.containsKey(eventId)
+              ? reactions[eventId].toSet().toList()
+              : [];
           return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: emojisOfEvent
                     .getRange(
-                        0, emojisOfEvent.length > 4 ? 4 : emojisOfEvent.length)
+                        0, emojisOfEvent.length > 3 ? 3 : emojisOfEvent.length)
                     .map(
                       (enhancedEmoji) => EmojiButton(
                         enhancedEmoji: enhancedEmoji,
                         variant: EmojiButtonVariant.Text,
+                        eventId: eventId,
                       ),
                     )
                     .toList(),
               ),
-              emojisOfEvent.length > 4 ? Text("...") : null
+              emojisOfEvent.length > 3 ? Text("...") : Text("")
             ],
           );
         });

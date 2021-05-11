@@ -65,7 +65,7 @@ class EventDetailScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 EmojiReactList(
-                                  currentEventId: event.eventId,
+                                  eventId: event.eventId,
                                 ),
                                 EmojiReactPicker(eventId: event.eventId)
                               ],
