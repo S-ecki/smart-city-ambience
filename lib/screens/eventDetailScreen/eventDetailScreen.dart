@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_city_ambience/emojiReactPicker/emojiReactPicker.dart';
 
 class EventDetailScreen extends StatelessWidget {
   @override
@@ -60,19 +61,7 @@ class EventDetailScreen extends StatelessWidget {
                           width: 140,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.ac_unit_outlined,
-                                  size: 15,
-                                ),
-                                Icon(
-                                  Icons.access_alarm_sharp,
-                                  size: 15,
-                                )
-                              ],
-                            ),
+                            child: EmojiReactPicker(),
                           ),
                         ),
                         Container(

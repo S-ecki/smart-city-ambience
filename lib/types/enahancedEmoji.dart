@@ -20,13 +20,19 @@ class EnhancedEmoji {
  * Currnet List of possible Reactions
  * used in emojiReactPicker
  */
-final List<EnhancedEmoji> emjiReactionList = [
+final List<EnhancedEmoji> emojiReactionList = [
   EnhancedEmoji(emoji: Emoji("smiley", "😀"), type: EmojiType.Positive),
   EnhancedEmoji(emoji: Emoji("inLove", "🥰"), type: EmojiType.Positive),
   EnhancedEmoji(emoji: Emoji("party smiley", "🥳"), type: EmojiType.Positive),
   EnhancedEmoji(emoji: Emoji("lauging smiley", "😂"), type: EmojiType.Positive),
   EnhancedEmoji(emoji: Emoji("sleepy smiley", "🥱"), type: EmojiType.Neutral),
   EnhancedEmoji(emoji: Emoji("neutral smiley", "😐"), type: EmojiType.Neutral),
+  EnhancedEmoji(emoji: Emoji("big eyes smiley", "🥺"), type: EmojiType.Neutral),
+  EnhancedEmoji(
+      emoji: Emoji("Shock smiley face", "😲"), type: EmojiType.Neutral),
   EnhancedEmoji(emoji: Emoji("angry smiley", "😡"), type: EmojiType.Negative),
-  EnhancedEmoji(emoji: Emoji("confused smiley", "😖"), type: EmojiType.Negative)
+  EnhancedEmoji(
+      emoji: Emoji("confused smiley", "😖"), type: EmojiType.Negative),
+  EnhancedEmoji(emoji: Emoji("sick smiley", "🤢"), type: EmojiType.Negative),
+  EnhancedEmoji(emoji: Emoji("pissed smiley", "😤"), type: EmojiType.Negative)
 ];
