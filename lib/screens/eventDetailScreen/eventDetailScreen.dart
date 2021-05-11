@@ -50,7 +50,7 @@ class EventDetailScreen extends StatelessWidget {
                     ),
                     Text("SUB TEXT PLACEHOLDER"),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           decoration: BoxDecoration(
