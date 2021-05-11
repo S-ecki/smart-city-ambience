@@ -82,7 +82,6 @@ class EventCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          
                           Icon(
                             Icons.favorite,
                             color: Theme.of(context).primaryColor,
@@ -142,49 +141,7 @@ class EventCard extends StatelessWidget {
 class Event {
   final String image;
   final String title;
-  final String emoji;
   //final String comments;
   final String description;
-  Event({@required this.image, this.title, this.description, this.emoji});
+  Event({@required this.image, this.title, this.description});
 }
-/*
-class Emojis extends StatefulWidget {
-  @override
-  _EmojiState createState() => _EmojiState();
-}
-
-class _EmojiState extends State<Emojis> {
-  final List<String> list = new List<String>();
-
-  @override
-  Widget build(BuildContext context) {
-    list.add('lib/emojis/smile.jpg');
-    return Container(
-      height: 20,
-      width: 20,
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: new ListView.builder(
-              itemCount: list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return new Image(
-                  image: AssetImage(list[index]),
-                  fit: BoxFit.fill,
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () {
-                list.add('lib/emojis/smile.jpg');
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-*/

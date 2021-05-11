@@ -26,7 +26,6 @@ class EventScreen extends StatelessWidget {
                 child: Event(
                     image: 'lib/images/test_image.jpg',
                     title: "test",
-                    emoji: 'lib/emojis/smile.jpg',
                     description:
                         "this is an event adlösfalö sdlöfkaöl alösdlfalösk with a lot of text aklsdfjakls aklösdfj kljaaklösdfjak ljaklösdfakls jalösdkfaklösdj aklösddfj kla aklösdfjaklösdjfkjl aklösddf klasdjflaköks aklösdfj klöasdjf klasjsfaklöjadslk jafklsdjfalks j adlksfj"),
               ),
@@ -34,7 +33,6 @@ class EventScreen extends StatelessWidget {
                 child: Event(
                     image: 'lib/images/test_image.jpg',
                     title: "test",
-                    emoji: 'lib/emojis/smile.jpg',
                     description:
                         "this is an event adlösfalö sdlöfkaöl ajkladlfjködfaksjlöaksdfjlöasdfkjlöjklöadfgfsjioöadfsöjkladfsljköadfskjlöaksdfjlöasdfkjlöaksdfjlöajklödsfjklödfsjklödafsjklöadsfjklöasdföjkldafsöjklasdfjklöasdfjklösjklöasdfjklöadfsjkladfsjklödafsjklödafsöjkldafsjöklasdfjklöasdföjkllösdlfalösk with a lot of text aklsdfjakls aklösdfj kljaaklösdfjak ljaklösdfakls jalösdkfaklösdj aklösddfj kla aklösdfjaklösdjfkjl aklösddf klasdjflaköks aklösdfj klöasdjf klasjsfaklöjadslk jafklsdjfalks j adlksfj"),
               ),
