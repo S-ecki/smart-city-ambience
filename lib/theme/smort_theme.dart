@@ -5,6 +5,7 @@ import "material_color_generator.dart";
 ThemeData smortTheme(BuildContext context) {
   final darkAccentColor = Color(0xFF34252F);
   final accentColor = Color(0xFFBEC5AD);
+
   return ThemeData(
     // Material Color with own Color Palette can be created as follows
     primarySwatch: generateMaterialColor(Color(0xFFA4B494)),

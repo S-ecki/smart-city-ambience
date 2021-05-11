@@ -58,6 +58,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "buttons": [
           OptionsButton(),
         ],
+        "fab": EventFAB(),
       },
       {
         "page": HomeScreen(),
@@ -65,6 +66,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "buttons": [
           OptionsButton(),
         ],
+        "fab": null,
       },
       {
         "page": ChatScreen(),
@@ -72,6 +74,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "buttons": [
           OptionsButton(),
         ],
+        "fab": null,
       },
     ];
     return Scaffold(
@@ -89,6 +92,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
       body: _pages[_selectedPageIndex]['page'],
       // the actual tab bar
       bottomNavigationBar: buildBottomNavigationBar(context),
+      floatingActionButton: _pages[_selectedPageIndex]['fab']
     );
   }
 }
