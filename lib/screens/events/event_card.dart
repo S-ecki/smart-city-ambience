@@ -54,9 +54,6 @@ class EventCard extends StatelessWidget {
                       child.description,
                     ),
                   ),
-                  Divider(
-                    thickness: 1,
-                  ),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
