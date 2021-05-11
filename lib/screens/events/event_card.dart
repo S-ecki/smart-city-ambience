@@ -16,6 +16,7 @@ class EventCard extends StatelessWidget {
 
       child: Card(
         shape: RoundedRectangleBorder(
+          side: BorderSide(width: 4.0, color: Theme.of(context).accentColor),
           borderRadius: BorderRadius.circular(15.0),
         ),
         // total padding on every card = 12 (see padding of outer column)
@@ -40,24 +41,35 @@ class EventCard extends StatelessWidget {
               image: AssetImage(child.image),
               fit: BoxFit.fill,
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 5,
+            ),
             ListTile(
-              title: Text(
-                child.title,
-                style: Theme.of(context).textTheme.headline6,
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  child.title,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
-              subtitle: Text(
-                child.description,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+              subtitle: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  child.description,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
                   children: [
+                    SizedBox(
+                      width: 10,
+                    ),
                     Container(
                       height: 40,
                       width: 150,
@@ -70,6 +82,7 @@ class EventCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          
                           Icon(
                             Icons.favorite,
                             color: Theme.of(context).primaryColor,
@@ -87,6 +100,7 @@ class EventCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      //child:Emojis(),
                     ),
                   ],
                 ),
@@ -102,12 +116,21 @@ class EventCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Center(
-                        child: Text('Kommentare (4)'),
+                        child: Text(
+                          'Kommentare (4)',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 10,
                     ),
                   ],
                 ),
               ],
+            ),
+            SizedBox(
+              height: 10,
             ),
           ],
         ),
@@ -119,7 +142,49 @@ class EventCard extends StatelessWidget {
 class Event {
   final String image;
   final String title;
+  final String emoji;
   //final String comments;
   final String description;
-  Event({@required this.image, this.title, this.description});
+  Event({@required this.image, this.title, this.description, this.emoji});
 }
+/*
+class Emojis extends StatefulWidget {
+  @override
+  _EmojiState createState() => _EmojiState();
+}
+
+class _EmojiState extends State<Emojis> {
+  final List<String> list = new List<String>();
+
+  @override
+  Widget build(BuildContext context) {
+    list.add('lib/emojis/smile.jpg');
+    return Container(
+      height: 20,
+      width: 20,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: new ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return new Image(
+                  image: AssetImage(list[index]),
+                  fit: BoxFit.fill,
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                list.add('lib/emojis/smile.jpg');
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+*/
