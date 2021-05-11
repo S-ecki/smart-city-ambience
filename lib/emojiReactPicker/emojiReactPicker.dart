@@ -1,32 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smart_city_ambience/emojiReactPicker/popupMenuWidget.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
-
-/**
- * 
- * 
- */
-class PopupMenuWidget<T> extends PopupMenuEntry<T> {
-  const PopupMenuWidget({Key key, this.height, this.child}) : super(key: key);
-
-  @override
-  final Widget child;
-
-  @override
-  final double height;
-
-  @override
-  bool get enabled => false;
-
-  @override
-  _PopupMenuWidgetState createState() => new _PopupMenuWidgetState();
-
-  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
-
-class _PopupMenuWidgetState extends State<PopupMenuWidget> {
-  @override
-  Widget build(BuildContext context) => widget.child;
-}
+import 'emojiButton.dart';
 
 /**
  * 
@@ -70,6 +45,7 @@ class EmojiReactPicker extends StatelessWidget {
 
 /**
  * 
+ * 
  */
 class EmojiReactRow extends StatelessWidget {
   const EmojiReactRow({Key key, this.emojiType}) : super(key: key);
@@ -84,16 +60,10 @@ class EmojiReactRow extends StatelessWidget {
           .where(
               (EnhancedEmoji enhancedEmoji) => enhancedEmoji.type == emojiType)
           .map(
-            (EnhancedEmoji enhancedEmoji) => InkWell(
-                child: Container(
-                  child: Text(
-                    enhancedEmoji.emoji.code,
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                }),
+            (EnhancedEmoji enhancedEmoji) => EmojiButton(
+              enhancedEmoji: enhancedEmoji,
+              variant: EmojiButtonVariant.Button,
+            ),
           )
           .toList(),
     );

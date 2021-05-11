@@ -54,15 +54,8 @@ class EventDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
                           width: 140,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: EmojiReactPicker(),
-                          ),
+                          child: EmojiReactPicker(),
                         ),
                         Container(
                           child: Padding(
