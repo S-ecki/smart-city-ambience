@@ -22,7 +22,7 @@ class EmojiReactPicker extends StatelessWidget {
         ),
       ),
       iconSize: 24,
-      icon: Icon(Icons.apps),
+      icon: Icon(Icons.add),
       itemBuilder: (BuildContext context) {
         return [
           PopupMenuWidget(
