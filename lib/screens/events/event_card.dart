@@ -24,95 +24,93 @@ class EventCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         elevation: 2,
         // return card without header if no title is provided
-        child: child.title == null
-            ? child
-            // otherwise return header with fullscreen icon
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  //TODO: alignment
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(child.image),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Image(
-                    image: AssetImage(child.image),
-                    fit: BoxFit.fill,
-                  ),
-
-                  ListTile(
-                    title: Text(
-                      child.title,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    subtitle: Text(
-                      child.description,
-                    ),
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.blue,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.pink,
-                                  size: 24.0,
-                                ),
-                                Icon(
-                                  Icons.audiotrack,
-                                  color: Colors.green,
-                                  size: 30.0,
-                                ),
-                                Icon(
-                                  Icons.beach_access,
-                                  color: Colors.blue,
-                                  size: 36.0,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.blue,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Center(
-                              child: Text('Kommentare (4)'),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(child.image),
+                  fit: BoxFit.cover,
+                ),
               ),
+            ),
+            Image(
+              image: AssetImage(child.image),
+              fit: BoxFit.fill,
+            ),
+            SizedBox(height: 10,),
+            ListTile(
+              title: Text(
+                child.title,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              subtitle: Text(
+                child.description,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            color: Theme.of(context).primaryColor,
+                            size: 24.0,
+                          ),
+                          Icon(
+                            Icons.audiotrack,
+                            color: Theme.of(context).primaryColor,
+                            size: 30.0,
+                          ),
+                          Icon(
+                            Icons.beach_access,
+                            color: Theme.of(context).primaryColor,
+                            size: 36.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Center(
+                        child: Text('Kommentare (4)'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
