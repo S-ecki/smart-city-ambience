@@ -53,7 +53,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
     // moved into build to get context
     final List<Map<String, Object>> _pages = [
       {
-        "page": EventDetailScreen(),
+        "page": EventScreen(),
         "title": "Events",
         "buttons": [
           OptionsButton(),
@@ -78,21 +78,20 @@ class _NavbarScreenState extends State<NavbarScreen> {
       },
     ];
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.account_circle),
-          onPressed: () {
-            Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
-          },
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
+            },
+          ),
+          actions: _pages[_selectedPageIndex]['buttons'],
+          title: Text(_pages[_selectedPageIndex]['title']),
         ),
-        actions: _pages[_selectedPageIndex]['buttons'],
-        title: Text(_pages[_selectedPageIndex]['title']),
-      ),
-      // loading of appropriate page based on index
-      body: _pages[_selectedPageIndex]['page'],
-      // the actual tab bar
-      bottomNavigationBar: buildBottomNavigationBar(context),
-      floatingActionButton: _pages[_selectedPageIndex]['fab']
-    );
+        // loading of appropriate page based on index
+        body: _pages[_selectedPageIndex]['page'],
+        // the actual tab bar
+        bottomNavigationBar: buildBottomNavigationBar(context),
+        floatingActionButton: _pages[_selectedPageIndex]['fab']);
   }
 }

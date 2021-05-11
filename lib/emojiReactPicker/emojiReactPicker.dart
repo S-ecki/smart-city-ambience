@@ -9,6 +9,10 @@ import 'emojiButton.dart';
  */
 
 class EmojiReactPicker extends StatelessWidget {
+  EmojiReactPicker({this.eventId});
+
+  final String eventId;
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -27,12 +31,15 @@ class EmojiReactPicker extends StatelessWidget {
               children: [
                 EmojiReactRow(
                   emojiType: EmojiType.Positive,
+                  eventId: eventId,
                 ),
                 EmojiReactRow(
                   emojiType: EmojiType.Neutral,
+                  eventId: eventId,
                 ),
                 EmojiReactRow(
                   emojiType: EmojiType.Negative,
+                  eventId: eventId,
                 ),
               ],
             ),
@@ -48,9 +55,11 @@ class EmojiReactPicker extends StatelessWidget {
  * 
  */
 class EmojiReactRow extends StatelessWidget {
-  const EmojiReactRow({Key key, this.emojiType}) : super(key: key);
+  const EmojiReactRow({Key key, this.emojiType, this.eventId})
+      : super(key: key);
 
   final EmojiType emojiType;
+  final String eventId;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +72,7 @@ class EmojiReactRow extends StatelessWidget {
             (EnhancedEmoji enhancedEmoji) => EmojiButton(
               enhancedEmoji: enhancedEmoji,
               variant: EmojiButtonVariant.Button,
+              eventId: eventId,
             ),
           )
           .toList(),

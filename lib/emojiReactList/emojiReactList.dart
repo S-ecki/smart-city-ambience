@@ -16,18 +16,30 @@ class EmojiReactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<ReactionsState, Map<String, List<EnhancedEmoji>>>(
-      converter: (store) => store.state.enhancedEmojis,
-      builder: (context, Map<String, List<EnhancedEmoji>> reactions) => Row(
-        children: [
-          ...reactions[currentEventId].map(
-            (enhancedEmoji) => EmojiButton(
-              enhancedEmoji: enhancedEmoji,
-              variant: EmojiButtonVariant.Text,
-            ),
-          ),
-          reactions[currentEventId].length >= 4 ? Text("...") : Text("")
-        ],
-      ),
-    );
+        converter: (store) => store.state.enhancedEmojis,
+        builder: (context, Map<String, List<EnhancedEmoji>> reactions) {
+          print(reactions);
+          List<EnhancedEmoji> emojisOfEvent =
+              reactions.containsKey(currentEventId)
+                  ? reactions[currentEventId]
+                  : [];
+          return Row(
+            children: [
+              Row(
+                children: emojisOfEvent
+                    .getRange(
+                        0, emojisOfEvent.length > 4 ? 4 : emojisOfEvent.length)
+                    .map(
+                      (enhancedEmoji) => EmojiButton(
+                        enhancedEmoji: enhancedEmoji,
+                        variant: EmojiButtonVariant.Text,
+                      ),
+                    )
+                    .toList(),
+              ),
+              emojisOfEvent.length > 4 ? Text("...") : null
+            ],
+          );
+        });
   }
 }

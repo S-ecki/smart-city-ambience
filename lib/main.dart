@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
+import 'package:smart_city_ambience/dummyData/dummyEvents.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/redux/reactionsState.reducer.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
@@ -20,11 +21,14 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final Store<ReactionsState> store = Store<ReactionsState>(
       reactionsStateReducer,
-      initialState: ReactionsState(enhancedEmojis: {}));
+      initialState: ReactionsState(enhancedEmojis: {
+        dummyEvents[0].eventId: [],
+        dummyEvents[1].eventId: []
+      }));
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider(
+    return StoreProvider<ReactionsState>(
       store: store,
       child: MultiProvider(
         providers: [
@@ -46,5 +50,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

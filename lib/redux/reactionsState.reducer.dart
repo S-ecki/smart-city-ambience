@@ -7,7 +7,9 @@ import 'package:smart_city_ambience/redux/reactionsState.dart';
 ReactionsState reactionsStateReducer(
     ReactionsState currentState, dynamic action) {
   if (action is AddReaction) {
-    currentState.enhancedEmojis[action.eventId].add(action.enhancedEmoji);
+    print(action.eventId);
+    print(action.enhancedEmoji);
+    currentState.enhancedEmojis[action.eventId]?.add(action.enhancedEmoji);
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
     );
