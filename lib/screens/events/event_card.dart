@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:uuid/uuid.dart';
 
 // common styling for all Cards
 // Card without a header can be achieved by not providing title property
@@ -143,5 +144,9 @@ class Event {
   final String title;
   //final String comments;
   final String description;
+
+  //Auto generated id
+  final String eventId = Uuid().v1();
+
   Event({@required this.image, this.title, this.description});
 }

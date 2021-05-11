@@ -6,6 +6,7 @@ import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen_components.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/chat_screen.dart';
+import 'package:smart_city_ambience/screens/eventDetailScreen/eventDetailScreen.dart';
 import 'package:smart_city_ambience/screens/events/event_screen.dart';
 import 'package:smart_city_ambience/screens/home/home_screen.dart';
 
@@ -77,21 +78,20 @@ class _NavbarScreenState extends State<NavbarScreen> {
       },
     ];
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.account_circle),
-          onPressed: () {
-            Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
-          },
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+              Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
+            },
+          ),
+          actions: _pages[_selectedPageIndex]['buttons'],
+          title: Text(_pages[_selectedPageIndex]['title']),
         ),
-        actions: _pages[_selectedPageIndex]['buttons'],
-        title: Text(_pages[_selectedPageIndex]['title']),
-      ),
-      // loading of appropriate page based on index
-      body: _pages[_selectedPageIndex]['page'],
-      // the actual tab bar
-      bottomNavigationBar: buildBottomNavigationBar(context),
-      floatingActionButton: _pages[_selectedPageIndex]['fab']
-    );
+        // loading of appropriate page based on index
+        body: _pages[_selectedPageIndex]['page'],
+        // the actual tab bar
+        bottomNavigationBar: buildBottomNavigationBar(context),
+        floatingActionButton: _pages[_selectedPageIndex]['fab']);
   }
 }
