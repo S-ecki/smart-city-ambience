@@ -74,7 +74,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "buttons": [
           OptionsButton(),
         ],
-        "fab": null,
+        "fab": ChatFAB(),
       },
     ];
     return Scaffold(
