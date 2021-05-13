@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:smart_city_ambience/emojiReactList/emojiReactList.dart';
+import 'package:smart_city_ambience/emojiReactPicker/emojiReactPicker.dart';
 import 'package:uuid/uuid.dart';
 
 // common styling for all Cards
@@ -6,8 +8,9 @@ import 'package:uuid/uuid.dart';
 
 class EventCard extends StatelessWidget {
   final Event child;
+  final bool showFullDesc;
 
-  EventCard({@required this.child});
+  EventCard({@required this.child, this.showFullDesc});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,7 @@ class EventCard extends StatelessWidget {
                   child.description,
                   style: Theme.of(context).textTheme.bodyText1,
                   maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: showFullDesc ? null : TextOverflow.ellipsis,
                 ),
               ),
             ),
@@ -73,7 +76,6 @@ class EventCard extends StatelessWidget {
                     ),
                     Container(
                       height: 40,
-                      width: 150,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Theme.of(context).primaryColor,
@@ -81,26 +83,15 @@ class EventCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.favorite,
-                            color: Theme.of(context).primaryColor,
-                            size: 24.0,
+                          EmojiReactList(
+                            eventId: child.eventId,
                           ),
-                          Icon(
-                            Icons.audiotrack,
-                            color: Theme.of(context).primaryColor,
-                            size: 30.0,
-                          ),
-                          Icon(
-                            Icons.beach_access,
-                            color: Theme.of(context).primaryColor,
-                            size: 36.0,
-                          ),
+                          EmojiReactPicker(
+                            eventId: child.eventId,
+                          )
                         ],
                       ),
-                      //child:Emojis(),
                     ),
                   ],
                 ),
