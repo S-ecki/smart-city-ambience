@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:smart_city_ambience/emojiReactList/emojiReactList.dart';
+import 'package:smart_city_ambience/emojiReactPicker/emojiReactPicker.dart';
 import 'package:uuid/uuid.dart';
 
 // common styling for all Cards
@@ -6,8 +8,10 @@ import 'package:uuid/uuid.dart';
 
 class EventCard extends StatelessWidget {
   final Event child;
+  final bool showFullDesc;
+  final bool withBorder;
 
-  EventCard({@required this.child});
+  EventCard({@required this.child, this.showFullDesc, this.withBorder});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +21,20 @@ class EventCard extends StatelessWidget {
 
       child: Card(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 4.0, color: Theme.of(context).accentColor),
-          borderRadius: BorderRadius.circular(15.0),
+          side: withBorder
+              ? BorderSide(width: 4.0, color: Theme.of(context).accentColor)
+              : BorderSide(width: 4.0, color: Colors.transparent),
+          borderRadius: withBorder
+              ? BorderRadius.circular(15.0)
+              : BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
         ),
         // total padding on every card = 12 (see padding of outer column)
-        margin: EdgeInsets.all(6),
+        margin: withBorder
+            ? EdgeInsets.all(6)
+            : EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 0),
         // prevent widget to go over edge of card
         clipBehavior: Clip.antiAlias,
         elevation: 2,
@@ -59,7 +72,7 @@ class EventCard extends StatelessWidget {
                   child.description,
                   style: Theme.of(context).textTheme.bodyText1,
                   maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: showFullDesc ? null : TextOverflow.ellipsis,
                 ),
               ),
             ),
@@ -73,7 +86,6 @@ class EventCard extends StatelessWidget {
                     ),
                     Container(
                       height: 40,
-                      width: 150,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Theme.of(context).primaryColor,
@@ -81,23 +93,13 @@ class EventCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.favorite,
-                            color: Theme.of(context).primaryColor,
-                            size: 24.0,
+                          EmojiReactList(
+                            eventId: child.eventId,
                           ),
-                          Icon(
-                            Icons.audiotrack,
-                            color: Theme.of(context).primaryColor,
-                            size: 30.0,
-                          ),
-                          Icon(
-                            Icons.beach_access,
-                            color: Theme.of(context).primaryColor,
-                            size: 36.0,
-                          ),
+                          EmojiReactPicker(
+                            eventId: child.eventId,
+                          )
                         ],
                       ),
                     ),
@@ -110,13 +112,15 @@ class EventCard extends StatelessWidget {
                       width: 150,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Theme.of(context).primaryColor,
+                          color: withBorder
+                              ? Theme.of(context).primaryColor
+                              : Colors.transparent,
                         ),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Center(
                         child: Text(
-                          'Kommentare (4)',
+                          withBorder ? 'Kommentare (4)' : "",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),

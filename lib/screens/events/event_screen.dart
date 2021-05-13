@@ -29,14 +29,22 @@ class EventScreen extends StatelessWidget {
                   Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
                       arguments: dummyEvents[0]);
                 },
-                child: EventCard(child: dummyEvents[0]),
+                child: EventCard(
+                  child: dummyEvents[0],
+                  showFullDesc: false,
+                  withBorder: true,
+                ),
               ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
-                      arguments: dummyEvents[0]);
+                      arguments: dummyEvents[1]);
                 },
-                child: EventCard(child: dummyEvents[1]),
+                child: EventCard(
+                  child: dummyEvents[1],
+                  showFullDesc: false,
+                  withBorder: true,
+                ),
               ),
             ],
           ),
