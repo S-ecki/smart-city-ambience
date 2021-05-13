@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
+import 'package:smart_city_ambience/screens/home/charts/bar_chart.dart';
 import 'package:smart_city_ambience/screens/home/charts/pie_chart.dart';
 
 class EmotionOutputTabs extends StatelessWidget {
@@ -11,7 +12,7 @@ class EmotionOutputTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: LayoutBuilder(
           builder: (_, dimens) {
             return Column(
@@ -41,6 +42,9 @@ class EmotionOutputTabs extends StatelessWidget {
                         text: "Pie Chart",
                       ),
                       Tab(
+                        text: "Bar Chart",
+                      ),
+                      Tab(
                         text: "Word Cloud",
                       ),
                     ],
@@ -56,6 +60,7 @@ class EmotionOutputTabs extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       Center(child: PieChart()),
+                      Center(child: BarChart()),
                       Center(child: WordCloudExample()),
                     ],
                   ),
@@ -76,8 +81,8 @@ Random _rnd = Random();
 
 String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
     length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
-    
-List<String> test = [for(int i=0; i<10; ++i) getRandomString(6)];
+
+List<String> test = [for (int i = 0; i < 50; ++i) getRandomString(6)];
 
 // small test of package
 
@@ -96,7 +101,7 @@ class WordCloudExample extends StatelessWidget {
       child: FittedBox(
         child: Scatter(
           fillGaps: true,
-          delegate:ArchimedeanSpiralScatterDelegate(ratio: ratio),
+          delegate: ArchimedeanSpiralScatterDelegate(ratio: ratio),
           children: widgets,
         ),
       ),
