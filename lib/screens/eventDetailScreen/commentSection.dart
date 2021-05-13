@@ -19,42 +19,52 @@ class CommentSection extends StatelessWidget {
       converter: (store) => store.state.comments,
       builder: (context, Map<String, Map<String, List<String>>> comments) =>
           Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Text(
-                "Kommentare",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(width: 4.0, color: Colors.transparent),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+          ),
+        ),
+        elevation: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Text(
+                  "Kommentare",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: comments[eventId]
-                    .entries
-                    .map(
-                      (entry) => entry.value
-                          .map(
-                            (comment) => CommentContainer(
-                              child: SingleComment(
-                                userName: entry.key,
-                                comment: comment,
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: comments[eventId]
+                      .entries
+                      .map(
+                        (entry) => entry.value
+                            .map(
+                              (comment) => CommentContainer(
+                                child: SingleComment(
+                                  userName: entry.key,
+                                  comment: comment,
+                                ),
                               ),
-                            ),
-                          )
-                          .toList(),
-                    )
-                    .expand((item) => item)
-                    .toList(),
+                            )
+                            .toList(),
+                      )
+                      .expand((item) => item)
+                      .toList(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

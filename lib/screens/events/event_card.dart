@@ -24,10 +24,17 @@ class EventCard extends StatelessWidget {
           side: withBorder
               ? BorderSide(width: 4.0, color: Theme.of(context).accentColor)
               : BorderSide(width: 4.0, color: Colors.transparent),
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: withBorder
+              ? BorderRadius.circular(15.0)
+              : BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
         ),
         // total padding on every card = 12 (see padding of outer column)
-        margin: EdgeInsets.all(6),
+        margin: withBorder
+            ? EdgeInsets.all(6)
+            : EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 0),
         // prevent widget to go over edge of card
         clipBehavior: Clip.antiAlias,
         elevation: 2,
@@ -105,13 +112,15 @@ class EventCard extends StatelessWidget {
                       width: 150,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Theme.of(context).primaryColor,
+                          color: withBorder
+                              ? Theme.of(context).primaryColor
+                              : Colors.transparent,
                         ),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Center(
                         child: Text(
-                          'Kommentare (4)',
+                          withBorder ? 'Kommentare (4)' : "",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
