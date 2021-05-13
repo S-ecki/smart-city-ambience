@@ -38,13 +38,13 @@ dependencies:
   #syncfusion_flutter_charts: "> 19.0.0"
   syncfusion_flutter_charts: < 19.0.0
   uuid: 3.0.4
-  email_validator: ^2.0.1
+  #email_validator: ^2.0.1
   image_picker: ^0.5.0
   #flutter_svg: ^0.12.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  #cupertino_icons: ^1.0.2
 
 
 dev_dependencies:
