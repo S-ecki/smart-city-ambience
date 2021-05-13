@@ -11,6 +11,19 @@ class CommentInput extends StatelessWidget {
   final FocusNode commentFocusNode = FocusNode();
   final String eventId;
 
+  void handleOnSave(BuildContext context) {
+    if (commentController.text.isEmpty) return;
+    StoreProvider.of<ReactionsState>(context).dispatch(
+      AddComment(
+        eventId: eventId,
+        comment: commentController.text,
+        userName: "Current User",
+      ),
+    );
+    commentFocusNode.unfocus();
+    commentController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<ReactionsState,
@@ -19,6 +32,7 @@ class CommentInput extends StatelessWidget {
       builder: (context, Map<String, Map<String, List<String>>> comments) =>
           Flexible(
         child: TextFormField(
+          onFieldSubmitted: (String val) => handleOnSave(context),
           focusNode: commentFocusNode,
           controller: commentController,
           decoration: InputDecoration(
@@ -30,18 +44,7 @@ class CommentInput extends StatelessWidget {
             ),
             suffixIcon: InkWell(
               borderRadius: BorderRadius.circular(20),
-              onTap: () {
-                if (commentController.text.isEmpty) return;
-                StoreProvider.of<ReactionsState>(context).dispatch(
-                  AddComment(
-                    eventId: eventId,
-                    comment: commentController.text,
-                    userName: "Current User",
-                  ),
-                );
-                commentFocusNode.unfocus();
-                commentController.clear();
-              },
+              onTap: () => handleOnSave(context),
               child: Icon(Icons.post_add),
             ),
           ),
