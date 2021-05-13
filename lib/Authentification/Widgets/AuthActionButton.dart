@@ -27,7 +27,7 @@ class AuthActionButton extends StatelessWidget {
       ),
       content: Icon(
         Icons.error,
-        color: Colors.lightBlue,
+        color: Theme.of(context).primaryColor,
         size: 70,
       ),
     );
@@ -78,7 +78,9 @@ class AuthActionButton extends StatelessWidget {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
-              side: BorderSide(color: Colors.lightBlue),
+              side: BorderSide(
+                color: Theme.of(context).primaryColor,
+              ),
             ),
           ),
           backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
@@ -86,7 +88,9 @@ class AuthActionButton extends StatelessWidget {
         onPressed: () => handleOnPressed(context),
         child: Text(
           label,
-          style: TextStyle(color: Colors.lightBlue),
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );

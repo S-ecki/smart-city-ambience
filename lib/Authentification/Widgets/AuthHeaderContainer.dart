@@ -16,7 +16,7 @@ class AuthHeaderContainer extends StatelessWidget {
         size: 100,
       ),
       decoration: BoxDecoration(
-        color: Colors.lightBlue,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
     );
