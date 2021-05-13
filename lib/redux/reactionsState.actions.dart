@@ -19,3 +19,14 @@ class RemoveReaction {
 
   RemoveReaction({this.enhancedEmoji, this.eventId});
 }
+
+/**
+ * 
+ */
+class AddComment {
+  final String comment;
+  final String userName;
+  final String eventId;
+
+  AddComment({this.userName, this.comment, this.eventId});
+}

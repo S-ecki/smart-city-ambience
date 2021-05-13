@@ -11,6 +11,7 @@ ReactionsState reactionsStateReducer(
         ?.insert(0, action.enhancedEmoji);
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
+      comments: currentState.comments,
     );
   }
   if (action is RemoveReaction) {
@@ -18,6 +19,19 @@ ReactionsState reactionsStateReducer(
         enhancedEmoji.emoji.name == action.enhancedEmoji.emoji.name);
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
+      comments: currentState.comments,
+    );
+  }
+  if (action is AddComment) {
+    if (currentState.comments[action.eventId].containsKey(action.userName)) {
+      currentState.comments[action.eventId][action.userName]
+          .add(action.comment);
+    } else {
+      currentState.comments[action.eventId][action.userName] = [action.comment];
+    }
+    return ReactionsState(
+      enhancedEmojis: currentState.enhancedEmojis,
+      comments: currentState.comments,
     );
   }
   return currentState;

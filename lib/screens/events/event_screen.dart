@@ -32,6 +32,7 @@ class EventScreen extends StatelessWidget {
                 child: EventCard(
                   child: dummyEvents[0],
                   showFullDesc: false,
+                  withBorder: true,
                 ),
               ),
               InkWell(
@@ -42,6 +43,7 @@ class EventScreen extends StatelessWidget {
                 child: EventCard(
                   child: dummyEvents[1],
                   showFullDesc: false,
+                  withBorder: true,
                 ),
               ),
             ],

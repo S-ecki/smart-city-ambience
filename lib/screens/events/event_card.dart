@@ -9,8 +9,9 @@ import 'package:uuid/uuid.dart';
 class EventCard extends StatelessWidget {
   final Event child;
   final bool showFullDesc;
+  final bool withBorder;
 
-  EventCard({@required this.child, this.showFullDesc});
+  EventCard({@required this.child, this.showFullDesc, this.withBorder});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,9 @@ class EventCard extends StatelessWidget {
 
       child: Card(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 4.0, color: Theme.of(context).accentColor),
+          side: withBorder
+              ? BorderSide(width: 4.0, color: Theme.of(context).accentColor)
+              : BorderSide(width: 4.0, color: Colors.transparent),
           borderRadius: BorderRadius.circular(15.0),
         ),
         // total padding on every card = 12 (see padding of outer column)
