@@ -63,7 +63,7 @@ class AuthActionButton extends StatelessWidget {
       if (response == FireBaseSignInResponse.Failed) {
         showAlertDialog(context);
       } else {
-        Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
+        Navigator.of(context).pushNamed(SmortRoutes.navBarScreen);
       }
     }
   }
