@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
+import 'package:smart_city_ambience/Authentification/Widgets/GoogleSocialLoginButton.dart';
 import 'Widgets/AuthActionButton.dart';
 import 'Widgets/AuthHeaderContainer.dart';
 import 'Widgets/AuthInputField.dart';
@@ -20,7 +21,7 @@ class LoginPage extends StatelessWidget {
               child: Container(
                 height: 500,
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50),
@@ -66,6 +67,7 @@ class LoginPage extends StatelessWidget {
                         emailController: emailController,
                         passwordController: passwordController,
                       ),
+                      GoogleSocialLoginButton(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "452865300405-h7pkq2obop91k7gpljvi3vh735n87ofq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smart_city_ambience",
+            "certificate_hash": "52ba57ecc3bf9b4847017e628423458c28d839c3"
+          }
+        },
+        {
           "client_id": "452865300405-j5hgl5qk4h7f5o7b4c4da6ontisovv5a.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "452865300405-j5hgl5qk4h7f5o7b4c4da6ontisovv5a.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "452865300405-b8tvdboshpct8c2fb1ulg1sbq43ldvu3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smart-city-ambience"
+              }
             }
           ]
         }
