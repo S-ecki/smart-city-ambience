@@ -5,6 +5,13 @@ import 'package:flutter_emoji/flutter_emoji.dart';
  */
 enum EmojiType { Positive, Negative, Neutral }
 
+// get string without "EmojiType." at the front
+extension ParseToString on EmojiType {
+  String toShortString() {
+    return this.toString().split('.').last;
+  }
+}
+
 /**
  * Extends the Emoji class by a Type
  * to make it easier to find postive, ... emojis
