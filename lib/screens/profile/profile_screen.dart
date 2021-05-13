@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,6 +19,10 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ! new
+    var provider = context.watch<User>();
+    // saving data??
+
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
@@ -192,10 +197,11 @@ class _ProfileScreen extends State<ProfileScreen> {
             color: Colors.yellow,
           )),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 2,
+            ),
+          ),
           prefixIcon: Icon(Icons.mail_outline, color: Colors.lightGreen[800]),
           suffixIcon: Icon(Icons.visibility),
           labelText: "E-Mail",
@@ -208,16 +214,18 @@ class _ProfileScreen extends State<ProfileScreen> {
     return TextFormField(
       decoration: InputDecoration(
           border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.teal,
-          )),
+            borderSide: BorderSide(
+              color: Colors.teal,
+            ),
+          ),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 2,
+            ),
+          ),
           prefixIcon: Icon(
-            Icons.data_usage,
+            Icons.calendar_today,
             color: Colors.lightGreen[800],
           ),
           suffixIcon: Icon(Icons.visibility),
@@ -228,6 +236,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   }
 
   Widget numberTextfield() {
+    var isVisible = true;
     return TextFormField(
       decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -243,7 +252,11 @@ class _ProfileScreen extends State<ProfileScreen> {
             Icons.phone,
             color: Colors.lightGreen[800],
           ),
-          suffixIcon: Icon(Icons.visibility),
+          suffixIcon: Icon(
+            // iconbutton -> statefull
+            Icons.visibility,
+            color: isVisible ? Colors.grey : Colors.green,
+          ),
           labelText: "Number",
           helperText: "Can't be empty",
           hintText: " +436608754333"),
