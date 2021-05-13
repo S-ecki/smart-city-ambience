@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_scatter/flutter_scatter.dart';
 import 'package:smart_city_ambience/screens/home/charts/pie_chart.dart';
 
 class EmotionOutputTabs extends StatelessWidget {
@@ -38,7 +41,7 @@ class EmotionOutputTabs extends StatelessWidget {
                         text: "Pie Chart",
                       ),
                       Tab(
-                        text: "text2",
+                        text: "Word Cloud",
                       ),
                     ],
                   ),
@@ -53,7 +56,7 @@ class EmotionOutputTabs extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       Center(child: PieChart()),
-                      Center(child: Text("")),
+                      Center(child: WordCloudExample()),
                     ],
                   ),
                 )
@@ -66,11 +69,37 @@ class EmotionOutputTabs extends StatelessWidget {
   }
 }
 
-// class EmotionOutput extends StatelessWidget {
-//   Widget graph;
+// onyl to get random test strings
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return LayoutBuilder(builder: (context, dimens) {return SizedBox(height: dimens, child: graph,)});
-//   }
-// }
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+    
+List<String> test = [for(int i=0; i<10; ++i) getRandomString(6)];
+
+// small test of package
+
+class WordCloudExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> widgets = <Widget>[];
+    for (var i = 0; i < test.length; i++) {
+      widgets.add(Text(test[i]));
+    }
+
+    final screenSize = MediaQuery.of(context).size;
+    final ratio = screenSize.width / screenSize.height;
+
+    return Center(
+      child: FittedBox(
+        child: Scatter(
+          fillGaps: true,
+          delegate:ArchimedeanSpiralScatterDelegate(ratio: ratio),
+          children: widgets,
+        ),
+      ),
+    );
+  }
+}
