@@ -32,16 +32,16 @@ class _NavbarScreenState extends State<NavbarScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.emoji_symbols),
-          label: "Events",
+          icon: Icon(Icons.article),
+          label: "News",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.emoji_people),
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.chat),
-          label: "Chats",
+          icon: Icon(Icons.question_answer),
+          label: "Forum",
         ),
       ],
     );
@@ -54,7 +54,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
     final List<Map<String, Object>> _pages = [
       {
         "page": EventScreen(),
-        "title": "Events",
+        "title": "News",
         "buttons": [
           OptionsButton(),
         ],
@@ -62,7 +62,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
       },
       {
         "page": HomeScreen(),
-        "title": "Smort City Ambience",
+        "title": "Smart City Ambience",
         "buttons": [
           OptionsButton(),
         ],

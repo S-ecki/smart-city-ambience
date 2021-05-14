@@ -47,7 +47,7 @@ class SingleComment extends StatelessWidget {
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
                 value: null,
-                child: Text('Dieses Kommentar melden'),
+                child: Text('Diesen Kommentar melden'),
               ),
             ],
           ),
