@@ -88,8 +88,7 @@ class RegisterPage extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(SmortRoutes.loginScreen);
+                              Navigator.of(context).pop();
                             },
                             child: Text(
                               "Log in",
