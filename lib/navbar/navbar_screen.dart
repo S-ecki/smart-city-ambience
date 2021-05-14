@@ -36,7 +36,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
           label: "Events",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.emoji_people),
+          icon: Icon(Icons.home),
           label: "Home",
         ),
         BottomNavigationBarItem(
