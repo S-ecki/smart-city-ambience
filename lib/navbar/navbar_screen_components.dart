@@ -23,7 +23,7 @@ class EventFAB extends StatelessWidget {
   }
 }
 
-class ChatFAB extends StatelessWidget {
+class ForumFAB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
