@@ -10,7 +10,7 @@ class SingleComment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -22,6 +22,7 @@ class SingleComment extends StatelessWidget {
             ),
           ),
           Flexible(
+            fit: FlexFit.tight,
             child: RichText(
               text: TextSpan(
                 children: [
@@ -41,6 +42,14 @@ class SingleComment extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          PopupMenuButton(
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: null,
+                child: Text('Dieses Kommentar melden'),
+              ),
+            ],
           ),
         ],
       ),

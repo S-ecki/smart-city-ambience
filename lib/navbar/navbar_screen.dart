@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen_components.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
-import 'package:smart_city_ambience/screens/chats/chat_screen.dart';
+import 'package:smart_city_ambience/screens/chats/forum_screen.dart';
 import 'package:smart_city_ambience/screens/eventDetailScreen/eventDetailScreen.dart';
 import 'package:smart_city_ambience/screens/events/event_screen.dart';
 import 'package:smart_city_ambience/screens/home/home_screen.dart';
@@ -58,7 +58,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "buttons": [
           OptionsButton(),
         ],
-        "fab": EventFAB(),
+        "fab": null,
       },
       {
         "page": HomeScreen(),
@@ -69,12 +69,12 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "fab": null,
       },
       {
-        "page": ChatScreen(),
-        "title": "Chats",
+        "page": ForumScreen(),
+        "title": "Forum",
         "buttons": [
           OptionsButton(),
         ],
-        "fab": ChatFAB(),
+        "fab": ForumFAB(),
       },
     ];
     return Scaffold(

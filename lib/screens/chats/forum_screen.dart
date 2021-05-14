@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/dummyData/dummyChats.dart';
+import 'package:smart_city_ambience/dummyData/dummyForumEntries.dart';
 import 'package:smart_city_ambience/dummyData/dummyEvents.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
-import 'package:smart_city_ambience/screens/chats/chat_card.dart';
+import 'package:smart_city_ambience/screens/chats/forum_card.dart';
 import 'package:smart_city_ambience/screens/events/event_card.dart';
 
-class ChatScreen extends StatelessWidget {
+class ForumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,15 +24,25 @@ class ChatScreen extends StatelessWidget {
           padding: const EdgeInsets.all(6),
           child: Column(
             children: [
-              ChatCard(
-                child: dummyChats[0],
+              ForumCard(
+                child: dummyForumEntries[0],
+                showFullDesc: false,
+                withBorder: true,
               ),
-              ChatCard(child: dummyChats[1]),
-              ChatCard(
-                child: dummyChats[2],
+              ForumCard(
+                child: dummyForumEntries[1],
+                showFullDesc: false,
+                withBorder: true,
               ),
-              ChatCard(
-                child: dummyChats[3],
+              ForumCard(
+                child: dummyForumEntries[2],
+                showFullDesc: false,
+                withBorder: true,
+              ),
+              ForumCard(
+                child: dummyForumEntries[3],
+                showFullDesc: false,
+                withBorder: true,
               ),
 
               /*
