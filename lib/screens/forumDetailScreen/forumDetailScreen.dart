@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:smart_city_ambience/screens/chats/forum_card.dart';
 import 'package:smart_city_ambience/screens/eventDetailScreen/bottomCommentContainer.dart';
 import 'package:smart_city_ambience/screens/eventDetailScreen/commentSection.dart';
-import 'package:smart_city_ambience/screens/events/event_card.dart';
 
-class EventDetailScreen extends StatelessWidget {
+class ForumDetailScreen extends StatelessWidget {
+  final TextEditingController commentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final Event event = ModalRoute.of(context).settings.arguments as Event;
-    final TextEditingController commentController = TextEditingController();
-
+    final Forum forum = ModalRoute.of(context).settings.arguments as Forum;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details"),
+        title: Text("Discussion"),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
           child: Column(
             children: [
-              EventCard(
-                child: event,
+              ForumCard(
+                child: forum,
                 showFullDesc: true,
                 withBorder: false,
               ),
               CommentSection(
-                eventId: event.eventId,
-                label: "Kommentare",
+                eventId: forum.forumId,
+                label: "Diskussion",
               ),
             ],
           ),
@@ -33,7 +33,7 @@ class EventDetailScreen extends StatelessWidget {
       ),
       bottomSheet: BottomCommentContainer(
         commentController: commentController,
-        eventId: event.eventId,
+        eventId: forum.forumId,
       ),
     );
   }

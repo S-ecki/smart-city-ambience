@@ -52,7 +52,7 @@ class BarChart extends StatelessWidget {
     return <StackedColumnSeries<BarChartData, DateTime>>[
       StackedColumnSeries<BarChartData, DateTime>(
         dataSource: chartData,
-        name: "Positive",
+        name: "Positiv",
         xValueMapper: (BarChartData data, _) => data.month,
         yValueMapper: (BarChartData data, _) => data.positiveAmount,
         dataLabelMapper: (BarChartData data, _) => data.positiveAmount < 30 ? "" : null,
@@ -72,7 +72,7 @@ class BarChart extends StatelessWidget {
       ),
       StackedColumnSeries<BarChartData, DateTime>(
         dataSource: chartData,
-        name: "Negative",
+        name: "Negativ",
         xValueMapper: (BarChartData data, _) => data.month,
         yValueMapper: (BarChartData data, _) => data.negativeAmount,
         dataLabelMapper: (BarChartData data, _) => data.negativeAmount < 30 ? "" : null,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/screens/home/emotion_input.dart';
-import 'package:smart_city_ambience/screens/home/emotion_output_tabs.dart';
+import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/emotion_output_tabs.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -20,12 +20,12 @@ class HomeScreen extends StatelessWidget {
               return Column(
                 children: [
                   SizedBox(
-                    height: dimens.maxHeight * 0.2,
+                    height: dimens.maxHeight * 0.27,
                     width: dimens.maxWidth,
                     child: EmotionInput(),
                   ),
                   SizedBox(
-                    height: dimens.maxHeight * 0.8,
+                    height: dimens.maxHeight * 0.73,
                     width: dimens.maxWidth,
                     child: EmotionOutputTabs(),
                   ),

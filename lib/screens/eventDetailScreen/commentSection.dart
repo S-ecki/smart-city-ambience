@@ -8,9 +8,10 @@ import 'commentContainer.dart';
  * 
  */
 class CommentSection extends StatelessWidget {
-  CommentSection({this.eventId});
+  CommentSection({this.eventId, this.label});
 
   final String eventId;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -26,44 +27,49 @@ class CommentSection extends StatelessWidget {
           ),
         ),
         elevation: 2,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                child: Text(
-                  "Kommentare",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+        child: Container(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: comments[eventId]
-                      .entries
-                      .map(
-                        (entry) => entry.value
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: comments[eventId] != null
+                        ? comments[eventId]
+                            .entries
                             .map(
-                              (comment) => CommentContainer(
-                                child: SingleComment(
-                                  userName: entry.key,
-                                  comment: comment,
-                                ),
-                              ),
+                              (entry) => entry.value
+                                  .map(
+                                    (comment) => CommentContainer(
+                                      child: SingleComment(
+                                        userName: entry.key,
+                                        comment: comment,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
                             )
-                            .toList(),
-                      )
-                      .expand((item) => item)
-                      .toList(),
+                            .expand((item) => item)
+                            .toList()
+                        : [Text("Sei der erste!")],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

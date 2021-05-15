@@ -29,7 +29,7 @@ class PieChart extends StatelessWidget {
           widget: SizedBox(
             height: 20,
             width: 20,
-            child: Icon(Icons.location_city, size: 36,),
+            child: Icon(Icons.location_city, size: 42,),
           ),
         ),
       ],
@@ -45,7 +45,7 @@ class PieChart extends StatelessWidget {
     ];
     return <DoughnutSeries<ChartData, String>>[
       DoughnutSeries<ChartData, String>(
-        radius: '80%',
+        radius: '100%',
         explode: true,
         explodeOffset: '10%',
         dataSource: chartData,
