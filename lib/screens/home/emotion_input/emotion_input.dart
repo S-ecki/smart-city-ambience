@@ -1,7 +1,10 @@
 import 'package:customtogglebuttons/customtogglebuttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:smart_city_ambience/emojiReactList/emojiReactList.dart';
 import 'package:smart_city_ambience/emojiReactPicker/emojiReactPicker.dart';
+import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
+import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/screens/events/event_card.dart';
 import 'package:smart_city_ambience/screens/home/emotion_input/emoji_button_home.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
@@ -49,11 +52,7 @@ class _EmotionInputState extends State<EmotionInput> {
                     onPressed: (index) {
                       setState(
                         () {
-                          print("new");
                           _isSelected[index] = !_isSelected[index];
-                          _isSelected.forEach((element) {
-                            print(element);
-                          });
                         },
                       );
                     },
@@ -81,20 +80,32 @@ class _EmotionInputState extends State<EmotionInput> {
                       IconButton(
                           icon: Icon(Icons.save),
                           onPressed: () {
+                            // clear input and unfocus
+                            _controller.clear();
+                            _focusNode.unfocus();
+                            // let user know it was saved
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Gefühl gespeichert."),
+                              ),
+                            );
                             for (int i = 0; i < 12; ++i) {
+                              // add to emotion store
+                              if (_isSelected[i]) {
+                                StoreProvider.of<ReactionsState>(context)
+                                    .dispatch(
+                                  AddReaction(
+                                      enhancedEmoji: emojiReactionList[i],
+                                      eventId: "home"),
+                                );
+                              }
+                              // reset emojis
                               _isSelected[i] = false;
                             }
-                            setState(() {
-                              _controller.clear();
-                              _focusNode.unfocus();
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text("Gefühl gespeichert."),
-                              ));
-                            });
-                            _isSelected.forEach((element) {
-                              print(element);
-                            });
+                            // update UI
+                            setState(
+                              () {},
+                            );
                           })
                     ],
                   )
@@ -105,51 +116,5 @@ class _EmotionInputState extends State<EmotionInput> {
         ),
       ),
     );
-
-    // return Card(
-    //   child: Column(
-    //     children: [
-    //       ToggleButtons(
-    //         children: [
-    //           for (int i = 0; i < 12; ++i) EmojiButtonHome(enhancedEmoji: emojiReactionList[i])
-    //         ],
-    //         isSelected: isSelected,
-    //         onPressed: (int index) {
-    //           setState(() {
-    //             for (int buttonIndex = 0;
-    //                 buttonIndex < isSelected.length;
-    //                 buttonIndex++) {
-    //               if (buttonIndex == index) {
-    //                 isSelected[buttonIndex] = !isSelected[buttonIndex];
-    //               } else {
-    //                 isSelected[buttonIndex] = false;
-    //               }
-    //             }
-    //           });
-    //         },
-    //       ),
-    //       ToggleButtons(
-    //         children: [
-    //           for (var emoji in emojiReactionList)
-    //             EmojiButtonHome(enhancedEmoji: emoji)
-    //         ],
-    //         isSelected: isSelected,
-    //         onPressed: (int index) {
-    //           setState(() {
-    //             for (int buttonIndex = 0;
-    //                 buttonIndex < isSelected.length;
-    //                 buttonIndex++) {
-    //               if (buttonIndex == index) {
-    //                 isSelected[buttonIndex] = !isSelected[buttonIndex];
-    //               } else {
-    //                 isSelected[buttonIndex] = false;
-    //               }
-    //             }
-    //           });
-    //         },
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
