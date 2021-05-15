@@ -46,6 +46,50 @@ class EventScreen extends StatelessWidget {
                   withBorder: true,
                 ),
               ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
+                      arguments: dummyEvents[2]);
+                },
+                child: EventCard(
+                  child: dummyEvents[2],
+                  showFullDesc: false,
+                  withBorder: true,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
+                      arguments: dummyEvents[3]);
+                },
+                child: EventCard(
+                  child: dummyEvents[3],
+                  showFullDesc: false,
+                  withBorder: true,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
+                      arguments: dummyEvents[4]);
+                },
+                child: EventCard(
+                  child: dummyEvents[4],
+                  showFullDesc: false,
+                  withBorder: true,
+                ),
+              ),
+                            InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
+                      arguments: dummyEvents[5]);
+                },
+                child: EventCard(
+                  child: dummyEvents[5],
+                  showFullDesc: false,
+                  withBorder: true,
+                ),
+              ),
             ],
           ),
         ),
@@ -53,3 +97,4 @@ class EventScreen extends StatelessWidget {
     );
   }
 }
+  

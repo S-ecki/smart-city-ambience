@@ -1,17 +1,14 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/emojiReactList/emojiReactList.dart';
 import 'package:smart_city_ambience/emojiReactPicker/emojiReactPicker.dart';
 import 'package:uuid/uuid.dart';
 
-// common styling for all Cards
-// Card without a header can be achieved by not providing title property
-
-class EventCard extends StatelessWidget {
-  final Event child;
+class ForumCard extends StatelessWidget {
+  final Forum child;
   final bool showFullDesc;
   final bool withBorder;
 
-  EventCard({@required this.child, this.showFullDesc, this.withBorder});
+  ForumCard({@required this.child, this.showFullDesc, this.withBorder});
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +37,7 @@ class EventCard extends StatelessWidget {
         elevation: 2,
         // return card without header if no title is provided
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(child.image),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Image(
-              image: AssetImage(child.image),
-              fit: BoxFit.fill,
-            ),
-            SizedBox(
-              height: 5,
-            ),
             ListTile(
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -68,14 +48,75 @@ class EventCard extends StatelessWidget {
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  child.description,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  maxLines: 3,
-                  overflow: showFullDesc ? null : TextOverflow.ellipsis,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    child.description,
+                    style: Theme.of(context).textTheme.bodyText1,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ),
+            /*Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 30,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            color: Theme.of(context).primaryColor,
+                            size: 24.0,
+                          ),
+                          Icon(
+                            Icons.audiotrack,
+                            color: Theme.of(context).primaryColor,
+                            size: 24.0,
+                          ),
+                          Icon(
+                            Icons.beach_access,
+                            color: Theme.of(context).primaryColor,
+                            size: 24.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 30,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Kommentare (4)',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),*/
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -95,10 +136,12 @@ class EventCard extends StatelessWidget {
                       child: Row(
                         children: [
                           EmojiReactList(
-                            eventId: child.eventId,
+                            //TODO Routing
+                            eventId: child.forumId,
                           ),
                           EmojiReactPicker(
-                            eventId: child.eventId,
+                            //TODO Routing
+                            eventId: child.forumId,
                           )
                         ],
                       ),
@@ -134,7 +177,7 @@ class EventCard extends StatelessWidget {
             ),
             SizedBox(
               height: 10,
-            ),
+            )
           ],
         ),
       ),
@@ -142,14 +185,12 @@ class EventCard extends StatelessWidget {
   }
 }
 
-class Event {
-  final String image;
+class Forum {
   final String title;
-  //final String comments;
   final String description;
 
   //Auto generated id
-  final String eventId = Uuid().v1();
+  final String forumId = Uuid().v1();
 
-  Event({this.image, this.title, this.description});
+  Forum({@required this.title, @required this.description});
 }
