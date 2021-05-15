@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
+import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/forum_card.dart';
 
 class ForumScreen extends StatelessWidget {
@@ -19,10 +20,16 @@ class ForumScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: ListView.separated(
-            itemBuilder: (context, index) => ForumCard(
-              child: forumEntries[index],
-              showFullDesc: false,
-              withBorder: true,
+            itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(SmortRoutes.forumDetailScreen,
+                    arguments: forumEntries[index]);
+              },
+              child: ForumCard(
+                child: forumEntries[index],
+                showFullDesc: false,
+                withBorder: true,
+              ),
             ),
             separatorBuilder: (context, index) => SizedBox(
               height: 20,

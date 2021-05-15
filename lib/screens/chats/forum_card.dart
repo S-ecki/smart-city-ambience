@@ -78,11 +78,9 @@ class ForumCard extends StatelessWidget {
                       child: Row(
                         children: [
                           EmojiReactList(
-                            //TODO Routing
                             eventId: child.forumId,
                           ),
                           EmojiReactPicker(
-                            //TODO Routing
                             eventId: child.forumId,
                           )
                         ],
