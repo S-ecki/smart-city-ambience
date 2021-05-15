@@ -76,7 +76,7 @@ class EventCard extends StatelessWidget {
                 child: Text(
                   child.description,
                   style: Theme.of(context).textTheme.bodyText1,
-                  maxLines: 3,
+                  maxLines: showFullDesc ? 100 : 3,
                   overflow: showFullDesc ? null : TextOverflow.ellipsis,
                 ),
               ),
