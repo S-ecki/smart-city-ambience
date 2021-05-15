@@ -40,7 +40,7 @@ class GoogleSocialLoginButton extends StatelessWidget {
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
               child: Image(
-                image: AssetImage("lib/images/googleLogo.png"),
+                image: AssetImage("assets/images/googleLogo.png"),
                 height: 20,
                 width: 20,
               ),
