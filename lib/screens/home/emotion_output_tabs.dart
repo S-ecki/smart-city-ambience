@@ -109,26 +109,3 @@ class WordCloudExample extends StatelessWidget {
   }
 }
 
-class com {
-  const com(this.word,this.rotated);
-  final String word;
-  final bool rotated;
-}
-
-class ScatterItem extends StatelessWidget {
-  ScatterItem(this.comm);
-  final com comm;
-  //final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return RotatedBox(
-      quarterTurns: comm.rotated ? 1 : 0,
-      child: Text(
-        comm.word,
-        //style: style,
-      ),
-    );
-  }
-  }
