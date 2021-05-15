@@ -25,6 +25,7 @@ class ForumDetailScreen extends StatelessWidget {
               ),
               CommentSection(
                 eventId: forum.forumId,
+                label: "Diskussion",
               ),
             ],
           ),

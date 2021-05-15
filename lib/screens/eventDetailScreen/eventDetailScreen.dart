@@ -25,6 +25,7 @@ class EventDetailScreen extends StatelessWidget {
               ),
               CommentSection(
                 eventId: event.eventId,
+                label: "Kommentare",
               ),
             ],
           ),

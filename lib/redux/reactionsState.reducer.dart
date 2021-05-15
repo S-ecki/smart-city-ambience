@@ -41,6 +41,7 @@ ReactionsState reactionsStateReducer(
     );
   }
   if (action is AddForumEntry) {
+    currentState.comments[action.forum.forumId] = {};
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
       comments: currentState.comments,
