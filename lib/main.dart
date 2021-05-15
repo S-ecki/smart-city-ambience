@@ -23,10 +23,11 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final Store<ReactionsState> store = Store<ReactionsState>(
     reactionsStateReducer,
-    initialState: ReactionsState(enhancedEmojis: {
-      dummyEvents[0].eventId: [],
-      dummyEvents[1].eventId: []
-    }, comments: dummyComments, forumEntries: dummyForumEntries),
+    initialState: ReactionsState(
+      enhancedEmojis: {for (var event in dummyEvents) event.eventId: []},
+      forumEntries: dummyForumEntries,
+      comments: dummyComments,
+    ),
   );
 
   @override

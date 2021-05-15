@@ -59,64 +59,6 @@ class ForumCard extends StatelessWidget {
                 ),
               ),
             ),
-            /*Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 30,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.favorite,
-                            color: Theme.of(context).primaryColor,
-                            size: 24.0,
-                          ),
-                          Icon(
-                            Icons.audiotrack,
-                            color: Theme.of(context).primaryColor,
-                            size: 24.0,
-                          ),
-                          Icon(
-                            Icons.beach_access,
-                            color: Theme.of(context).primaryColor,
-                            size: 24.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 30,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Kommentare (4)',
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),*/
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
