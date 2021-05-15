@@ -51,7 +51,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Tutorial()),
+                    MaterialPageRoute(builder: (context) => Guide()),
                   );
                 },
                 

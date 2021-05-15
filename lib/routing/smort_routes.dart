@@ -4,6 +4,7 @@ import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen.dart';
 import 'package:smart_city_ambience/screens/eventDetailScreen/eventDetailScreen.dart';
 import 'package:smart_city_ambience/screens/forumDetailScreen/forumDetailScreen.dart';
+import 'package:smart_city_ambience/screens/profile/guide.dart';
 import 'package:smart_city_ambience/screens/profile/profile_screen.dart';
 
 class SmortRoutes {
@@ -23,7 +24,7 @@ class SmortRoutes {
     loginScreen: (ctx) => LoginPage(),
     navBarScreen: (ctx) => NavbarScreen(),
     eventDetailScreen: (ctx) => EventDetailScreen(),
-    rules: (ctx) => NavbarScreen(), // ! change
+    rules: (ctx) => Guide(),
     tutorial: (ctx) => NavbarScreen(), // ! change
     forumDetailScreen: (ctx) => ForumDetailScreen(),
 
