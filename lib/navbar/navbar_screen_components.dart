@@ -55,8 +55,8 @@ class ForumFAB extends StatelessWidget {
             TextFormField(
               validator: (String val) =>
                   titleController.text.isEmpty ? "Can't be empty" : null,
-              autovalidate: true,
               controller: titleController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -96,6 +96,8 @@ class ForumFAB extends StatelessWidget {
                       ),
                     );
                     Navigator.of(context).pop();
+                    titleController.clear();
+                    descriptionController.clear();
                   }
                 },
                 child: Text(
