@@ -24,7 +24,11 @@ class MyApp extends StatelessWidget {
   final Store<ReactionsState> store = Store<ReactionsState>(
     reactionsStateReducer,
     initialState: ReactionsState(
-      enhancedEmojis: {dummyEvents[0].eventId: [], dummyEvents[1].eventId: []},
+      enhancedEmojis: {
+        dummyEvents[0].eventId: [],
+        dummyEvents[1].eventId: [],
+        "home": []
+      },
       comments: dummyComments,
     ),
   );

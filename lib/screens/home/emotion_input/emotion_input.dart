@@ -4,7 +4,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
-import 'package:smart_city_ambience/screens/events/event_card.dart';
 import 'package:smart_city_ambience/screens/home/emotion_input/emoji_button_home.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/chart_functions.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
@@ -20,8 +19,6 @@ class EmotionInput extends StatefulWidget {
 }
 
 class _EmotionInputState extends State<EmotionInput> {
-  Event homeEvent = Event(); // used to declare a home-event in redux
-
   TextEditingController _controller = TextEditingController();
   FocusNode _focusNode = FocusNode();
 
@@ -128,7 +125,9 @@ class _EmotionInputState extends State<EmotionInput> {
       if (_isSelected[i]) {
         StoreProvider.of<ReactionsState>(context).dispatch(
           AddReaction(
-              enhancedEmoji: emojiReactionList[i], eventId: homeEvent.eventId),
+            enhancedEmoji: emojiReactionList[i],
+            eventId: "home",
+          ),
         );
       }
       // reset all emojis to unselected
