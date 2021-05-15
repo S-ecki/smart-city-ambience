@@ -12,5 +12,21 @@ Map<String, Map<String, List<String>>> dummyComments = {
   dummyEvents[1].eventId: {
     "Simon": ["dklfjsaldfjalk sjdfklsjakjdf"],
     "Manuel": ["kdlsjfdjklfasjkldfj"]
+  },
+    dummyEvents[2].eventId: {
+    "Simon": ["dklfjsaldfjalk sjdfklsjakjdf"],
+    "Manuel": ["kdlsjfdjklfasjkldfj"]
+  },
+    dummyEvents[3].eventId: {
+    "Simon": ["dklfjsaldfjalk sjdfklsjakjdf"],
+    "Manuel": ["kdlsjfdjklfasjkldfj"]
+  },
+    dummyEvents[4].eventId: {
+    "Simon": ["dklfjsaldfjalk sjdfklsjakjdf"],
+    "Manuel": ["kdlsjfdjklfasjkldfj"]
+  },
+    dummyEvents[5].eventId: {
+    "Simon": ["dklfjsaldfjalk sjdfklsjakjdf"],
+    "Manuel": ["kdlsjfdjklfasjkldfj"]
   }
 };
