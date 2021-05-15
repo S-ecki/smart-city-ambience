@@ -10,8 +10,13 @@ class EventCard extends StatelessWidget {
   final Event child;
   final bool showFullDesc;
   final bool withBorder;
+  final int nrOfComments;
 
-  EventCard({@required this.child, this.showFullDesc, this.withBorder});
+  EventCard(
+      {@required this.child,
+      this.showFullDesc,
+      this.withBorder,
+      this.nrOfComments});
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +125,9 @@ class EventCard extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          withBorder ? 'Kommentare (4)' : "",
+                          withBorder
+                              ? "Kommentare (" + nrOfComments.toString() + ")"
+                              : "",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
