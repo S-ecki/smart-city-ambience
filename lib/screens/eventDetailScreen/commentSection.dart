@@ -45,22 +45,24 @@ class CommentSection extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: comments[eventId]
-                      .entries
-                      .map(
-                        (entry) => entry.value
-                            .map(
-                              (comment) => CommentContainer(
-                                child: SingleComment(
-                                  userName: entry.key,
-                                  comment: comment,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      )
-                      .expand((item) => item)
-                      .toList(),
+                  children: comments[eventId] != null
+                      ? comments[eventId]
+                          .entries
+                          .map(
+                            (entry) => entry.value
+                                .map(
+                                  (comment) => CommentContainer(
+                                    child: SingleComment(
+                                      userName: entry.key,
+                                      comment: comment,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          )
+                          .expand((item) => item)
+                          .toList()
+                      : [Text("")],
                 ),
               ),
             ],

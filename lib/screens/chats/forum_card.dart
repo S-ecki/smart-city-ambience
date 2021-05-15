@@ -54,7 +54,7 @@ class ForumCard extends StatelessWidget {
                     child.description,
                     style: Theme.of(context).textTheme.bodyText1,
                     maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                    overflow: showFullDesc ? null : TextOverflow.ellipsis,
                   ),
                 ),
               ),
