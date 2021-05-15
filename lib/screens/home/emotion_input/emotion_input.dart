@@ -109,9 +109,8 @@ class _EmotionInputState extends State<EmotionInput> {
   }
 
   void _onPressed(var enhancedEmojis) {
+    // add entered words to word cloud
     var _provider = Provider.of<WordCloud>(context, listen: false);
-
-    // TODO: add words provider
     _provider.addWord(_controller.text);
 
     // clear input and unfocus
@@ -138,7 +137,7 @@ class _EmotionInputState extends State<EmotionInput> {
     print(
         "Neutral Emojis after adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
 
-    // update UI
+    // update UI to show unselected emojis
     setState(
       () {},
     );
