@@ -1,1 +1,1 @@
-List<String> dummyWords = ["cool", "and", "good"];
+List<String> dummyWords = ["fuck", "that", "shit"];
