@@ -12,6 +12,7 @@ import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/theme/smort_theme.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 import "package:redux/redux.dart";
+import 'package:showcaseview/showcaseview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +48,11 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: smortTheme(context),
-          home: AuthWrapper(),
+          home: ShowCaseWidget(
+            builder: Builder(
+              builder: (context) => AuthWrapper(),
+            ),
+          ),
           routes: SmortRoutes.myRoutes,
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:image_picker/image_picker.dart';
+import 'guide.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key key}) : super(key: key);
@@ -13,6 +14,11 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreen extends State<ProfileScreen> {
   File _image;
+  var isVisible = true;
+  var isVisible2 = true;
+  var isVisible3 = true;
+  var isVisible4 = true;
+  var isVisible5 = true;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -24,20 +30,29 @@ class _ProfileScreen extends State<ProfileScreen> {
         title: Text("Profile"),
       ),
       body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: ListView(
-            children: <Widget>[
-              profilePicture(), //Profilbild
-              SizedBox(height: 40),
-              nameTextfield(), //Name
-              SizedBox(height: 2),
-              DateTextfield(), //Geburtsdatum
-              SizedBox(height: 2),
-              mailTextfield(), //E-Mail
-              SizedBox(height: 2),
-              numberTextfield(), //Telefonnummer
-            ],
-          )),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: ListView(
+          children: <Widget>[
+            profilePicture(), //Profilbild
+            SizedBox(height: 40),
+            nameTextfield(), //Name
+            SizedBox(height: 20),
+            DateTextfield(), //Geburtsdatum
+            SizedBox(height: 20),
+            mailTextfield(), //E-Mail
+            SizedBox(height: 20),
+            numberTextfield(),//Telefonnummer
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Tutorial()),
+                  );
+                },
+                child: Text("Save"))
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.logout),
         onPressed: () async {
@@ -164,10 +179,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget nameTextfield() {
     return TextFormField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.orange,
-          )),
+          border: OutlineInputBorder(borderSide: BorderSide()),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
             color: Colors.black,
@@ -177,9 +189,16 @@ class _ProfileScreen extends State<ProfileScreen> {
             Icons.person,
             color: Colors.lightGreen[800],
           ),
-          suffixIcon: Icon(Icons.visibility),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility),
+            color: isVisible ? Colors.grey : Colors.lightGreen[600],
+            onPressed: () {
+              setState(() {
+                isVisible = !isVisible;
+              });
+            },
+          ),
           labelText: "Name",
-          helperText: "Can't be empty",
           hintText: " John Doe"),
     );
   }
@@ -187,20 +206,28 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget mailTextfield() {
     return TextFormField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.yellow,
-          )),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
-          prefixIcon: Icon(Icons.mail_outline, color: Colors.lightGreen[800]),
-          suffixIcon: Icon(Icons.visibility),
-          labelText: "E-Mail",
-          hintText: " johndoe@example.com",
-          helperText: "Can't be empty"),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.yellow,
+        )),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.black,
+          width: 2,
+        )),
+        prefixIcon: Icon(Icons.mail_outline, color: Colors.lightGreen[800]),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.visibility),
+          color: isVisible2 ? Colors.grey : Colors.lightGreen[600],
+          onPressed: () {
+            setState(() {
+              isVisible2 = !isVisible2;
+            });
+          },
+        ),
+        labelText: "E-Mail",
+        hintText: " johndoe@example.com",
+      ),
     );
   }
 
@@ -217,12 +244,19 @@ class _ProfileScreen extends State<ProfileScreen> {
             width: 2,
           )),
           prefixIcon: Icon(
-            Icons.data_usage,
+            Icons.calendar_today,
             color: Colors.lightGreen[800],
           ),
-          suffixIcon: Icon(Icons.visibility),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility),
+            color: isVisible4 ? Colors.grey : Colors.lightGreen[600],
+            onPressed: () {
+              setState(() {
+                isVisible4 = !isVisible4;
+              });
+            },
+          ),
           labelText: "Day Of Birth",
-          helperText: "Can't be empty",
           hintText: " DD-MM-YYYY"),
     );
   }
@@ -243,9 +277,16 @@ class _ProfileScreen extends State<ProfileScreen> {
             Icons.phone,
             color: Colors.lightGreen[800],
           ),
-          suffixIcon: Icon(Icons.visibility),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility,
+                color: isVisible5 ? Colors.grey : Colors.lightGreen[600]),
+            onPressed: () {
+              setState(() {
+                isVisible5 = !isVisible5;
+              });
+            },
+          ),
           labelText: "Number",
-          helperText: "Can't be empty",
           hintText: " +436608754333"),
     );
   }
