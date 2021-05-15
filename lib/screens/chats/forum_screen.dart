@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/dummyData/dummyForumEntries.dart';
-import 'package:smart_city_ambience/dummyData/dummyEvents.dart';
-import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/forum_card.dart';
-import 'package:smart_city_ambience/screens/events/event_card.dart';
 
 class ForumScreen extends StatelessWidget {
   @override
