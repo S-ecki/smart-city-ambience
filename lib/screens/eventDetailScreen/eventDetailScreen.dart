@@ -10,7 +10,9 @@ class EventDetailScreen extends StatelessWidget {
     final TextEditingController commentController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Details"),
+      ),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
