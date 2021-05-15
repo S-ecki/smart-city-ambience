@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:image_picker/image_picker.dart';
 import 'guide.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key key}) : super(key: key);
@@ -23,43 +24,47 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ! new
+    var provider = context.watch<User>();
+
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: Text("Profile"),
+        title: Text("Profil"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: ListView(
           children: <Widget>[
             profilePicture(), //Profilbild
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             nameTextfield(), //Name
             SizedBox(height: 20),
             DateTextfield(), //Geburtsdatum
             SizedBox(height: 20),
-            mailTextfield(), //E-Mail
+            mailTextfield(provider), //E-Mail
             SizedBox(height: 20),
-            numberTextfield(),//Telefonnummer
+            numberTextfield(), //Telefonnummer
             SizedBox(height: 20),
-            Container(alignment: Alignment.bottomRight,
-              child:
-            ElevatedButton(
-              
-              style: ButtonStyle (),
-              
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Guide()),
-                  );
-                },
-                
-                child: Text("Save")))
+            Container(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                    style: ButtonStyle(),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Profildaten gespeichert."),
+                        ),
+                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Guide()),
+                      // );
+                    },
+                    child: Text("Save")))
           ],
         ),
       ),
-      
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.logout),
         onPressed: () async {
@@ -104,7 +109,7 @@ class _ProfileScreen extends State<ProfileScreen> {
               child: CircleAvatar(
                 backgroundImage: _image ==
                         null //wenn kein Bild aus der Gallerie oder aus Kamera -> Standardbild
-                    ? AssetImage("lib/images/test_image.jpg")
+                    ? AssetImage("assets/images/test_image.jpg")
                     : FileImage((File(_image.path))),
               ),
               decoration: new BoxDecoration(
@@ -194,11 +199,11 @@ class _ProfileScreen extends State<ProfileScreen> {
           )),
           prefixIcon: Icon(
             Icons.person,
-            color: Colors.lightGreen[800],
+            color: Theme.of(context).primaryColor,
           ),
           suffixIcon: IconButton(
             icon: Icon(Icons.visibility),
-            color: isVisible ? Colors.grey : Colors.lightGreen[600],
+            color: isVisible ? Colors.grey : Theme.of(context).primaryColor,
             onPressed: () {
               setState(() {
                 isVisible = !isVisible;
@@ -206,13 +211,13 @@ class _ProfileScreen extends State<ProfileScreen> {
             },
           ),
           labelText: "Name"),
-          
     );
   }
 
-  Widget mailTextfield() {
+  Widget mailTextfield(User provider) {
     return TextFormField(
       decoration: InputDecoration(
+        hintText: provider?.email ?? "", // empty string when called on null
         border: OutlineInputBorder(
             borderSide: BorderSide(
           color: Colors.yellow,
@@ -233,7 +238,6 @@ class _ProfileScreen extends State<ProfileScreen> {
           },
         ),
         labelText: "E-Mail",
-        
       ),
     );
   }
