@@ -207,7 +207,7 @@ class _ProfileScreen extends State<ProfileScreen> {
             },
           ),
           labelText: "Name"),
-          //hintText: " John Doe"),
+          
     );
   }
 
@@ -234,7 +234,7 @@ class _ProfileScreen extends State<ProfileScreen> {
           },
         ),
         labelText: "E-Mail",
-        //hintText: " johndoe@example.com",
+        
       ),
     );
   }
