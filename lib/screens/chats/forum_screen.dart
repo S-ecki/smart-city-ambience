@@ -4,13 +4,14 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/forum_card.dart';
+import 'package:smart_city_ambience/screens/events/event_screen.dart';
 
 class ForumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<ReactionsState, List<Forum>>(
-      converter: (store) => store.state.forumEntries,
-      builder: (context, List<Forum> forumEntries) => Container(
+    return StoreConnector<ReactionsState, ReactionsState>(
+      converter: (store) => store.state,
+      builder: (context, ReactionsState state) => Container(
         // ScrollView (child) takes all the space it needs
         width: double.infinity,
         height: double.infinity,
@@ -23,18 +24,20 @@ class ForumScreen extends StatelessWidget {
             itemBuilder: (context, index) => InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed(SmortRoutes.forumDetailScreen,
-                    arguments: forumEntries[index]);
+                    arguments: state.forumEntries[index]);
               },
               child: ForumCard(
-                child: forumEntries[index],
+                child: state.forumEntries[index],
                 showFullDesc: false,
                 withBorder: true,
+                nrOfComments: getNrOfComments(
+                    state.comments, state.forumEntries[index].forumId),
               ),
             ),
             separatorBuilder: (context, index) => SizedBox(
               height: 20,
             ),
-            itemCount: forumEntries.length,
+            itemCount: state.forumEntries.length,
           ),
         ),
       ),

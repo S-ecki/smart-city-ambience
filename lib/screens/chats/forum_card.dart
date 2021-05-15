@@ -7,8 +7,13 @@ class ForumCard extends StatelessWidget {
   final Forum child;
   final bool showFullDesc;
   final bool withBorder;
+  final int nrOfComments;
 
-  ForumCard({@required this.child, this.showFullDesc, this.withBorder});
+  ForumCard(
+      {@required this.child,
+      this.showFullDesc,
+      this.withBorder,
+      this.nrOfComments});
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +108,9 @@ class ForumCard extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          withBorder ? 'Kommentare (4)' : "",
+                          withBorder
+                              ? "Kommentare (" + nrOfComments.toString() + ")"
+                              : "",
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
