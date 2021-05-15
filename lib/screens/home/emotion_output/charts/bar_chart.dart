@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/charts/chart_functions.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class BarChart extends StatelessWidget {
-  // counts the types of emojis
-  // simply pass in the Map that you get from the redux store with the type
-  int getEmojiCount(
-      EmojiType type, Map<String, List<EnhancedEmoji>> enhancedEmojis) {
-    List<List<EnhancedEmoji>> entryList =
-        enhancedEmojis.entries.map((mapEntry) => mapEntry.value).toList();
-    int count = 0;
-    entryList.forEach((list) {
-      list.forEach((element) {
-        if (element.type == type) count++;
-      });
-    });
-    return count;
-  }
+
 
   Widget build(BuildContext context) {
     return StoreConnector<ReactionsState, Map<String, List<EnhancedEmoji>>>(
@@ -60,16 +48,16 @@ class BarChart extends StatelessWidget {
       Map<String, List<EnhancedEmoji>> enhancedEmojis) {
 
     // extract all set emojis from app
-    int positiveMay = getEmojiCount(EmojiType.Positive, enhancedEmojis);
-    int neutralMay = getEmojiCount(EmojiType.Neutral, enhancedEmojis);
-    int negativeMay = getEmojiCount(EmojiType.Negative, enhancedEmojis);
+    int _positiveMay = getEmojiCount(EmojiType.Positive, enhancedEmojis);
+    int _neutralMay = getEmojiCount(EmojiType.Neutral, enhancedEmojis);
+    int _negativeMay = getEmojiCount(EmojiType.Negative, enhancedEmojis);
 
     // add to dummy data
     final List<BarChartData> chartData = <BarChartData>[
       BarChartData("Februar", 143, 37, 61),
       BarChartData("März", 83, 12, 60),
       BarChartData("April", 101, 41, 44),
-      BarChartData("Mai", 53 + positiveMay, 9 + neutralMay, 36 + negativeMay),
+      BarChartData("Mai", 63 + _positiveMay, 13 + _neutralMay, 38 + _negativeMay),
     ];
 
     return <StackedColumnSeries<BarChartData, String>>[
@@ -109,6 +97,7 @@ class BarChart extends StatelessWidget {
     ];
   }
 }
+
 
 class BarChartData {
   String month;
