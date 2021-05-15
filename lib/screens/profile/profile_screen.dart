@@ -42,17 +42,25 @@ class _ProfileScreen extends State<ProfileScreen> {
             mailTextfield(), //E-Mail
             SizedBox(height: 20),
             numberTextfield(),//Telefonnummer
-            TextButton(
+            SizedBox(height: 20),
+            Container(alignment: Alignment.bottomRight,
+              child:
+            ElevatedButton(
+              
+              style: ButtonStyle (),
+              
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Tutorial()),
                   );
                 },
-                child: Text("Save"))
+                
+                child: Text("Save")))
           ],
         ),
       ),
+      
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.logout),
         onPressed: () async {
@@ -198,8 +206,8 @@ class _ProfileScreen extends State<ProfileScreen> {
               });
             },
           ),
-          labelText: "Name",
-          hintText: " John Doe"),
+          labelText: "Name"),
+          //hintText: " John Doe"),
     );
   }
 
@@ -226,7 +234,7 @@ class _ProfileScreen extends State<ProfileScreen> {
           },
         ),
         labelText: "E-Mail",
-        hintText: " johndoe@example.com",
+        //hintText: " johndoe@example.com",
       ),
     );
   }

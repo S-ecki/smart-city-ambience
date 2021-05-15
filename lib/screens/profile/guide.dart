@@ -90,7 +90,7 @@ class Tutorial extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin:EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  "We are committed to protecting privacy and personal information on Smart City Ambience",
+                  "We are committed to protect privacy and personal information on Smart City Ambience",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
@@ -117,7 +117,7 @@ class Tutorial extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin:EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  "We strongly believe that all people are equal in dignity and rights. Therefore, we expect them to respect the dignity of others and not to harass others.",
+                  "We strongly believe that all people are equal in dignity and rights. Therefore, we expect users to respect the dignity of others and not to harass others.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
