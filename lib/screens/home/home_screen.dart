@@ -66,11 +66,13 @@ Future<bool> _isFirstLaunch() async{
       return false;
     }
 
-    displayShowcase().then((status) {
-      if (status) {
-        ShowCaseWidget.of(this.context).startShowCase([keyOne, keyTwo]);
-      }
-    });
+    displayShowcase().then(
+      (status) {
+        if (status) {
+          ShowCaseWidget.of(this.context).startShowCase([keyOne, keyTwo]);
+        }
+      },
+    );
 
     /*displayShowcase() async {
       preferences = await SharedPreferences.getInstance();
@@ -111,8 +113,8 @@ Future<bool> _isFirstLaunch() async{
                   CostumShowCase(
                     globalKey: keyOne,
                     description: ' Tell us your feelings here: ',
-                    child: SizedBox(
-                      height: dimens.maxHeight * 0.2,
+                    child: Container(
+                      height: dimens.maxHeight * 0.30,
                       width: dimens.maxWidth,
                       child: EmotionInput(),
                     ),
@@ -121,7 +123,7 @@ Future<bool> _isFirstLaunch() async{
                     globalKey: keyTwo,
                     description: ' Statistics about emotions:  ',
                     child: SizedBox(
-                      height: dimens.maxHeight * 0.73,
+                      height: dimens.maxHeight * 0.70,
                       width: dimens.maxWidth,
                       child: EmotionOutputTabs(),
                     ),
