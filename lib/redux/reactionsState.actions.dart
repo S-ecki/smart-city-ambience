@@ -1,3 +1,4 @@
+import 'package:smart_city_ambience/screens/chats/forum_card.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
 
 /**
@@ -29,4 +30,13 @@ class AddComment {
   final String eventId;
 
   AddComment({this.userName, this.comment, this.eventId});
+}
+
+/**
+ * 
+ */
+class AddForumEntry {
+  final Forum forum;
+
+  AddForumEntry({this.forum});
 }
