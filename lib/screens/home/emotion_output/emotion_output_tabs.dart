@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
-import 'package:smart_city_ambience/screens/home/charts/bar_chart.dart';
-import 'package:smart_city_ambience/screens/home/charts/pie_chart.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/charts/bar_chart.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/charts/pie_chart.dart';
 
 class EmotionOutputTabs extends StatelessWidget {
   const EmotionOutputTabs({Key key}) : super(key: key);

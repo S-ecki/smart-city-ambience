@@ -151,5 +151,5 @@ class Event {
   //Auto generated id
   final String eventId = Uuid().v1();
 
-  Event({@required this.image, this.title, this.description});
+  Event({this.image, this.title, this.description});
 }
