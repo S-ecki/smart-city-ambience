@@ -1,12 +1,14 @@
 import 'package:customtogglebuttons/customtogglebuttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/screens/events/event_card.dart';
 import 'package:smart_city_ambience/screens/home/emotion_input/emoji_button_home.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/chart_functions.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
+import 'package:smart_city_ambience/types/word_cloud.dart';
 
 import 'home_text_field.dart';
 
@@ -107,28 +109,35 @@ class _EmotionInputState extends State<EmotionInput> {
   }
 
   void _onPressed(var enhancedEmojis) {
+    var _provider = Provider.of<WordCloud>(context, listen: false);
+
     // TODO: add words provider
+    _provider.addWord(_controller.text);
+
     // clear input and unfocus
     _controller.clear();
     _focusNode.unfocus();
     _notifyScaffold();
 
     // number of neutral emojis before adding
-    print("Neutral Emojis before adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
+    print(
+        "Neutral Emojis before adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
 
     // TODO: does not add to store
     for (int i = 0; i < 12; ++i) {
       // should add selected emojis
       if (_isSelected[i]) {
         StoreProvider.of<ReactionsState>(context).dispatch(
-          AddReaction(enhancedEmoji: emojiReactionList[i], eventId: homeEvent.eventId),
+          AddReaction(
+              enhancedEmoji: emojiReactionList[i], eventId: homeEvent.eventId),
         );
       }
       // reset all emojis to unselected
       _isSelected[i] = false;
     }
-    print("Neutral Emojis after adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
-    
+    print(
+        "Neutral Emojis after adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
+
     // update UI
     setState(
       () {},
