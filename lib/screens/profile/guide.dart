@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Tutorial extends StatelessWidget {
+class Guide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
