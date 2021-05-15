@@ -5,9 +5,6 @@ import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/events/event_card.dart';
 
-// Screen that shows cards with different content
-// it defines background color and makes screen scrollable
-
 int getNrOfComments(Map<String, Map<String, List<String>>> comments, eventId) {
   if (comments.containsKey(eventId)) {
     int count = 0;
@@ -19,6 +16,8 @@ int getNrOfComments(Map<String, Map<String, List<String>>> comments, eventId) {
     return 0;
 }
 
+// Screen that shows cards with different content
+// it defines background color and makes screen scrollable
 class EventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
