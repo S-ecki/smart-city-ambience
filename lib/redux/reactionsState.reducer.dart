@@ -34,5 +34,12 @@ ReactionsState reactionsStateReducer(
       comments: currentState.comments,
     );
   }
+  if (action is AddForumEntry) {
+    return ReactionsState(
+      enhancedEmojis: currentState.enhancedEmojis,
+      comments: currentState.comments,
+      forumEntries: currentState.forumEntries + [action.forum],
+    );
+  }
   return currentState;
 }
