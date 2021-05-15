@@ -22,7 +22,7 @@ class RegisterPage extends StatelessWidget {
               child: Container(
                 height: 550,
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50),
@@ -88,8 +88,7 @@ class RegisterPage extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(SmortRoutes.loginScreen);
+                              Navigator.of(context).pop();
                             },
                             child: Text(
                               "Log in",

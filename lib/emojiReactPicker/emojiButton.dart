@@ -54,6 +54,7 @@ class EmojiButton extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                   ),
           ),
+          // use this to add to store, eventid fixed
           onTap: () {
             if (variant == EmojiButtonVariant.Button) {
               Navigator.pop(context);

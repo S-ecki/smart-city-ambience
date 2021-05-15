@@ -1,10 +1,10 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/screens/home/emotion_input.dart';
-import 'package:smart_city_ambience/screens/home/emotion_output_tabs.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/emotion_output_tabs.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -23,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final keyThree = GlobalKey();
   final keyFour = GlobalKey();
 
-
 /*
 Future<bool> _isFirstLaunch() async{
     final sharedPreferences = await SharedPreferences.getInstance();
@@ -34,13 +33,11 @@ Future<bool> _isFirstLaunch() async{
 
     return isFirstLaunch;
   }*/
-  
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
 
 /*
     WidgetsBinding.instance.addPostFrameCallback(
@@ -52,36 +49,28 @@ Future<bool> _isFirstLaunch() async{
      ])
           );
         */
-    
   }
-    
+
   @override
   Widget build(BuildContext context) {
+    SharedPreferences preferences;
 
+    displayShowcase() async {
+      preferences = await SharedPreferences.getInstance();
+      bool showCaseVisibilityStatus = preferences.getBool("displayShowcase");
 
-     SharedPreferences preferences;
+      if (showCaseVisibilityStatus == null) {
+        preferences.setBool("displayShowcase", false);
+        return true;
+      }
+      return false;
+    }
 
-
-     displayShowcase() async {
-
-       preferences =await SharedPreferences.getInstance();
-       bool showCaseVisibilityStatus = preferences.getBool("displayShowcase");
-
-       if(showCaseVisibilityStatus == null){
-         preferences.setBool("displayShowcase", false);
-         return true;
-       }
-       return false;
-     }
-
-
-     displayShowcase().then((status){
-       if (status) {
-         ShowCaseWidget.of(this.context).startShowCase([
-           keyOne,keyTwo
-         ]);
-       }
-     });
+    displayShowcase().then((status) {
+      if (status) {
+        ShowCaseWidget.of(this.context).startShowCase([keyOne, keyTwo]);
+      }
+    });
 
     /*displayShowcase() async {
       preferences = await SharedPreferences.getInstance();
@@ -107,9 +96,6 @@ Future<bool> _isFirstLaunch() async{
     });
     */
 
-
-
-
     return Container(
       // ScrollView (child) takes all the space it needs
       width: double.infinity,
@@ -123,10 +109,8 @@ Future<bool> _isFirstLaunch() async{
               return Column(
                 children: [
                   CostumShowCase(
-                    globalKey:keyOne,
-                    description:' Tell us your feelings here: ',
-                    
-                    
+                    globalKey: keyOne,
+                    description: ' Tell us your feelings here: ',
                     child: SizedBox(
                       height: dimens.maxHeight * 0.2,
                       width: dimens.maxWidth,
@@ -134,14 +118,13 @@ Future<bool> _isFirstLaunch() async{
                     ),
                   ),
                   CostumShowCase(
-                    globalKey:keyTwo,
-                    description:' Statistics about emotions:  ',
-                    child:
-                  SizedBox(
-                    height: dimens.maxHeight * 0.8,
-                    width: dimens.maxWidth,
-                    child: EmotionOutputTabs(),
-                  ),
+                    globalKey: keyTwo,
+                    description: ' Statistics about emotions:  ',
+                    child: SizedBox(
+                      height: dimens.maxHeight * 0.73,
+                      width: dimens.maxWidth,
+                      child: EmotionOutputTabs(),
+                    ),
                   )
                 ],
               );
@@ -160,40 +143,26 @@ Future<bool> _isFirstLaunch() async{
     return isFirstLaunch;
   }*/
 
-
-
-
-
-
 }
 
-
-class CostumShowCase extends StatelessWidget{
+class CostumShowCase extends StatelessWidget {
   final Widget child;
   final String description;
   final GlobalKey globalKey;
-  
 
   const CostumShowCase({
     @required this.child,
     @required this.description,
     @required this.globalKey,
-
   });
 
-  @override 
-  Widget build(BuildContext context)=> Showcase(
-    key: globalKey,
-    showcaseBackgroundColor: Colors.green[300],
-    contentPadding: EdgeInsets.all(12),
-    description: description,
-    descTextStyle: TextStyle(fontWeight: FontWeight.bold),
-    
-    child: child,
-
-
-  );
-
-
-
+  @override
+  Widget build(BuildContext context) => Showcase(
+        key: globalKey,
+        showcaseBackgroundColor: Colors.green[300],
+        contentPadding: EdgeInsets.all(12),
+        description: description,
+        descTextStyle: TextStyle(fontWeight: FontWeight.bold),
+        child: child,
+      );
 }

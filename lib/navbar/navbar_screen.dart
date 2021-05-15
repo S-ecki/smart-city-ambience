@@ -2,11 +2,9 @@
 // It launches the 3 respective screen, which are defined in _pages
 
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen_components.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
-import 'package:smart_city_ambience/screens/chats/chat_screen.dart';
-import 'package:smart_city_ambience/screens/eventDetailScreen/eventDetailScreen.dart';
+import 'package:smart_city_ambience/screens/chats/forum_screen.dart';
 import 'package:smart_city_ambience/screens/events/event_screen.dart';
 import 'package:smart_city_ambience/screens/home/home_screen.dart';
 import 'package:showcaseview/showcaseview.dart';
@@ -26,26 +24,21 @@ class _NavbarScreenState extends State<NavbarScreen> {
     });
   }
 
-
-    int selectionInd = 0;
+  int selectionInd = 0;
   //final keyOne = GlobalKey();
   //final keyTwo = GlobalKey();
   final keyThree = GlobalKey();
   final keyFour = GlobalKey();
   final keyFive = GlobalKey();
 
-
-   @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ShowCaseWidget.of(this.context).startShowCase([
-        keyThree,
-        keyFour,
-        keyFive
-      ]),
+      (_) => ShowCaseWidget.of(this.context)
+          .startShowCase([keyThree, keyFour, keyFive]),
     );
   }
 
@@ -78,28 +71,22 @@ class _NavbarScreenState extends State<NavbarScreen> {
 
     SharedPreferences preferences;
 
+    displayShowcase() async {
+      preferences = await SharedPreferences.getInstance();
+      bool showCaseVisibilityStatus = preferences.getBool("displayShowcase");
 
-     displayShowcase() async {
+      if (showCaseVisibilityStatus == null) {
+        preferences.setBool("displayShowcase", false);
+        return true;
+      }
+      return false;
+    }
 
-       preferences =await SharedPreferences.getInstance();
-       bool showCaseVisibilityStatus = preferences.getBool("displayShowcase");
-
-       if(showCaseVisibilityStatus == null){
-         preferences.setBool("displayShowcase", false);
-         return true;
-       }
-       return false;
-     }
-
-
-     displayShowcase().then((status){
-       if (status) {
-         ShowCaseWidget.of(this.context).startShowCase([
-           keyThree,keyFour
-         ]);
-       }
-     });
-
+    displayShowcase().then((status) {
+      if (status) {
+        ShowCaseWidget.of(this.context).startShowCase([keyThree, keyFour]);
+      }
+    });
 
     return BottomNavigationBar(
       onTap: _selectPage,
@@ -108,15 +95,23 @@ class _NavbarScreenState extends State<NavbarScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: CostumShowCase(globalKey: keyThree, description: "Events" , child: Icon(Icons.emoji_symbols),),
+          icon: CostumShowCase(
+            globalKey: keyThree,
+            description: "Events",
+            child: Icon(Icons.emoji_symbols),
+          ),
           label: "Events",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.emoji_people),
+          icon: Icon(Icons.home),
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: CostumShowCase(globalKey: keyFour, description: "Chats" , child:Icon(Icons.chat),),
+          icon: CostumShowCase(
+            globalKey: keyFour,
+            description: "Chats",
+            child: Icon(Icons.chat),
+          ),
           label: "Chats",
         ),
       ],
@@ -130,44 +125,49 @@ class _NavbarScreenState extends State<NavbarScreen> {
     final List<Map<String, Object>> _pages = [
       {
         "page": EventScreen(),
-        "title": "Events",
-        "buttons": [
-          OptionsButton(),
-        ],
-        "fab": EventFAB(),
-      },
-      {
-        "page": HomeScreen(),
-        "title": "Smort City Ambience",
+        "title": "News",
         "buttons": [
           OptionsButton(),
         ],
         "fab": null,
       },
       {
-        "page": ChatScreen(),
-        "title": "Chats",
+        "page": HomeScreen(),
+        "title": "Smart City Ambience",
         "buttons": [
           OptionsButton(),
         ],
-        "fab": ChatFAB(),
+        "fab": null,
+      },
+      {
+        "page": ForumScreen(),
+        "title": "Forum",
+        "buttons": [
+          OptionsButton(),
+        ],
+        "fab": ForumFAB(),
       },
     ];
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: CostumShowCase(globalKey: keyFive, description: "Edit your Profile" , child: Icon(Icons.account_circle),),
-            onPressed: () {
-              Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
-            },
+      appBar: AppBar(
+        leading: IconButton(
+          icon: CostumShowCase(
+            globalKey: keyFive,
+            description: "Edit your Profile",
+            child: Icon(Icons.account_circle),
           ),
-          actions: _pages[_selectedPageIndex]['buttons'],
-          title: Text(_pages[_selectedPageIndex]['title']),
+          onPressed: () {
+            Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
+          },
         ),
-        // loading of appropriate page based on index
-        body: _pages[_selectedPageIndex]['page'],
-        // the actual tab bar
-        bottomNavigationBar: buildBottomNavigationBar(context),
-        floatingActionButton: _pages[_selectedPageIndex]['fab']);
+        actions: _pages[_selectedPageIndex]['buttons'],
+        title: Text(_pages[_selectedPageIndex]['title']),
+      ),
+      body: _pages[_selectedPageIndex]['page'],
+      // the actual tab bar
+      bottomNavigationBar: buildBottomNavigationBar(context),
+      floatingActionButton: _pages[_selectedPageIndex]['fab'],
+      resizeToAvoidBottomInset: false,
+    );
   }
 }

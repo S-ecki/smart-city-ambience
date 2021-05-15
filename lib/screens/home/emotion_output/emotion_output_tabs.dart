@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
-import 'package:smart_city_ambience/screens/home/charts/bar_chart.dart';
-import 'package:smart_city_ambience/screens/home/charts/pie_chart.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/charts/bar_chart.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/charts/pie_chart.dart';
 
 class EmotionOutputTabs extends StatelessWidget {
   const EmotionOutputTabs({Key key}) : super(key: key);
@@ -17,25 +17,25 @@ class EmotionOutputTabs extends StatelessWidget {
           builder: (_, dimens) {
             return Column(
               children: [
-                SizedBox(
-                  height: dimens.maxHeight * 0.1,
-                  child: ListTile(
-                    title: Text(
-                      "Emotions of last <7 days>",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.access_time_rounded),
-                      color: Theme.of(context).accentColor,
-                      onPressed: () {
-                        //TODO: implement dropdown
-                      },
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   height: dimens.maxHeight * 0.1,
+                //   child: ListTile(
+                //     title: Text(
+                //       "Emotions of last <7 days>",
+                //       style: Theme.of(context).textTheme.headline6,
+                //     ),
+                //     trailing: IconButton(
+                //       icon: Icon(Icons.access_time_rounded),
+                //       color: Theme.of(context).accentColor,
+                //       onPressed: () {
+                //         //TODO: implement dropdown
+                //       },
+                //     ),
+                //   ),
+                // ),
                 // number of children must correspond to TabView children
                 SizedBox(
-                  height: dimens.maxHeight * 0.1,
+                  height: dimens.maxHeight * 0.15,
                   child: TabBar(
                     tabs: [
                       Tab(
@@ -56,7 +56,7 @@ class EmotionOutputTabs extends StatelessWidget {
                 ),
                 // fixed height for Tab content
                 SizedBox(
-                  height: dimens.maxHeight * 0.8,
+                  height: dimens.maxHeight * 0.85,
                   child: TabBarView(
                     children: [
                       Center(child: PieChart()),
