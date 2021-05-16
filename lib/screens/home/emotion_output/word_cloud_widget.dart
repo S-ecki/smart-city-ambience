@@ -28,7 +28,7 @@ class WordCloudWidget extends StatelessWidget {
           text: RotatedText(
               text: wordList[i],
               color: colorList[rand.nextInt(colorList.length)],
-              size: rand.nextInt(35) + 15),
+              size: rand.nextInt(25) + 15),
           index: i));
     }
 
