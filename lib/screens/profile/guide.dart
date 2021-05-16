@@ -17,7 +17,7 @@ class Guide extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Text(
-                "Equality and Non-Discrimination Guide",
+                "Gleichberechtigung und Anti- Diskriminierungs Guide",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20.0,
@@ -30,7 +30,7 @@ class Guide extends StatelessWidget {
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 child: Text(
-                  "  We know how important it is for this to be a place where people can safely communicate with one another. We also take our task very seriously to keep our platform away from any kind of abuse. For this reason we have created a number of guidelines:",
+                  "  Wir wissen, wie wichtig es ist, dass dies ein Ort ist, an dem Menschen sicher miteinander kommunizieren können. Wir nehmen unsere Aufgabe sehr ernst, die Plattform von jeglichem Missbrauch fernzuhalten. Aus diesem Grund haben wir eine Reihe von Richtlinien erstellt:",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class Guide extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "  1. Discrimination",
+                  "  1. Diskriminierung",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class Guide extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  " We are strongly committed to a non-discriminatory exchange in our app: No racist, ethnic or other discriminatory insults will be tolerated while using our app. If one of the mentioned  cases occurs, permanent exclusion from our app must be expected.",
+                  " Wir setzen uns stark für einen diskriminierungsfreien Austausch in unserer App ein: Während der Nutzung unserer App werden keine rassistischen, ethnischen oder anderwertig diskriminierende Beleidigungen toleriert. Wenn einer der genannten Fälle eintritt, muss mit einem dauerhaften Ausschluss von unserer App gerechnet werden.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
@@ -64,7 +64,7 @@ class Guide extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "  2. Privacy",
+                  "  2. Privatsphäre",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -76,7 +76,7 @@ class Guide extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  "We are committed to protect privacy and personal information on Smart City Ambience",
+                  "Wir verpflichten uns, die Privatsphäre und die persönlichen Daten von Smart City Ambience zu schützen",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
@@ -87,7 +87,7 @@ class Guide extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "  3. Dignity",
+                  "  3. Würde",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class Guide extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  "We strongly believe that all people are equal in dignity and rights. Therefore, we expect users to respect the dignity of others and not to harass others.",
+                  "Wir glauben fest daran, dass alle Menschens Würde und Rechten gleich sind. Daher erwarten wir von den Benutzern, dass sie die Würde anderer respektieren und ander User nicht belästigen.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
@@ -110,7 +110,7 @@ class Guide extends StatelessWidget {
             Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "  4. Safeness",
+                  "  4. Sicherheit",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class Guide extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  "Statements that threaten users have the potential to intimidate or silence others. Therefore, they are not allowed on Smart City Ambience.",
+                  "Aussagen, die Benutzer bedrohen, können andere einschüchtern oder zum Schweigen bringen. Daher sind sie in Smart City Ambience nicht zulässig.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
