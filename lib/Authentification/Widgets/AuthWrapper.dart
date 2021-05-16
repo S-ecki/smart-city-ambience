@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
+
 import 'package:smart_city_ambience/Authentification/LoginScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen.dart';
 

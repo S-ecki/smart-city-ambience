@@ -99,7 +99,7 @@ class Guide extends StatelessWidget {
               alignment: Alignment.topLeft,
               margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: Text(
-                  "Wir glauben fest daran, dass alle Menschens Würde und Rechten gleich sind. Daher erwarten wir von den Benutzern, dass sie die Würde anderer respektieren und ander User nicht belästigen.",
+                  "Wir glauben fest daran, dass alle Menschens Würde und Rechte gleich sind. Daher erwarten wir von den Benutzern, dass sie die Würde anderer respektieren und ander User nicht belästigen.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,

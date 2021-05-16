@@ -7,8 +7,7 @@ import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/forum_screen.dart';
 import 'package:smart_city_ambience/screens/events/event_screen.dart';
 import 'package:smart_city_ambience/screens/home/home_screen.dart';
-import 'package:showcaseview/showcaseview.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class NavbarScreen extends StatefulWidget {
   @override

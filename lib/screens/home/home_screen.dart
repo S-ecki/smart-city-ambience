@@ -1,8 +1,7 @@
 //import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:showcaseview/showcaseview.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/emotion_output_tabs.dart';
 
