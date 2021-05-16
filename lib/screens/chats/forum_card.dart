@@ -23,20 +23,14 @@ class ForumCard extends StatelessWidget {
 
       child: Card(
         shape: RoundedRectangleBorder(
-          side: withBorder
-              ? BorderSide(width: 4.0, color: Theme.of(context).accentColor)
-              : BorderSide(width: 4.0, color: Colors.transparent),
           borderRadius: withBorder
               ? BorderRadius.circular(15.0)
-              : BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
+              : BorderRadius.zero,
         ),
         // total padding on every card = 12 (see padding of outer column)
         margin: withBorder
             ? EdgeInsets.all(6)
-            : EdgeInsets.only(left: 6, right: 6, top: 6, bottom: 0),
+            : EdgeInsets.only(left: 4, right: 4, top: 6, bottom: 0),
         // prevent widget to go over edge of card
         clipBehavior: Clip.antiAlias,
         elevation: 2,
