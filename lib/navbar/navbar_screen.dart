@@ -44,8 +44,8 @@ class _NavbarScreenState extends State<NavbarScreen> {
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.chat),
-          label: "Chats",
+          icon: Icon(Icons.question_answer),
+          label: "Forum",
         ),
       ],
     );
