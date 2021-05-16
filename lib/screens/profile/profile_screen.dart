@@ -125,7 +125,7 @@ class _ProfileScreen extends State<ProfileScreen> {
               child: CircleAvatar(
                 backgroundImage: _image ==
                         null //wenn kein Bild aus der Gallerie oder aus Kamera -> Standardbild
-                    ? AssetImage("assets/images/test_image.jpg")
+                    ? AssetImage("assets/images/person.jpg")
                     : FileImage((File(_image.path))),
               ),
               decoration: new BoxDecoration(
@@ -206,7 +206,7 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   Widget nameTextfield() {
     return TextFormField(
-      initialValue: "Der Name",
+      initialValue: "Paula",
       decoration: InputDecoration(
         border: OutlineInputBorder(borderSide: BorderSide()),
         focusedBorder: OutlineInputBorder(
@@ -250,8 +250,8 @@ class _ProfileScreen extends State<ProfileScreen> {
         prefixIcon:
             Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
         suffixIcon: IconButton(
-          icon: Icon(Icons.visibility),
-          color: isVisible2 ? Colors.grey : Theme.of(context).primaryColor,
+          icon: isVisible2 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: Colors.grey,
           onPressed: () {
             setState(() {
               isVisible2 = !isVisible2;
@@ -265,6 +265,7 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   Widget DateTextfield() {
     return TextFormField(
+      initialValue: "01-02-1998",
       decoration: InputDecoration(
           border: OutlineInputBorder(
               borderSide: BorderSide(
@@ -280,8 +281,8 @@ class _ProfileScreen extends State<ProfileScreen> {
             color: Theme.of(context).primaryColor,
           ),
           suffixIcon: IconButton(
-            icon: Icon(Icons.visibility),
-            color: isVisible4 ? Colors.grey : Theme.of(context).primaryColor,
+          icon: isVisible4 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: Colors.grey,
             onPressed: () {
               setState(() {
                 isVisible4 = !isVisible4;
@@ -295,6 +296,7 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   Widget numberTextfield() {
     return TextFormField(
+            initialValue: "068012312356",
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderSide: BorderSide(
@@ -310,8 +312,8 @@ class _ProfileScreen extends State<ProfileScreen> {
           color: Theme.of(context).primaryColor,
         ),
         suffixIcon: IconButton(
-          icon: Icon(Icons.visibility,
-              color: isVisible5 ? Colors.grey : Theme.of(context).primaryColor),
+          icon: isVisible5 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: Colors.grey,
           onPressed: () {
             setState(() {
               isVisible5 = !isVisible5;

@@ -80,6 +80,7 @@ class ForumCard extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       child.description,
+                      textAlign: TextAlign.justify,
                       style: Theme.of(context).textTheme.bodyText1,
                       maxLines: showFullDesc ? 100 : 3,
                       overflow: showFullDesc ? null : TextOverflow.ellipsis,
