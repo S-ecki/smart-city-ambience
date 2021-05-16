@@ -38,8 +38,6 @@ dependencies:
   provider: ^4.3.2+1
   syncfusion_flutter_charts: ^18.4.0
   uuid: 3.0.4
-  #email_validator: ^2.0.1
-  #flutter_svg: ^0.12.1
   
   
 
