@@ -45,10 +45,36 @@ class ForumCard extends StatelessWidget {
           children: [
             ListTile(
               title: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  child.title,
-                  style: Theme.of(context).textTheme.headline6,
+                padding: const EdgeInsets.all(6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        child.title,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 6),
+                      child: PopupMenuButton(
+                          child: Icon(Icons.more_vert),
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              value: "report",
+                              child: Text('Beitrag melden'),
+                            ),
+                          ],
+                          onSelected: (value) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Beitrag wurde gemeldet."),
+                              ),
+                            );
+                          },
+                        ),
+                    ),
+                  ],
                 ),
               ),
               subtitle: Padding(

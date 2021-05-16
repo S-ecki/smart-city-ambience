@@ -36,9 +36,7 @@ class EventScreen extends StatelessWidget {
           padding: const EdgeInsets.all(6),
           child: ListView.separated(
             itemCount: dummyEvents.length,
-            separatorBuilder: (context, index) => SizedBox(
-              height: 20,
-            ),
+            separatorBuilder: (context, index) => SizedBox.shrink(),
             itemBuilder: (BuildContext context, int index) => InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,

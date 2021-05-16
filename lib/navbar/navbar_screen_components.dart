@@ -79,6 +79,14 @@ class ForumFAB extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 labelText: "Description",
+                // ! quick fix: top alignment of prefix icon does not work
+                // ! exact padding from bottom to align on pixel 2
+                prefixIcon: Padding(
+                  padding: EdgeInsets.only(bottom: 57),
+                  child: Icon(
+                    Icons.description,
+                  ),
+                ),
                 alignLabelWithHint: true,
               ),
             ),
@@ -137,7 +145,7 @@ class ForumFAB extends StatelessWidget {
     return StoreConnector<ReactionsState, List<Forum>>(
       converter: (store) => store.state.forumEntries,
       builder: (context, forumEntries) => FloatingActionButton(
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add_comment),
         backgroundColor: Theme.of(context).accentColor,
         onPressed: () {
           showAlertDialog(context);
