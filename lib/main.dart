@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
 import 'package:smart_city_ambience/dummyData/dummyComments.dart';
 import 'package:smart_city_ambience/dummyData/dummyEvents.dart';
+import 'package:smart_city_ambience/dummyData/dummyForumEntries.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/redux/reactionsState.reducer.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
   final Store<ReactionsState> store = Store<ReactionsState>(
     reactionsStateReducer,
     initialState: ReactionsState(
-      enhancedEmojis: {dummyEvents[0].eventId: [], dummyEvents[1].eventId: []},
+      enhancedEmojis: {for (var event in dummyEvents) event.eventId: []},
+      forumEntries: dummyForumEntries,
       comments: dummyComments,
     ),
   );

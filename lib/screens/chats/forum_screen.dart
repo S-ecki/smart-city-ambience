@@ -1,66 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_city_ambience/dummyData/dummyForumEntries.dart';
-import 'package:smart_city_ambience/dummyData/dummyEvents.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/forum_card.dart';
-import 'package:smart_city_ambience/screens/events/event_card.dart';
+import 'package:smart_city_ambience/screens/events/event_screen.dart';
 
 class ForumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // ScrollView (child) takes all the space it needs
-      width: double.infinity,
-      height: double.infinity,
-      // background color
-      color: Theme.of(context).backgroundColor,
-      // this makes the column scrollable -> prevents pixel overflow on smaller phones
-      child: SingleChildScrollView(
-        // distributing padding between outer container (here) and cards makes
-        // sure that padding on the edges and in between cards is the same
-        // resulting padding = 12
+    return StoreConnector<ReactionsState, ReactionsState>(
+      converter: (store) => store.state,
+      builder: (context, ReactionsState state) => Container(
+        // ScrollView (child) takes all the space it needs
+        width: double.infinity,
+        height: double.infinity,
+        // background color
+        color: Theme.of(context).backgroundColor,
+        // this makes the column scrollable -> prevents pixel overflow on smaller phones
         child: Padding(
           padding: const EdgeInsets.all(6),
-          child: Column(
-            children: [
-              ForumCard(
-                child: dummyForumEntries[0],
+          child: ListView.separated(
+            itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(SmortRoutes.forumDetailScreen,
+                    arguments: state.forumEntries[index]);
+              },
+              child: ForumCard(
+                child: state.forumEntries[index],
                 showFullDesc: false,
                 withBorder: true,
+                nrOfComments: getNrOfComments(
+                    state.comments, state.forumEntries[index].forumId),
               ),
-              ForumCard(
-                child: dummyForumEntries[1],
-                showFullDesc: false,
-                withBorder: true,
-              ),
-              ForumCard(
-                child: dummyForumEntries[2],
-                showFullDesc: false,
-                withBorder: true,
-              ),
-              ForumCard(
-                child: dummyForumEntries[3],
-                showFullDesc: false,
-                withBorder: true,
-              ),
-
-              /*
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
-                      arguments: dummyEvents[0]);
-                },
-                child: EventCard(child: dummyEvents[0]),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pushNamed(SmortRoutes.eventDetailScreen,
-                      arguments: dummyEvents[0]);
-                },
-                child: EventCard(child: dummyEvents[1]),
-              ),*/
-            ],
+            ),
+            separatorBuilder: (context, index) => SizedBox(
+              height: 20,
+            ),
+            itemCount: state.forumEntries.length,
           ),
         ),
       ),
