@@ -47,6 +47,7 @@ class _EmotionInputState extends State<EmotionInput> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      Text("layout getting re-designed"),
                       CustomToggleButtons(
                         constraints: BoxConstraints(
                           maxHeight: 45,
