@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/bar_chart.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/pie_chart.dart';
-import 'package:smart_city_ambience/screens/home/emotion_output/smort_slider.dart';
 
 class EmotionOutputTabs extends StatelessWidget {
   const EmotionOutputTabs({Key key}) : super(key: key);
@@ -14,32 +13,25 @@ class EmotionOutputTabs extends StatelessWidget {
         child: LayoutBuilder(
           builder: (_, dimens) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  // height: dimens.maxHeight * 0.1,
-                  child: ListTile(
-                      title: Text(
-                        "Aufschlüsselung der Gefühle",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      trailing: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: PopupMenuButton(
-                          child: Icon(
-                            Icons.location_pin,
-                            color: Theme.of(context).accentColor,
-                          ),
-                          itemBuilder: (context) => [
-                            PopupMenuItem(
-                              child: SmortSlider(),
-                            ),
-                          ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(6, 6, 0, 0),
+                  child: SizedBox(
+                    width: 300,
+                    height: dimens.maxHeight * 0.15,
+                    child: ListTile(
+                        title: Text(
+                          "Aufschlüsselung der Gefühle",
+                          style: Theme.of(context).textTheme.headline6,
                         ),
-                      )),
+                        subtitle: Text("Anzahl der täglichen Emotionen und Reaktionen auf Beiträge innerhalb des City Radius", textScaleFactor: 0.9,),
+                    ),
+                  ),
                 ),
                 // number of children must correspond to TabView children
                 SizedBox(
-                  // height: dimens.maxHeight * 0.15,
+                  // height: dimens.maxHeight * 0.2,
                   child: TabBar(
                     tabs: [
                       Tab(
@@ -57,7 +49,7 @@ class EmotionOutputTabs extends StatelessWidget {
                 ),
                 // fixed height for Tab content
                 SizedBox(
-                  height: dimens.maxHeight * 0.75,
+                  height: dimens.maxHeight * 0.7,
                   child: TabBarView(
                     children: [
                       Center(child: PieChart()),

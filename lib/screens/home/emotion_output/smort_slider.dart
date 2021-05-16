@@ -10,14 +10,14 @@ class SmortSlider extends StatefulWidget {
 }
 
 class _SmortSliderState extends State<SmortSlider> {
-  var _value = 5.0;
+  var _value = 10.0;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 400,
       child: Column(
         children: [
-          Text("Suchraduis ändern"),
+          Text("City Radius ändern"),
           SfSlider(
             min: 5.0,
             max: 25.0,

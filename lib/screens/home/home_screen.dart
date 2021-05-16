@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                       child: EmotionInput(),
                     ),
                     SizedBox(
-                      height: 430,
+                      height: 400,
                       width: dimens.maxWidth,
                       child: EmotionOutputTabs(),
                     ),

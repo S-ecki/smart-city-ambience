@@ -58,7 +58,7 @@ class PieChart extends StatelessWidget {
 
     return <DoughnutSeries<ChartData, String>>[
       DoughnutSeries<ChartData, String>(
-        radius: '90%',
+        radius: '92%',
         explode: true,
         explodeOffset: '10%',
         dataSource: chartData,
