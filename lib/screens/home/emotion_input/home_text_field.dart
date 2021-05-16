@@ -15,24 +15,20 @@ class HomeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 250,
-      child: Column(
-        children: [
-          TextFormField(
-            focusNode: _focusNode,
-            controller: _controller,
-            maxLines: 2,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              // labelText: "Title",
-              prefixIcon: Icon(
-                Icons.border_color
-              ),
-            ),
+      width: 300,
+      child: TextFormField(
+        focusNode: _focusNode,
+        controller: _controller,
+        maxLines: null,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25),
           ),
-        ],
+          // labelText: "Title",
+          prefixIcon: Icon(
+            Icons.edit
+          ),
+        ),
       ),
     );
   }
