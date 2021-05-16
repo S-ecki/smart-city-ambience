@@ -21,10 +21,6 @@ class CommentSection extends StatelessWidget {
       builder: (context, Map<String, Map<String, List<String>>> comments) =>
           Card(
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 4.0, color: Colors.transparent),
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20),
-          ),
         ),
         elevation: 2,
         child: Container(
@@ -35,7 +31,7 @@ class CommentSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
                     label,
                     style: TextStyle(
