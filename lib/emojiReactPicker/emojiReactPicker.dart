@@ -3,10 +3,8 @@ import 'package:smart_city_ambience/emojiReactPicker/popupMenuWidget.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
 import 'emojiButton.dart';
 
-/**
- * 
- * 
- */
+
+
 
 class EmojiReactPicker extends StatelessWidget {
   EmojiReactPicker({this.eventId});
@@ -50,10 +48,7 @@ class EmojiReactPicker extends StatelessWidget {
   }
 }
 
-/**
- * 
- * 
- */
+
 class EmojiReactRow extends StatelessWidget {
   const EmojiReactRow({Key key, this.emojiType, this.eventId})
       : super(key: key);

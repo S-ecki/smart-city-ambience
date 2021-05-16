@@ -8,6 +8,7 @@ import 'package:smart_city_ambience/screens/chats/forum_screen.dart';
 import 'package:smart_city_ambience/screens/events/event_screen.dart';
 import 'package:smart_city_ambience/screens/home/home_screen.dart';
 
+
 class NavbarScreen extends StatefulWidget {
   @override
   _NavbarScreenState createState() => _NavbarScreenState();
@@ -22,7 +23,12 @@ class _NavbarScreenState extends State<NavbarScreen> {
     });
   }
 
+  int selectionInd = 0;
+
+
   BottomNavigationBar buildBottomNavigationBar(BuildContext context) {
+
+
     return BottomNavigationBar(
       onTap: _selectPage,
       currentIndex: _selectedPageIndex,
@@ -30,16 +36,18 @@ class _NavbarScreenState extends State<NavbarScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.article),
-          label: "News",
+          icon:  Icon(Icons.emoji_symbols),
+          
+          label: "Events",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.question_answer),
-          label: "Forum",
+          icon: Icon(Icons.chat),
+          
+          label: "Chats",
         ),
       ],
     );
@@ -82,6 +90,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.account_circle),
+          
           onPressed: () {
             Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
           },
@@ -89,7 +98,6 @@ class _NavbarScreenState extends State<NavbarScreen> {
         actions: _pages[_selectedPageIndex]['buttons'],
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
-      // loading of appropriate page based on index
       body: _pages[_selectedPageIndex]['page'],
       // the actual tab bar
       bottomNavigationBar: buildBottomNavigationBar(context),

@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:image_picker/image_picker.dart';
+import 'guide.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key key}) : super(key: key);
@@ -11,32 +14,60 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreen extends State<ProfileScreen> {
+  
   File _image;
+  var isVisible = true;
+  var isVisible2 = true;
+  var isVisible3 = true;
+  var isVisible4 = true;
+  var isVisible5 = true;
 
   final ImagePicker _picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
+    // ! new
+    var provider = context.watch<User>();
+
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: Text("Profile"),
+        title: Text("Profil"),
       ),
       body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: ListView(
-            children: <Widget>[
-              profilePicture(), //Profilbild
-              SizedBox(height: 40),
-              nameTextfield(), //Name
-              SizedBox(height: 2),
-              DateTextfield(), //Geburtsdatum
-              SizedBox(height: 2),
-              mailTextfield(), //E-Mail
-              SizedBox(height: 2),
-              numberTextfield(), //Telefonnummer
-            ],
-          )),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: ListView(
+          children: <Widget>[
+            profilePicture(), //Profilbild
+            SizedBox(height: 20),
+            nameTextfield(), //Name
+            SizedBox(height: 20),
+            DateTextfield(), //Geburtsdatum
+            SizedBox(height: 20),
+            mailTextfield(provider), //E-Mail
+            SizedBox(height: 20),
+            numberTextfield(), //Telefonnummer
+            SizedBox(height: 20),
+            Container(
+              alignment: Alignment.bottomLeft,
+              child: ElevatedButton(
+                style: ButtonStyle(),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Profildaten gespeichert."),
+                    ),
+                  );
+
+                  
+                },
+                child: Text("Speichern"),
+                    
+              ),
+            )
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.logout),
         onPressed: () async {
@@ -106,7 +137,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                 horizontal: 30, vertical: 30),
                             child: Column(children: <Widget>[
                               Text(
-                                "Choose Photo",
+                                "Foto auswählen",
                                 style: TextStyle(fontSize: 20),
                               ),
                               SizedBox(
@@ -125,7 +156,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                       _imgFromCamera();
                                     },
                                     label: Text(
-                                      "Camera",
+                                      "Kamera",
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black),
                                     ),
@@ -140,7 +171,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                       _imgFromGallery();
                                     },
                                     label: Text(
-                                      "Gallery",
+                                      "Gallerie",
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black),
                                     ),
@@ -163,10 +194,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget nameTextfield() {
     return TextFormField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.orange,
-          )),
+          border: OutlineInputBorder(borderSide: BorderSide()),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
             color: Colors.black,
@@ -174,32 +202,47 @@ class _ProfileScreen extends State<ProfileScreen> {
           )),
           prefixIcon: Icon(
             Icons.person,
-            color: Colors.lightGreen[800],
+            color: Theme.of(context).primaryColor,
           ),
-          suffixIcon: Icon(Icons.visibility),
-          labelText: "Name",
-          helperText: "Can't be empty",
-          hintText: " John Doe"),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility),
+            color: isVisible ? Colors.grey : Theme.of(context).primaryColor,
+            onPressed: () {
+              setState(() {
+                isVisible = !isVisible;
+              });
+            },
+          ),
+          labelText: "Name"),
     );
   }
 
-  Widget mailTextfield() {
+  Widget mailTextfield(User provider) {
     return TextFormField(
+      enabled: false,
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.yellow,
-          )),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
-          prefixIcon: Icon(Icons.mail_outline, color: Colors.lightGreen[800]),
-          suffixIcon: Icon(Icons.visibility),
-          labelText: "E-Mail",
-          hintText: " johndoe@example.com",
-          helperText: "Can't be empty"),
+        hintText: provider?.email ?? "", // empty string when called on null
+        border: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.yellow,
+        )),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.black,
+          width: 2,
+        )),
+        prefixIcon: Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.visibility),
+          color: isVisible2 ? Colors.grey : Theme.of(context).primaryColor,
+          onPressed: () {
+            setState(() {
+              isVisible2 = !isVisible2;
+            });
+          },
+        ),
+        labelText: "E-Mail",
+      ),
     );
   }
 
@@ -216,12 +259,19 @@ class _ProfileScreen extends State<ProfileScreen> {
             width: 2,
           )),
           prefixIcon: Icon(
-            Icons.data_usage,
-            color: Colors.lightGreen[800],
+            Icons.calendar_today,
+            color: Theme.of(context).primaryColor,
           ),
-          suffixIcon: Icon(Icons.visibility),
-          labelText: "Day Of Birth",
-          helperText: "Can't be empty",
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility),
+            color: isVisible4 ? Colors.grey : Theme.of(context).primaryColor,
+            onPressed: () {
+              setState(() {
+                isVisible4 = !isVisible4;
+              });
+            },
+          ),
+          labelText: "Geburtsdatum",
           hintText: " DD-MM-YYYY"),
     );
   }
@@ -240,11 +290,18 @@ class _ProfileScreen extends State<ProfileScreen> {
           )),
           prefixIcon: Icon(
             Icons.phone,
-            color: Colors.lightGreen[800],
+            color: Theme.of(context).primaryColor,
           ),
-          suffixIcon: Icon(Icons.visibility),
-          labelText: "Number",
-          helperText: "Can't be empty",
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility,
+                color: isVisible5 ? Colors.grey : Theme.of(context).primaryColor),
+            onPressed: () {
+              setState(() {
+                isVisible5 = !isVisible5;
+              });
+            },
+          ),
+          labelText: "Nummer",
           hintText: " +436608754333"),
     );
   }

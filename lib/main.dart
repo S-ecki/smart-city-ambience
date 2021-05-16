@@ -15,6 +15,7 @@ import 'package:smart_city_ambience/types/word_cloud.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 import "package:redux/redux.dart";
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: smortTheme(context),
           home: AuthWrapper(),
+          
           routes: SmortRoutes.myRoutes,
         ),
       ),

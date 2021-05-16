@@ -1,11 +1,30 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
+
 import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/emotion_output_tabs.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud_widget.dart';
 import 'package:smart_city_ambience/types/word_cloud.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
+
+
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int selectionInd = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
