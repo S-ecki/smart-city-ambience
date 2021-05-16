@@ -62,6 +62,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "page": EventScreen(),
         "title": "News",
         "buttons": [
+          LocationButton(),
           OptionsButton(),
         ],
         "fab": null,
@@ -70,6 +71,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "page": HomeScreen(),
         "title": "Smart City Ambience",
         "buttons": [
+          LocationButton(),
           OptionsButton(),
         ],
         "fab": null,
@@ -78,6 +80,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "page": ForumScreen(),
         "title": "Forum",
         "buttons": [
+          LocationButton(),
           OptionsButton(),
         ],
         "fab": ForumFAB(),
@@ -99,7 +102,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
       // the actual tab bar
       bottomNavigationBar: buildBottomNavigationBar(context),
       floatingActionButton: _pages[_selectedPageIndex]['fab'],
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
     );
   }
 }

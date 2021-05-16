@@ -10,7 +10,6 @@ ThemeData smortTheme(BuildContext context) {
     // Material Color with own Color Palette can be created as follows
     primarySwatch: generateMaterialColor(Color(0xFFA4B494)),
     accentColor: darkAccentColor,
-
     // primarySwatch: Colors.pink,
     // accentColor: Colors.amber,
 

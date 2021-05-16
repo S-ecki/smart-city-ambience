@@ -8,7 +8,14 @@ enum EmojiType { Positive, Negative, Neutral }
 // get string without "EmojiType." at the front
 extension ParseToString on EmojiType {
   String toShortString() {
-    return this.toString().split('.').last;
+    switch (this) {
+      case EmojiType.Positive:
+        return "Positiv";
+        case EmojiType.Neutral:
+        return "Neutral";
+        case EmojiType.Negative:
+        return "Negativ";
+    }
   }
 }
 

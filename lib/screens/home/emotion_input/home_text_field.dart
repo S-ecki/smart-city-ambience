@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HomeTextField extends StatelessWidget {
@@ -6,7 +5,9 @@ class HomeTextField extends StatelessWidget {
     Key key,
     @required FocusNode focusNode,
     @required TextEditingController controller,
-  }) : _focusNode = focusNode, _controller = controller, super(key: key);
+  })  : _focusNode = focusNode,
+        _controller = controller,
+        super(key: key);
 
   final FocusNode _focusNode;
   final TextEditingController _controller;
@@ -14,14 +15,18 @@ class HomeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
+      width: 300,
       child: TextFormField(
         focusNode: _focusNode,
         controller: _controller,
-        maxLines: 2,
+        maxLines: null,
         decoration: InputDecoration(
-          hintText: "Verbalisiere deine heutigen Gefühle",
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          prefixIcon: Icon(
+            Icons.edit
+          ),
         ),
       ),
     );

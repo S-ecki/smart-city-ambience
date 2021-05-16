@@ -11,6 +11,7 @@ import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/redux/reactionsState.reducer.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/theme/smort_theme.dart';
+import 'package:smart_city_ambience/types/word_cloud.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 import "package:redux/redux.dart";
 
@@ -33,12 +34,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(store);
-
     return StoreProvider<ReactionsState>(
       store: store,
       child: MultiProvider(
         providers: [
+          ChangeNotifierProvider(create: (context) => WordCloud()),
           Provider<AuthServcice>(
             create: (_) => AuthServcice(FirebaseAuth.instance),
           ),
