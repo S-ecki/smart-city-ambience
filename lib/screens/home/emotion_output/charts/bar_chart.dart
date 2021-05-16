@@ -14,7 +14,7 @@ class BarChart extends StatelessWidget {
       builder: (context, Map<String, List<EnhancedEmoji>> enhancedEmojis) =>
           SfCartesianChart(
         plotAreaBorderWidth: 0,
-        title: ChartTitle(text: 'Some Title'),
+        // title: ChartTitle(text: 'Some Title'),
         legend: Legend(
           isVisible: true,
           overflowMode: LegendItemOverflowMode.wrap,
@@ -32,8 +32,6 @@ class BarChart extends StatelessWidget {
         ),
         primaryYAxis: NumericAxis(
           axisLine: AxisLine(width: 0),
-          // labelFormat: '{value}',
-          // maximum: 300,
           majorTickLines: MajorTickLines(size: 0),
         ),
         series: _getStackedColumnSeries(enhancedEmojis),
@@ -54,7 +52,8 @@ class BarChart extends StatelessWidget {
 
     // add to dummy data
     final List<BarChartData> chartData = <BarChartData>[
-      BarChartData("Februar", 143, 37, 61),
+      BarChartData("Jänner", 61, 93, 41),
+      BarChartData("Februar", 143, 39, 61),
       BarChartData("März", 83, 12, 60),
       BarChartData("April", 101, 41, 44),
       BarChartData("Mai", 63 + _positiveMay, 13 + _neutralMay, 38 + _negativeMay),
@@ -69,6 +68,7 @@ class BarChart extends StatelessWidget {
         dataLabelMapper: (BarChartData data, _) =>
             data.positiveAmount < 30 ? "" : null,
         dataLabelSettings: DataLabelSettings(
+          labelAlignment: ChartDataLabelAlignment.middle,
           isVisible: true,
         ),
       ),
@@ -80,6 +80,7 @@ class BarChart extends StatelessWidget {
         dataLabelMapper: (BarChartData data, _) =>
             data.neutralAmount < 30 ? "" : null,
         dataLabelSettings: DataLabelSettings(
+          labelAlignment: ChartDataLabelAlignment.middle,
           isVisible: true,
         ),
       ),
@@ -91,6 +92,7 @@ class BarChart extends StatelessWidget {
         dataLabelMapper: (BarChartData data, _) =>
             data.negativeAmount < 30 ? "" : null,
         dataLabelSettings: DataLabelSettings(
+          labelAlignment: ChartDataLabelAlignment.middle,
           isVisible: true,
         ),
       ),

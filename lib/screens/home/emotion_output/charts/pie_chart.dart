@@ -17,8 +17,10 @@ class PieChart extends StatelessWidget {
         legend: Legend(
             isVisible: true,
             overflowMode: LegendItemOverflowMode.wrap,
-            position: LegendPosition.bottom),
+            position: LegendPosition.bottom,
+            ),
         series: _getDefaultDoughnutSeries(enhancedEmojis),
+
         tooltipBehavior: TooltipBehavior(enable: true),
         margin: EdgeInsets.all(8),
         annotations: <CircularChartAnnotation>[
@@ -30,7 +32,7 @@ class PieChart extends StatelessWidget {
               width: 20,
               child: Icon(
                 Icons.location_city,
-                size: 42,
+                size: 56,
               ),
             ),
           ),
@@ -56,7 +58,7 @@ class PieChart extends StatelessWidget {
 
     return <DoughnutSeries<ChartData, String>>[
       DoughnutSeries<ChartData, String>(
-        radius: '100%',
+        radius: '90%',
         explode: true,
         explodeOffset: '10%',
         dataSource: chartData,
