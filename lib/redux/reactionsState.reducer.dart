@@ -7,13 +7,15 @@ import 'package:smart_city_ambience/redux/reactionsState.dart';
 ReactionsState reactionsStateReducer(
     ReactionsState currentState, dynamic action) {
   if (action is AddReaction) {
-    print(action.eventId);
-    print(action.enhancedEmoji);
+    if (!currentState.enhancedEmojis.containsKey(action.eventId)) {
+      currentState.enhancedEmojis[action.eventId] = [];
+    }
     currentState.enhancedEmojis[action.eventId]
         ?.insert(0, action.enhancedEmoji);
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
       comments: currentState.comments,
+      forumEntries: currentState.forumEntries,
     );
   }
   if (action is RemoveReaction) {
@@ -22,6 +24,7 @@ ReactionsState reactionsStateReducer(
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
       comments: currentState.comments,
+      forumEntries: currentState.forumEntries,
     );
   }
   if (action is AddComment) {
@@ -34,6 +37,15 @@ ReactionsState reactionsStateReducer(
     return ReactionsState(
       enhancedEmojis: currentState.enhancedEmojis,
       comments: currentState.comments,
+      forumEntries: currentState.forumEntries,
+    );
+  }
+  if (action is AddForumEntry) {
+    currentState.comments[action.forum.forumId] = {};
+    return ReactionsState(
+      enhancedEmojis: currentState.enhancedEmojis,
+      comments: currentState.comments,
+      forumEntries: currentState.forumEntries + [action.forum],
     );
   }
   return currentState;
