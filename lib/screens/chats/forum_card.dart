@@ -23,9 +23,8 @@ class ForumCard extends StatelessWidget {
 
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: withBorder
-              ? BorderRadius.circular(15.0)
-              : BorderRadius.zero,
+          borderRadius:
+              withBorder ? BorderRadius.circular(15.0) : BorderRadius.zero,
         ),
         // total padding on every card = 12 (see padding of outer column)
         margin: withBorder
@@ -35,23 +34,28 @@ class ForumCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         elevation: 2,
         // return card without header if no title is provided
-        child: Column(
-          children: [
-            ListTile(
-              title: Padding(
-                padding: const EdgeInsets.all(6),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        child.title,
-                        style: Theme.of(context).textTheme.headline6,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            border: Border.all(color: Colors.grey[300]),
+          ),
+          child: Column(
+            children: [
+              ListTile(
+                title: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          child.title,
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 6),
-                      child: PopupMenuButton(
+                      Padding(
+                        padding: EdgeInsets.only(top: 6),
+                        child: PopupMenuButton(
                           child: Icon(Icons.more_vert),
                           itemBuilder: (context) => [
                             PopupMenuItem(
@@ -67,85 +71,86 @@ class ForumCard extends StatelessWidget {
                             );
                           },
                         ),
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Padding(
+                subtitle: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    child.description,
-                    style: Theme.of(context).textTheme.bodyText1,
-                    maxLines: showFullDesc ? 100 : 3,
-                    overflow: showFullDesc ? null : TextOverflow.ellipsis,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      child.description,
+                      style: Theme.of(context).textTheme.bodyText1,
+                      maxLines: showFullDesc ? 100 : 3,
+                      overflow: showFullDesc ? null : TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                      child: Row(
-                        children: [
-                          EmojiReactList(
-                            eventId: child.forumId,
+                      Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
                           ),
-                          EmojiReactPicker(
-                            eventId: child.forumId,
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: withBorder
-                              ? Theme.of(context).primaryColor
-                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Text(
-                          withBorder
-                              ? "Kommentare (" + nrOfComments.toString() + ")"
-                              : "",
-                          style: Theme.of(context).textTheme.bodyText1,
+                        child: Row(
+                          children: [
+                            EmojiReactList(
+                              eventId: child.forumId,
+                            ),
+                            EmojiReactPicker(
+                              eventId: child.forumId,
+                            )
+                          ],
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            )
-          ],
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: withBorder
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Center(
+                          child: Text(
+                            withBorder
+                                ? "Kommentare (" + nrOfComments.toString() + ")"
+                                : "",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              )
+            ],
+          ),
         ),
       ),
     );

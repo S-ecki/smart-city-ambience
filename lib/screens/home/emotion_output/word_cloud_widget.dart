@@ -6,8 +6,18 @@ import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/types/word_cloud.dart';
 
 class WordCloudWidget extends StatelessWidget {
-  List<Color> colorList = [Color(0xFF42A5F5),Color(0xFF1A237E),Color(0xFF4E342E),
-  Color(0xFF546E7A),Color(0xFFAA00FF),Color(0xFF00B8D4), Color(0xFF1B5E20), Color(0xFFF57F17), Color(0xFFB71C1c), Color(0xFF6DD17)];
+  List<Color> colorList = [
+    Color(0xFF42A5F5),
+    Color(0xFF1A237E),
+    Color(0xFF4E342E),
+    Color(0xFF546E7A),
+    Color(0xFFAA00FF),
+    Color(0xFF00B8D4),
+    Color(0xFF1B5E20),
+    Color(0xFFF57F17),
+    Color(0xFFB71C1c),
+    Color(0xFF6DD17)
+  ];
   Random rand = new Random();
   @override
   Widget build(BuildContext context) {
@@ -16,23 +26,40 @@ class WordCloudWidget extends StatelessWidget {
 
     for (var i = 0; i < wordList.length; i++) {
       widgets.add(ScatterItem(
-          text: RotatedText(text: wordList[i], color: colorList[rand.nextInt(colorList.length)], size: rand.nextInt(35)+15),
+          text: RotatedText(
+              text: wordList[i],
+              color: colorList[rand.nextInt(colorList.length)],
+              size: rand.nextInt(35) + 15),
           index: i));
     }
 
     final screenSize = MediaQuery.of(context).size;
     final ratio = screenSize.width / screenSize.height;
 
-    return SizedBox(
-      child: Center(
-        child: FittedBox(
-          child: Scatter(
-            fillGaps: true,
-            delegate: ArchimedeanSpiralScatterDelegate(ratio: ratio),
-            children: widgets,
+    return Column(
+      children: [
+        ListTile(
+          title: Text(
+            "Verbalisierte Gefühle",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          subtitle: Text(
+            "Anzahl der täglichen verbalisierten Emotionen und Reaktionen auf Beiträge innerhalb des City Radius",
+            textScaleFactor: 0.9,
           ),
         ),
-      ),
+        SizedBox(
+          child: Center(
+            child: FittedBox(
+              child: Scatter(
+                fillGaps: true,
+                delegate: ArchimedeanSpiralScatterDelegate(ratio: ratio),
+                children: widgets,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -69,6 +96,3 @@ class RotatedText {
   final Color color;
   final int size;
 }
-
-
-

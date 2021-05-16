@@ -15,6 +15,7 @@ class EventDetailScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
+          
           margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
           child: Column(
             children: [
