@@ -24,7 +24,6 @@ class HomeTextField extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),
           ),
-          // labelText: "Title",
           prefixIcon: Icon(
             Icons.edit
           ),

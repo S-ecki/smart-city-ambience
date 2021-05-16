@@ -1,12 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_scatter/flutter_scatter.dart';
-import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/bar_chart.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/pie_chart.dart';
-import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud_widget.dart';
-import 'package:smart_city_ambience/types/word_cloud.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/smort_slider.dart';
 
 class EmotionOutputTabs extends StatelessWidget {
   const EmotionOutputTabs({Key key}) : super(key: key);
@@ -23,18 +18,24 @@ class EmotionOutputTabs extends StatelessWidget {
                 SizedBox(
                   // height: dimens.maxHeight * 0.1,
                   child: ListTile(
-                    title: Text(
-                      "Emotions of last <7 days>",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.access_time_rounded),
-                      color: Theme.of(context).accentColor,
-                      onPressed: () {
-                        //TODO: implement dropdown
-                      },
-                    ),
-                  ),
+                      title: Text(
+                        "Aufschlüsselung der Gefühle",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      trailing: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: PopupMenuButton(
+                          child: Icon(
+                            Icons.location_pin,
+                            color: Theme.of(context).accentColor,
+                          ),
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              child: SmortSlider(),
+                            ),
+                          ],
+                        ),
+                      )),
                 ),
                 // number of children must correspond to TabView children
                 SizedBox(
@@ -72,4 +73,3 @@ class EmotionOutputTabs extends StatelessWidget {
     );
   }
 }
-
