@@ -44,63 +44,59 @@ class _EmotionInputState extends State<EmotionInput> {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<ReactionsState, Map<String, List<EnhancedEmoji>>>(
-      converter: (store) => store.state.enhancedEmojis,
-      builder: (context, Map<String, List<EnhancedEmoji>> enhancedEmojis) {
-        return Card(
-          
-          child: Column(
-            children: [
-              EmotionInputBox(text: "Wie fühlst du dich heute?"),
-              SizedBox(
-                width: 200,
-                child: CustomToggleButtons(
-                  constraints: BoxConstraints(
-                    maxHeight: 45,
-                    maxWidth: 45,
-                  ),
-                  fillColor: Colors.grey[200],
-                  renderBorder: false,
-                  isSelected: _isSelected,
-                  // fill with all emojis
-                  children: <Widget>[
-                    for (var emoji in emojiReactionList)
-                      EmojiButtonHome(enhancedEmoji: emoji),
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            EmotionInputBox(text: "Wie fühlst du dich heute?"),
+            Container(
+              width: 200,
+              alignment: Alignment.center,
+              child: CustomToggleButtons(
+                fillColor: Colors.grey[200],
+                renderBorder: false,
+                isSelected: _isSelected,
+                // fill with all emojis
+                children: <Widget>[
+                  for (var emoji in emojiReactionList)
+                    EmojiButtonHome(enhancedEmoji: emoji),
+                ],
+                // alter list<bool> to select emojis
+                onPressed: (index) {
+                  setState(
+                    () {
+                      _isSelected[index] = !_isSelected[index];
+                    },
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 10,),
+            EmotionInputBox(text: "Verbalisiere deine heutigen Gefühle"),
+            SizedBox(height: 15,), 
+            HomeTextField(focusNode: _focusNode, controller: _controller),
+            // save button
+            SizedBox(
+              width: 240,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                TextButton(onPressed: () => _onPressedCancel(), child: Text("Abbrechen")),
+                ElevatedButton(onPressed: () => _onPressedSave(), child: Text("Speichern")),
                   ],
-                  // alter list<bool> to select emojis
-                  onPressed: (index) {
-                    setState(
-                      () {
-                        _isSelected[index] = !_isSelected[index];
-                      },
-                    );
-                  },
                 ),
               ),
-              Divider(),
-              EmotionInputBox(text: "Verbalisiere deine heutigen Gefühle"),
-              HomeTextField(focusNode: _focusNode, controller: _controller),
-              // save button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("Eingabe speichern"),
-                  IconButton(
-                    constraints: BoxConstraints(maxHeight: 35),
-                    iconSize: 20,
-                    icon: Icon(Icons.save),
-                    onPressed: () => _onPressed(enhancedEmojis),
-                  )
-                ],
-              )
-            ],
-          ),
-        );
-      },
+            )
+          ],
+        ),
+      ),
     );
   }
 
-  void _onPressed(var enhancedEmojis) {
+  void _onPressedSave() {
     // add entered words to word cloud
     var _provider = Provider.of<WordCloud>(context, listen: false);
     _provider.addWord(_controller.text);
@@ -108,13 +104,10 @@ class _EmotionInputState extends State<EmotionInput> {
     // clear input and unfocus
     _controller.clear();
     _focusNode.unfocus();
-    _notifyScaffold();
+    _notifyScaffold("Gefühl gespeichert.");
 
     // number of neutral emojis before adding
-    print(
-        "Neutral Emojis before adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
 
-    // TODO: does not add to store
     for (int i = 0; i < 12; ++i) {
       // should add selected emojis
       if (_isSelected[i]) {
@@ -128,8 +121,6 @@ class _EmotionInputState extends State<EmotionInput> {
       // reset all emojis to unselected
       _isSelected[i] = false;
     }
-    print(
-        "Neutral Emojis after adding: ${getEmojiCount(EmojiType.Neutral, enhancedEmojis)}");
 
     // update UI to show unselected emojis
     setState(
@@ -137,11 +128,32 @@ class _EmotionInputState extends State<EmotionInput> {
     );
   }
 
-  void _notifyScaffold() {
+  void _onPressedCancel() {
+
+    // clear input and unfocus
+    _controller.clear();
+    _focusNode.unfocus();
+    _notifyScaffold("Vorgang abgebrochen.");
+
+
+    for (int i = 0; i < 12; ++i) {
+      // reset all emojis to unselected
+      _isSelected[i] = false;
+    }
+
+    // update UI to show unselected emojis
+    setState(
+      () {},
+    );
+  }
+
+
+
+  void _notifyScaffold(String text) {
     // let user know it was saved
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text("Gefühl gespeichert."),
+        content: Text(text),
       ),
     );
   }

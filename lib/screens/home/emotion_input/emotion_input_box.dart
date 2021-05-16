@@ -6,12 +6,20 @@ class EmotionInputBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(text),
-      // color: Colors.grey[200],
-      height: 30,
-      width: double.infinity,
-      alignment: Alignment.centerLeft,
+    return Card(
+      color: Theme.of(context).accentColor,
+      elevation: 0,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
     );
   }
 }

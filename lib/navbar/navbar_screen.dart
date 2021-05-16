@@ -91,7 +91,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
       // the actual tab bar
       bottomNavigationBar: buildBottomNavigationBar(context),
       floatingActionButton: _pages[_selectedPageIndex]['fab'],
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
     );
   }
 }
