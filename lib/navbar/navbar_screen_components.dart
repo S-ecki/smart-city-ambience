@@ -72,7 +72,7 @@ class ForumFAB extends StatelessWidget {
     AlertDialog alert = AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      title: Text("Add a new Discussion"),
+      title: Text("Erstelle einen neuen Forumeintrag"),
       content: Container(
         child: Column(
           children: [
@@ -85,7 +85,7 @@ class ForumFAB extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                labelText: "Title",
+                labelText: "Titel",
                 prefixIcon: Icon(
                   Icons.title_rounded,
                 ),
@@ -102,7 +102,7 @@ class ForumFAB extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                labelText: "Description",
+                labelText: "Beschreibung",
                 // ! quick fix: top alignment of prefix icon does not work
                 // ! exact padding from bottom to align on pixel 2
                 prefixIcon: Padding(
@@ -133,7 +133,7 @@ class ForumFAB extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  "Add Discussion",
+                  "Forumeintrag hinzufügen",
                   style: TextStyle(color: Colors.white),
                 ),
                 style: ButtonStyle(

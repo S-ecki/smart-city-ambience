@@ -26,7 +26,7 @@ Map<String, Map<String, List<String>>> dummyComments = {
   },
   dummyEvents[4].eventId: {
     "Johannes": ["Mir sind die Restaurants schon so abgegangen! Endlich keine Fertigpizza mehr lol"],
-    "Lida": ["Hab schon einen Tisch reserviert!!"]
+    "Linda": ["Hab schon einen Tisch reserviert!!"]
   },
   dummyEvents[5].eventId: {
     "Simon": ["Ich liebe Störche"],
