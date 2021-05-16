@@ -36,9 +36,8 @@ class _NavbarScreenState extends State<NavbarScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon:  Icon(Icons.emoji_symbols),
-          
-          label: "Events",
+          icon: Icon(Icons.article),
+          label: "News",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
