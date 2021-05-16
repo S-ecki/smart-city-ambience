@@ -14,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreen extends State<ProfileScreen> {
-  // final keyOne= GlobalKey();
+  
   File _image;
   var isVisible = true;
   var isVisible2 = true;
