@@ -10,7 +10,6 @@ class WordCloudWidget extends StatelessWidget {
     Color(0xFF42A5F5),
     Color(0xFF1A237E),
     Color(0xFF4E342E),
-    Color(0xFF546E7A),
     Color(0xFFAA00FF),
     Color(0xFF00B8D4),
     Color(0xFF1B5E20),
@@ -29,7 +28,7 @@ class WordCloudWidget extends StatelessWidget {
           text: RotatedText(
               text: wordList[i],
               color: colorList[rand.nextInt(colorList.length)],
-              size: rand.nextInt(35) + 15),
+              size: rand.nextInt(25) + 15),
           index: i));
     }
 
