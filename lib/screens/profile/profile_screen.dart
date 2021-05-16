@@ -81,7 +81,7 @@ class _ProfileScreen extends State<ProfileScreen> {
               child: CircleAvatar(
                 backgroundImage: _image ==
                         null //wenn kein Bild aus der Gallerie oder aus Kamera -> Standardbild
-                    ? AssetImage("lib/images/test_image.jpg")
+                    ? AssetImage("assets/images/test_image.jpg")
                     : FileImage((File(_image.path))),
               ),
               decoration: new BoxDecoration(
