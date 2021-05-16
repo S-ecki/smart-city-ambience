@@ -50,11 +50,8 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: smortTheme(context),
-          home: ShowCaseWidget(
-            builder: Builder(
-              builder: (context) => AuthWrapper(),
-            ),
-          ),
+          home: AuthWrapper(),
+          
           routes: SmortRoutes.myRoutes,
         ),
       ),

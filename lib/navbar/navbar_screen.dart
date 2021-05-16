@@ -27,7 +27,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
   int selectionInd = 0;
   //final keyOne = GlobalKey();
   //final keyTwo = GlobalKey();
-  final keyThree = GlobalKey();
+  /*final keyThree = GlobalKey();
   final keyFour = GlobalKey();
   final keyFive = GlobalKey();
 
@@ -38,9 +38,9 @@ class _NavbarScreenState extends State<NavbarScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => ShowCaseWidget.of(this.context)
-          .startShowCase([keyThree, keyFour, keyFive]),
+          .startShowCase([keyOne, keyTwo,]),
     );
-  }
+  }*/
 
   BottomNavigationBar buildBottomNavigationBar(BuildContext context) {
 /*
@@ -65,11 +65,11 @@ class _NavbarScreenState extends State<NavbarScreen> {
      displayShowcase().then((status) {
       if (status) {
         ShowCaseWidget.of(context)
-            .startShowCase([keyThree, keyFour,]);
+            .startShowCase([keyOne ,keyTwo,]);
       }
     });*/
 
-    SharedPreferences preferences;
+    /*SharedPreferences preferences;
 
     displayShowcase() async {
       preferences = await SharedPreferences.getInstance();
@@ -86,7 +86,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
       if (status) {
         ShowCaseWidget.of(this.context).startShowCase([keyThree, keyFour]);
       }
-    });
+    });*/
 
     return BottomNavigationBar(
       onTap: _selectPage,
@@ -95,11 +95,11 @@ class _NavbarScreenState extends State<NavbarScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: CostumShowCase(
-            globalKey: keyThree,
+          icon: /*Showcase(
+            key:/keyOne,
             description: "Events",
-            child: Icon(Icons.emoji_symbols),
-          ),
+            child:*/ Icon(Icons.emoji_symbols),
+          //),
           label: "Events",
         ),
         BottomNavigationBarItem(
@@ -107,11 +107,11 @@ class _NavbarScreenState extends State<NavbarScreen> {
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: CostumShowCase(
-            globalKey: keyFour,
+          icon: /*Showcase(
+            key: keyTwo,
             description: "Chats",
-            child: Icon(Icons.chat),
-          ),
+            child: */Icon(Icons.chat),
+          //),
           label: "Chats",
         ),
       ],
@@ -132,7 +132,9 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "fab": null,
       },
       {
-        "page": HomeScreen(),
+        "page": ShowCaseWidget(
+            builder: Builder(
+              builder: (context) =>HomeScreen(),)),
         "title": "Smart City Ambience",
         "buttons": [
           OptionsButton(),
@@ -151,11 +153,11 @@ class _NavbarScreenState extends State<NavbarScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: CostumShowCase(
+          icon: /*CostumShowCase(
             globalKey: keyFive,
             description: "Edit your Profile",
-            child: Icon(Icons.account_circle),
-          ),
+            child:*/ Icon(Icons.account_circle),
+          //),
           onPressed: () {
             Navigator.of(context).pushNamed(SmortRoutes.profileScreen);
           },

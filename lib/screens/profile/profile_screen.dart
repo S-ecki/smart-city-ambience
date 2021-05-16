@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:image_picker/image_picker.dart';
 import 'guide.dart';
@@ -13,6 +14,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreen extends State<ProfileScreen> {
+  // final keyOne= GlobalKey();
   File _image;
   var isVisible = true;
   var isVisible2 = true;
@@ -47,21 +49,22 @@ class _ProfileScreen extends State<ProfileScreen> {
             numberTextfield(), //Telefonnummer
             SizedBox(height: 20),
             Container(
-                alignment: Alignment.bottomRight,
-                child: ElevatedButton(
-                    style: ButtonStyle(),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Profildaten gespeichert."),
-                        ),
-                      );
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Guide()),
-                      // );
-                    },
-                    child: Text("Save")))
+              alignment: Alignment.bottomLeft,
+              child: ElevatedButton(
+                style: ButtonStyle(),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Profildaten gespeichert."),
+                    ),
+                  );
+
+                  
+                },
+                child: Text("Save"),
+                    
+              ),
+            )
           ],
         ),
       ),
@@ -216,6 +219,7 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   Widget mailTextfield(User provider) {
     return TextFormField(
+      enabled: false,
       decoration: InputDecoration(
         hintText: provider?.email ?? "", // empty string when called on null
         border: OutlineInputBorder(
@@ -227,10 +231,10 @@ class _ProfileScreen extends State<ProfileScreen> {
           color: Colors.black,
           width: 2,
         )),
-        prefixIcon: Icon(Icons.mail_outline, color: Colors.lightGreen[800]),
+        prefixIcon: Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
         suffixIcon: IconButton(
           icon: Icon(Icons.visibility),
-          color: isVisible2 ? Colors.grey : Colors.lightGreen[600],
+          color: isVisible2 ? Colors.grey : Theme.of(context).primaryColor,
           onPressed: () {
             setState(() {
               isVisible2 = !isVisible2;
@@ -256,11 +260,11 @@ class _ProfileScreen extends State<ProfileScreen> {
           )),
           prefixIcon: Icon(
             Icons.calendar_today,
-            color: Colors.lightGreen[800],
+            color: Theme.of(context).primaryColor,
           ),
           suffixIcon: IconButton(
             icon: Icon(Icons.visibility),
-            color: isVisible4 ? Colors.grey : Colors.lightGreen[600],
+            color: isVisible4 ? Colors.grey : Theme.of(context).primaryColor,
             onPressed: () {
               setState(() {
                 isVisible4 = !isVisible4;
@@ -286,11 +290,11 @@ class _ProfileScreen extends State<ProfileScreen> {
           )),
           prefixIcon: Icon(
             Icons.phone,
-            color: Colors.lightGreen[800],
+            color: Theme.of(context).primaryColor,
           ),
           suffixIcon: IconButton(
             icon: Icon(Icons.visibility,
-                color: isVisible5 ? Colors.grey : Colors.lightGreen[600]),
+                color: isVisible5 ? Colors.grey : Theme.of(context).primaryColor),
             onPressed: () {
               setState(() {
                 isVisible5 = !isVisible5;
