@@ -21,6 +21,7 @@ class ForumScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: ListView.separated(
+            separatorBuilder: (context, index) => SizedBox.shrink(),
             itemBuilder: (context, index) => InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed(SmortRoutes.forumDetailScreen,
@@ -33,9 +34,6 @@ class ForumScreen extends StatelessWidget {
                 nrOfComments: getNrOfComments(
                     state.comments, state.forumEntries[index].forumId),
               ),
-            ),
-            separatorBuilder: (context, index) => SizedBox(
-              height: 20,
             ),
             itemCount: state.forumEntries.length,
           ),

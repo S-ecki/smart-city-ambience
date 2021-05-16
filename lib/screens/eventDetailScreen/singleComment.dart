@@ -44,12 +44,19 @@ class SingleComment extends StatelessWidget {
             ),
           ),
           PopupMenuButton(
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: null,
-                child: Text('Diesen Kommentar melden'),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: "report",
+                child: Text('Kommentar melden'),
               ),
             ],
+            onSelected: (value) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Kommentar wurde gemeldet."),
+                ),
+              );
+            },
           ),
         ],
       ),
