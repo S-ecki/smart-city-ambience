@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 200,
+                      height: 400,
                       width: dimens.maxWidth,
                       child: EmotionInput(),
                     ),

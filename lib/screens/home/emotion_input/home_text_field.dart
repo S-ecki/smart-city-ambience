@@ -20,7 +20,7 @@ class HomeTextField extends StatelessWidget {
         controller: _controller,
         maxLines: 2,
         decoration: InputDecoration(
-          hintText: "Verbalisiere deine heutigen Gefühle",
+          // hintText: "Verbalisiere deine heutigen Gefühle",
           border: OutlineInputBorder(),
         ),
       ),

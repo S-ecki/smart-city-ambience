@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/screens/home/emotion_input/emoji_button_home.dart';
+import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input_box.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/chart_functions.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
 import 'package:smart_city_ambience/types/word_cloud.dart';
@@ -19,8 +20,8 @@ class EmotionInput extends StatefulWidget {
 }
 
 class _EmotionInputState extends State<EmotionInput> {
-  TextEditingController _controller = TextEditingController();
-  FocusNode _focusNode = FocusNode();
+  TextEditingController _controller;
+  FocusNode _focusNode;
 
   // used for ToggleButtons
   // initially filled with 12x false - all 12 emojis are not selected
@@ -29,7 +30,16 @@ class _EmotionInputState extends State<EmotionInput> {
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
+    _focusNode = FocusNode();
     _isSelected = [for (var _ in emojiReactionList) false];
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -38,68 +48,52 @@ class _EmotionInputState extends State<EmotionInput> {
       converter: (store) => store.state.enhancedEmojis,
       builder: (context, Map<String, List<EnhancedEmoji>> enhancedEmojis) {
         return Card(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(8, 10, 8, 8),
-            child: Row(
-              children: [
-                // emoji toogle buttons
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text("layout getting re-designed"),
-                      CustomToggleButtons(
-                        constraints: BoxConstraints(
-                          maxHeight: 45,
-                          maxWidth: 45,
-                        ),
-                        fillColor: Colors.grey[200],
-                        renderBorder: false,
-                        isSelected: _isSelected,
-                        // fill with all emojis
-                        children: <Widget>[
-                          for (var emoji in emojiReactionList)
-                            EmojiButtonHome(enhancedEmoji: emoji),
-                        ],
-                        // alter list<bool> to select emojis
-                        onPressed: (index) {
-                          setState(
-                            () {
-                              _isSelected[index] = !_isSelected[index];
-                            },
-                          );
-                        },
-                      ),
-                    ],
+          
+          child: Column(
+            children: [
+              EmotionInputBox(text: "Wie fühlst du dich heute?"),
+              SizedBox(
+                width: 200,
+                child: CustomToggleButtons(
+                  constraints: BoxConstraints(
+                    maxHeight: 45,
+                    maxWidth: 45,
                   ),
+                  fillColor: Colors.grey[200],
+                  renderBorder: false,
+                  isSelected: _isSelected,
+                  // fill with all emojis
+                  children: <Widget>[
+                    for (var emoji in emojiReactionList)
+                      EmojiButtonHome(enhancedEmoji: emoji),
+                  ],
+                  // alter list<bool> to select emojis
+                  onPressed: (index) {
+                    setState(
+                      () {
+                        _isSelected[index] = !_isSelected[index];
+                      },
+                    );
+                  },
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      children: [
-                        // textfield
-                        HomeTextField(
-                            focusNode: _focusNode, controller: _controller),
-                        Spacer(),
-                        // save button
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text("Eingabe speichern"),
-                            IconButton(
-                                constraints: BoxConstraints(maxHeight: 35),
-                                iconSize: 20,
-                                icon: Icon(Icons.save),
-                                onPressed: () => _onPressed(enhancedEmojis))
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Divider(),
+              EmotionInputBox(text: "Verbalisiere deine heutigen Gefühle"),
+              HomeTextField(focusNode: _focusNode, controller: _controller),
+              // save button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Eingabe speichern"),
+                  IconButton(
+                    constraints: BoxConstraints(maxHeight: 35),
+                    iconSize: 20,
+                    icon: Icon(Icons.save),
+                    onPressed: () => _onPressed(enhancedEmojis),
+                  )
+                ],
+              )
+            ],
           ),
         );
       },
