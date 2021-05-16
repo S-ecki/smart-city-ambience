@@ -13,7 +13,7 @@ import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/theme/smort_theme.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 import "package:redux/redux.dart";
-import 'package:showcaseview/showcaseview.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
