@@ -51,10 +51,11 @@ class _EmotionInputState extends State<EmotionInput> {
           children: [
             EmotionInputBox(text: "Wie fühlst du dich heute?"),
             Container(
-              width: 200,
+              width: 300,
               alignment: Alignment.center,
               child: CustomToggleButtons(
                 fillColor: Colors.grey[200],
+                // splashColor: ,
                 renderBorder: false,
                 isSelected: _isSelected,
                 // fill with all emojis
@@ -78,7 +79,7 @@ class _EmotionInputState extends State<EmotionInput> {
             HomeTextField(focusNode: _focusNode, controller: _controller),
             // save button
             SizedBox(
-              width: 240,
+              width: 290,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Row(

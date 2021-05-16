@@ -5,6 +5,30 @@ import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/chats/forum_card.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/smort_slider.dart';
+
+class LocationButton extends StatelessWidget {
+  const LocationButton({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: PopupMenuButton(
+          child: Icon(
+            Icons.location_pin,
+          ),
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              child: SmortSlider(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class OptionsButton extends StatelessWidget {
   @override
