@@ -61,7 +61,7 @@ class _ProfileScreen extends State<ProfileScreen> {
 
                   
                 },
-                child: Text("Save"),
+                child: Text("Speichern"),
                     
               ),
             )
@@ -137,7 +137,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                 horizontal: 30, vertical: 30),
                             child: Column(children: <Widget>[
                               Text(
-                                "Choose Photo",
+                                "Foto auswählen",
                                 style: TextStyle(fontSize: 20),
                               ),
                               SizedBox(
@@ -156,7 +156,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                       _imgFromCamera();
                                     },
                                     label: Text(
-                                      "Camera",
+                                      "Kamera",
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black),
                                     ),
@@ -171,7 +171,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                                       _imgFromGallery();
                                     },
                                     label: Text(
-                                      "Gallery",
+                                      "Gallerie",
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black),
                                     ),
@@ -271,7 +271,7 @@ class _ProfileScreen extends State<ProfileScreen> {
               });
             },
           ),
-          labelText: "Day Of Birth",
+          labelText: "Geburtsdatum",
           hintText: " DD-MM-YYYY"),
     );
   }
@@ -301,7 +301,7 @@ class _ProfileScreen extends State<ProfileScreen> {
               });
             },
           ),
-          labelText: "Number",
+          labelText: "Nummer",
           hintText: " +436608754333"),
     );
   }
