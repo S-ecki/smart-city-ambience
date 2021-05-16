@@ -15,7 +15,6 @@ class WordCloudWidget extends StatelessWidget {
     Color(0xFF1B5E20),
     Color(0xFFF57F17),
     Color(0xFFB71C1c),
-    Color(0xFF6DD17)
   ];
   Random rand = new Random();
   @override
@@ -36,17 +35,25 @@ class WordCloudWidget extends StatelessWidget {
     final ratio = screenSize.width / screenSize.height;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListTile(
-          title: Text(
-            "Verbalisierte Gefühle",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          subtitle: Text(
-            "Anzahl der täglichen verbalisierten Emotionen und Reaktionen auf Beiträge innerhalb des City Radius",
-            textScaleFactor: 0.9,
+        Padding(
+           padding: const EdgeInsets.fromLTRB(6, 6, 0, 0),
+          child: SizedBox(
+            width: 260,
+            child: ListTile(
+              title: Text(
+                "Verbalisierte Gefühle",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              subtitle: Text(
+                "Täglich verbalisierte Emotionen innerhalb des City Radius",
+                textScaleFactor: 0.9,
+              ),
+            ),
           ),
         ),
+        Divider(),
         SizedBox(
           child: Center(
             child: FittedBox(
