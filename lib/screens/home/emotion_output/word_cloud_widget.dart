@@ -53,7 +53,7 @@ class WordCloudWidget extends StatelessWidget {
             ),
           ),
         ),
-        Divider(),
+        Divider(thickness: 1,),
         SizedBox(
           child: Center(
             child: FittedBox(

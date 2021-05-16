@@ -32,11 +32,10 @@ class ForumCard extends StatelessWidget {
             : EdgeInsets.only(left: 4, right: 4, top: 6, bottom: 0),
         // prevent widget to go over edge of card
         clipBehavior: Clip.antiAlias,
-        elevation: 2,
+        elevation: 5,
         // return card without header if no title is provided
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey[200],
             border: Border.all(color: Colors.grey[300]),
           ),
           child: Column(

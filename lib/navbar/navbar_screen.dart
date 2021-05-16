@@ -45,7 +45,6 @@ class _NavbarScreenState extends State<NavbarScreen> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.chat),
-          
           label: "Chats",
         ),
       ],

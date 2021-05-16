@@ -14,7 +14,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreen extends State<ProfileScreen> {
-  
   File _image;
   var isVisible = true;
   var isVisible2 = true;
@@ -32,6 +31,15 @@ class _ProfileScreen extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
+            },
+          ),
+        ],
         title: Text("Profil"),
       ),
       body: Padding(
@@ -48,32 +56,37 @@ class _ProfileScreen extends State<ProfileScreen> {
             SizedBox(height: 20),
             numberTextfield(), //Telefonnummer
             SizedBox(height: 20),
-            Container(
-              alignment: Alignment.bottomLeft,
-              child: ElevatedButton(
-                style: ButtonStyle(),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("Profildaten gespeichert."),
-                    ),
-                  );
-
-                  
-                },
-                child: Text("Speichern"),
-                    
-              ),
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content:
+                              Text("Daten auf letzen Stand zurückgesetzt."),
+                        ),
+                      );
+                    },
+                    child: Text("Zurücksetzen")),
+                Container(
+                  alignment: Alignment.bottomLeft,
+                  child: ElevatedButton(
+                    style: ButtonStyle(),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Profildaten gespeichert."),
+                        ),
+                      );
+                    },
+                    child: Text("Speichern"),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.logout),
-        onPressed: () async {
-          await FirebaseAuth.instance.signOut();
-          Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
-        },
       ),
     );
   }
@@ -193,35 +206,38 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   Widget nameTextfield() {
     return TextFormField(
+      initialValue: "Der Name",
       decoration: InputDecoration(
-          border: OutlineInputBorder(borderSide: BorderSide()),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
-          prefixIcon: Icon(
-            Icons.person,
-            color: Theme.of(context).primaryColor,
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.visibility),
-            color: isVisible ? Colors.grey : Theme.of(context).primaryColor,
-            onPressed: () {
-              setState(() {
-                isVisible = !isVisible;
-              });
-            },
-          ),
-          labelText: "Name"),
+        border: OutlineInputBorder(borderSide: BorderSide()),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.black,
+          width: 2,
+        )),
+        prefixIcon: Icon(
+          Icons.person,
+          color: Theme.of(context).primaryColor,
+        ),
+        suffixIcon: IconButton(
+          icon: isVisible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: Colors.grey,
+          // color: isVisible ? Colors.grey : Theme.of(context).primaryColor,
+          onPressed: () {
+            setState(() {
+              isVisible = !isVisible;
+            });
+          },
+        ),
+        labelText: "Name",
+      ),
     );
   }
 
   Widget mailTextfield(User provider) {
     return TextFormField(
+      initialValue: provider?.email ?? "", // empty string when called on null,
       enabled: false,
       decoration: InputDecoration(
-        hintText: provider?.email ?? "", // empty string when called on null
         border: OutlineInputBorder(
             borderSide: BorderSide(
           color: Colors.yellow,
@@ -231,7 +247,8 @@ class _ProfileScreen extends State<ProfileScreen> {
           color: Colors.black,
           width: 2,
         )),
-        prefixIcon: Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
+        prefixIcon:
+            Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
         suffixIcon: IconButton(
           icon: Icon(Icons.visibility),
           color: isVisible2 ? Colors.grey : Theme.of(context).primaryColor,
@@ -279,30 +296,30 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget numberTextfield() {
     return TextFormField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.teal,
-          )),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-            width: 2,
-          )),
-          prefixIcon: Icon(
-            Icons.phone,
-            color: Theme.of(context).primaryColor,
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.visibility,
-                color: isVisible5 ? Colors.grey : Theme.of(context).primaryColor),
-            onPressed: () {
-              setState(() {
-                isVisible5 = !isVisible5;
-              });
-            },
-          ),
-          labelText: "Nummer",
-          hintText: " +436608754333"),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.teal,
+        )),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.black,
+          width: 2,
+        )),
+        prefixIcon: Icon(
+          Icons.phone,
+          color: Theme.of(context).primaryColor,
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.visibility,
+              color: isVisible5 ? Colors.grey : Theme.of(context).primaryColor),
+          onPressed: () {
+            setState(() {
+              isVisible5 = !isVisible5;
+            });
+          },
+        ),
+        labelText: "Nummer",
+      ),
     );
   }
 }
