@@ -1,6 +1,8 @@
 import "dart:math";
 import "package:flutter/material.dart";
 
+// ! this was copied
+
 // used to generate MaterialColor objects from generic color codes
 
 MaterialColor generateMaterialColor(Color color) {
