@@ -68,9 +68,7 @@ class _NavbarScreenState extends State<NavbarScreen> {
         "fab": null,
       },
       {
-        "page": ShowCaseWidget(
-            builder: Builder(
-              builder: (context) =>HomeScreen(),)),
+        "page": HomeScreen(),
         "title": "Smart City Ambience",
         "buttons": [
           OptionsButton(),
