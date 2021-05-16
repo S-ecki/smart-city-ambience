@@ -1,81 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:smart_city_ambience/redux/reactionsState.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/charts/chart_functions.dart';
+import 'package:smart_city_ambience/types/enahancedEmoji.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class BarChart extends StatelessWidget {
+
+
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-      plotAreaBorderWidth: 0,
-      title: ChartTitle(text: 'Some Title'),
-      legend: Legend(
-        isVisible: true,
-        overflowMode: LegendItemOverflowMode.wrap,
-        position: LegendPosition.bottom,
+    return StoreConnector<ReactionsState, Map<String, List<EnhancedEmoji>>>(
+      converter: (store) => store.state.enhancedEmojis,
+      builder: (context, Map<String, List<EnhancedEmoji>> enhancedEmojis) =>
+          SfCartesianChart(
+        plotAreaBorderWidth: 0,
+        title: ChartTitle(text: 'Some Title'),
+        legend: Legend(
+          isVisible: true,
+          overflowMode: LegendItemOverflowMode.wrap,
+          position: LegendPosition.bottom,
+        ),
+        primaryXAxis: CategoryAxis(
+          edgeLabelPlacement: EdgeLabelPlacement.shift,
+          // show all labels
+          interval: 1,
+          // smart alignment of labels if the intersect each other
+          labelIntersectAction: AxisLabelIntersectAction.multipleRows,
+          // to disable vertical lines
+          majorGridLines: MajorGridLines(width: 0),
+          // caps the number of labels per 100 px
+        ),
+        primaryYAxis: NumericAxis(
+          axisLine: AxisLine(width: 0),
+          // labelFormat: '{value}',
+          // maximum: 300,
+          majorTickLines: MajorTickLines(size: 0),
+        ),
+        series: _getStackedColumnSeries(enhancedEmojis),
+        tooltipBehavior: TooltipBehavior(enable: true),
       ),
-      // TODO: update to DateTimeCategoryAxis
-      primaryXAxis: DateTimeAxis(
-        edgeLabelPlacement: EdgeLabelPlacement.shift,
-        intervalType: DateTimeIntervalType.months,
-        dateFormat: DateFormat.MMMM(),
-        // show all labels
-        interval: 1,
-        // smart alignment of labels if the intersect each other
-        labelIntersectAction: AxisLabelIntersectAction.multipleRows,
-        // to disable vertical lines
-        majorGridLines: MajorGridLines(width: 0),
-        // caps the number of labels per 100 px
-        // maximumLabels: 6,
-        // set boundaries of timeframe
-        // visibleMinimum: DateTime(2021, 1),
-        // visibleMaximum: DateTime(2021, 3),
-      ),
-      primaryYAxis: NumericAxis(
-        axisLine: AxisLine(width: 0),
-        // labelFormat: '{value}',
-        // maximum: 300,
-        majorTickLines: MajorTickLines(size: 0),
-      ),
-      series: _getStackedColumnSeries(),
-      tooltipBehavior: TooltipBehavior(enable: true),
     );
   }
 
-  /// Returns the list of chart serie which need to render
-  /// on the stacked column chart.
-  List<StackedColumnSeries<BarChartData, DateTime>> _getStackedColumnSeries() {
-    // TODO: define globally
+  /// Returns the list of chart serie which needs to render
+  /// on the stacked column chart
+  List<StackedColumnSeries<BarChartData, String>> _getStackedColumnSeries(
+      Map<String, List<EnhancedEmoji>> enhancedEmojis) {
+
+    // extract all set emojis from app
+    int _positiveMay = getEmojiCount(EmojiType.Positive, enhancedEmojis);
+    int _neutralMay = getEmojiCount(EmojiType.Neutral, enhancedEmojis);
+    int _negativeMay = getEmojiCount(EmojiType.Negative, enhancedEmojis);
+
+    // add to dummy data
     final List<BarChartData> chartData = <BarChartData>[
-      BarChartData(DateTime(2021, 1), 143, 37, 61),
-      BarChartData(DateTime(2021, 2), 72, 42, 101),
-      BarChartData(DateTime(2021, 3), 83, 12, 60),
+      BarChartData("Februar", 143, 37, 61),
+      BarChartData("März", 83, 12, 60),
+      BarChartData("April", 101, 41, 44),
+      BarChartData("Mai", 63 + _positiveMay, 13 + _neutralMay, 38 + _negativeMay),
     ];
-    return <StackedColumnSeries<BarChartData, DateTime>>[
-      StackedColumnSeries<BarChartData, DateTime>(
+
+    return <StackedColumnSeries<BarChartData, String>>[
+      StackedColumnSeries<BarChartData, String>(
         dataSource: chartData,
         name: "Positiv",
         xValueMapper: (BarChartData data, _) => data.month,
         yValueMapper: (BarChartData data, _) => data.positiveAmount,
-        dataLabelMapper: (BarChartData data, _) => data.positiveAmount < 30 ? "" : null,
+        dataLabelMapper: (BarChartData data, _) =>
+            data.positiveAmount < 30 ? "" : null,
         dataLabelSettings: DataLabelSettings(
           isVisible: true,
         ),
       ),
-      StackedColumnSeries<BarChartData, DateTime>(
+      StackedColumnSeries<BarChartData, String>(
         dataSource: chartData,
         name: "Neutral",
         xValueMapper: (BarChartData data, _) => data.month,
         yValueMapper: (BarChartData data, _) => data.neutralAmount,
-        dataLabelMapper: (BarChartData data, _) => data.neutralAmount < 30 ? "" : null,
+        dataLabelMapper: (BarChartData data, _) =>
+            data.neutralAmount < 30 ? "" : null,
         dataLabelSettings: DataLabelSettings(
           isVisible: true,
         ),
       ),
-      StackedColumnSeries<BarChartData, DateTime>(
+      StackedColumnSeries<BarChartData, String>(
         dataSource: chartData,
         name: "Negativ",
         xValueMapper: (BarChartData data, _) => data.month,
         yValueMapper: (BarChartData data, _) => data.negativeAmount,
-        dataLabelMapper: (BarChartData data, _) => data.negativeAmount < 30 ? "" : null,
+        dataLabelMapper: (BarChartData data, _) =>
+            data.negativeAmount < 30 ? "" : null,
         dataLabelSettings: DataLabelSettings(
           isVisible: true,
         ),
@@ -84,8 +98,9 @@ class BarChart extends StatelessWidget {
   }
 }
 
+
 class BarChartData {
-  DateTime month;
+  String month;
 
   int positiveAmount;
   int neutralAmount;
