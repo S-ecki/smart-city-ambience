@@ -22,9 +22,7 @@ class AuthWrapper extends StatelessWidget {
     // ! new
     // routes to tabscreen, which contains bottom nav bar
     // with chat / home / event screen
-    return /*ShowCaseWidget(
-            builder: Builder(
-              builder: (context) => */NavbarScreen();
+    return NavbarScreen();
               //)
               //);
   }
