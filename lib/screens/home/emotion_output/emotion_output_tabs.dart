@@ -43,10 +43,10 @@ class EmotionOutputTabs extends StatelessWidget {
                   child: TabBar(
                     tabs: [
                       Tab(
-                        text: "Pie Chart",
+                        text: "Dieser Monat",
                       ),
                       Tab(
-                        text: "Bar Chart",
+                        text: "Dieses Jahr",
                       ),
                     ],
                   ),

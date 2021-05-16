@@ -13,7 +13,7 @@ class PieChart extends StatelessWidget {
       converter: (store) => store.state.enhancedEmojis,
       builder: (context, Map<String, List<EnhancedEmoji>> enhancedEmojis) =>
           SfCircularChart(
-        title: ChartTitle(text: 'Some Title', borderWidth: 5),
+        // title: ChartTitle(text: 'Some Title', borderWidth: 5),
         legend: Legend(
             isVisible: true,
             overflowMode: LegendItemOverflowMode.wrap,
