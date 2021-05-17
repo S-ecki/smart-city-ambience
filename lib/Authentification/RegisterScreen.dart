@@ -55,7 +55,7 @@ class RegisterPage extends StatelessWidget {
                               margin: EdgeInsets.only(top: 16),
                               child: AuthInputField(
                                 controller: passwordController,
-                                label: "Password",
+                                label: "Passwort",
                                 isPasswordField: true,
                               ),
                             ),
@@ -64,7 +64,7 @@ class RegisterPage extends StatelessWidget {
                               child: AuthInputField(
                                 passwordController: passwordController,
                                 controller: confirmPasswordController,
-                                label: "Confirm Password",
+                                label: "Passwort bestätigen",
                                 isPasswordField: true,
                               ),
                             ),
@@ -72,7 +72,7 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       AuthActionButton(
-                        label: "Register",
+                        label: "Registrieren",
                         formKey: _formKey,
                         emailController: emailController,
                         passwordController: passwordController,
@@ -81,7 +81,7 @@ class RegisterPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Already have an Account?",
+                            "Du hast schon einen Account?",
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -91,7 +91,7 @@ class RegisterPage extends StatelessWidget {
                               Navigator.of(context).pop();
                             },
                             child: Text(
-                              "Log in",
+                              "Einloggen",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
