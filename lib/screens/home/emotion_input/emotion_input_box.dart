@@ -17,7 +17,7 @@ class EmotionInputBox extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           text,
-          style: TextStyle(color: Colors.white),
+          style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white)
         ),
       ),
     );

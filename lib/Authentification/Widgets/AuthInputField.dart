@@ -49,9 +49,7 @@ class AuthInputField extends StatelessWidget {
           focusedErrorBorder: _textFieldBorder,
           focusedBorder: _textFieldBorder,
           labelText: label,
-          labelStyle: TextStyle(
-            color: Colors.white,
-          ),
+          labelStyle:Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
         ),
       ),
     );

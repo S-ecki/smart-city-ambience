@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-
+import 'package:google_fonts/google_fonts.dart';
 import "material_color_generator.dart";
 
 ThemeData smortTheme(BuildContext context) {
@@ -30,11 +30,15 @@ ThemeData smortTheme(BuildContext context) {
 
     // text style for headline/body etc can be defined here (size/ weight/ font...)
     // it gets applied on default
-    textTheme: TextTheme(),
-
-    // for text which needs other color
-    accentTextTheme: TextTheme(
-      bodyText1: TextStyle(color: Colors.white),
+    textTheme: GoogleFonts.ralewayTextTheme(),
+    appBarTheme: AppBarTheme(
+      textTheme: TextTheme(
+        headline6: GoogleFonts.raleway(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 19,
+        ),
+      ),
     ),
   );
 }

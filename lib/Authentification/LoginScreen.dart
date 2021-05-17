@@ -73,9 +73,7 @@ class LoginPage extends StatelessWidget {
                         children: [
                           Text(
                             "Noch kein Account?",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
                           ),
                           TextButton(
                             onPressed: () {
@@ -84,10 +82,7 @@ class LoginPage extends StatelessWidget {
                             },
                             child: Text(
                               "Registrieren",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],

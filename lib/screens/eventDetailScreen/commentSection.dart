@@ -34,7 +34,7 @@ class CommentSection extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                   child: Text(
                     label,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
