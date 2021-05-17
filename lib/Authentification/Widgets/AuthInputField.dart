@@ -17,38 +17,47 @@ class AuthInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField( 
-      keyboardType: label == "Email" ? TextInputType.emailAddress : TextInputType.text,
-      obscureText: isPasswordField,
-      controller: controller,
-      validator: (value) {
-        if (controller.text.isEmpty) return "Can't be empty";
-        if (label.toLowerCase() == "email") {
-          return EmailValidator.validate(controller.text)
-              ? null
-              : "Not valid email";
-        }
-        if (label.toLowerCase() == "confirm password") {
-          return passwordController.text == controller.text
-              ? null
-              : "Passwords don't match";
-        }
-        if (label.toLowerCase() == "password") {
-          return controller.text.length > 7
-              ? null
-              : "Password must be greater or equal 8";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        labelText: label,
-        labelStyle: TextStyle(
-          color: Colors.white,
+    return Theme(
+      data: ThemeData(textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.black) ),
+          child: TextFormField(
+        keyboardType:
+            label == "Email" ? TextInputType.emailAddress : TextInputType.text,
+        obscureText: isPasswordField,
+        controller: controller,
+        validator: (value) {
+          if (controller.text.isEmpty) return "Kann nicht leer sein";
+          if (label.toLowerCase() == "email") {
+            return EmailValidator.validate(controller.text)
+                ? null
+                : "Ungültige Email - Bist du schon registriert?";
+          }
+          if (label.toLowerCase() == "confirm password") {
+            return passwordController.text == controller.text
+                ? null
+                : "Passwort falsch";
+          }
+          if (label.toLowerCase() == "password") {
+            return controller.text.length > 7
+                ? null
+                : "Passwort muss mindestens 8 Zeichen beinhalten";
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          enabledBorder: _textFieldBorder,
+          errorBorder: _textFieldBorder,
+          focusedErrorBorder: _textFieldBorder,
+          focusedBorder: _textFieldBorder,
+          labelText: label,
+          labelStyle: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );
   }
+  final _textFieldBorder = OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[700]),
+            borderRadius: BorderRadius.circular(20),
+          );
 }

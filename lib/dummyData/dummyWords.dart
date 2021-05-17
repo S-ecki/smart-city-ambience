@@ -5,8 +5,6 @@ List<String> dummyWords = [
   "traurig",
   "froh",
   "entspannt",
-  "chillen",
   "lustig",
-  "Party",
   "staunend",
 ];
