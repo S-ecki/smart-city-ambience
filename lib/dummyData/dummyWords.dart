@@ -1,2 +1,12 @@
-List<String> dummyWords = ["glücklich", "zufrieden", "nervös"/*,"traurig","froh","entspannt","chillen",
-            "lustig","Party","staunend"*/];
+List<String> dummyWords = [
+  "glücklich",
+  "zufrieden",
+  "nervös",
+  "traurig",
+  "froh",
+  "entspannt",
+  "chillen",
+  "lustig",
+  "Party",
+  "staunend",
+];

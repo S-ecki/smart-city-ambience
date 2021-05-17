@@ -3,32 +3,30 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud/rotated_text.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud/word_cloud_colors.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud/word_cloud_item.dart';
 import 'package:smart_city_ambience/types/word_cloud.dart';
 
 class WordCloudWidget extends StatelessWidget {
-  List<Color> colorList = [
-    Color(0xFF42A5F5),
-    Color(0xFF1A237E),
-    Color(0xFF4E342E),
-    Color(0xFFAA00FF),
-    Color(0xFF00B8D4),
-    Color(0xFF1B5E20),
-    Color(0xFFF57F17),
-    Color(0xFFB71C1c),
-  ];
-  Random rand = new Random();
+  final rand = new Random();
+
   @override
   Widget build(BuildContext context) {
+    // filled with dummy data + input
     List<String> wordList = Provider.of<WordCloud>(context).words;
     List<Widget> widgets = <Widget>[];
 
     for (var i = 0; i < wordList.length; i++) {
-      widgets.add(ScatterItem(
-          text: RotatedText(
+      widgets.add(
+        WordCloudItem(
+          index: i,
+          text: TextWrapper(
               text: wordList[i],
               color: colorList[rand.nextInt(colorList.length)],
-              size: rand.nextInt(25) + 15),
-          index: i));
+              size: rand.nextInt(15) + 10),
+        ),
+      );
     }
 
     final screenSize = MediaQuery.of(context).size;
@@ -38,7 +36,7 @@ class WordCloudWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-           padding: const EdgeInsets.fromLTRB(6, 6, 0, 0),
+          padding: const EdgeInsets.fromLTRB(6, 6, 0, 0),
           child: SizedBox(
             width: 260,
             child: ListTile(
@@ -53,7 +51,7 @@ class WordCloudWidget extends StatelessWidget {
             ),
           ),
         ),
-        Divider(thickness: 1,),
+        Divider(thickness: 1),
         SizedBox(
           child: Center(
             child: FittedBox(
@@ -70,35 +68,4 @@ class WordCloudWidget extends StatelessWidget {
   }
 }
 
-class ScatterItem extends StatelessWidget {
-  ScatterItem({this.text, this.index});
-  final RotatedText text;
-  final int index;
-  Random random = new Random();
 
-  @override
-  Widget build(BuildContext context) {
-    final TextStyle style = Theme.of(context).textTheme.bodyText2.copyWith(
-          fontSize: text.size.toDouble(),
-          color: text.color,
-        );
-    return RotatedBox(
-      quarterTurns: random.nextInt(2),
-      child: Text(
-        text.text,
-        style: style,
-      ),
-    );
-  }
-}
-
-class RotatedText {
-  const RotatedText({
-    this.text,
-    this.color,
-    this.size,
-  });
-  final String text;
-  final Color color;
-  final int size;
-}

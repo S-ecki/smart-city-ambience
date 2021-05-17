@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/emotion_output_tabs.dart';
-import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud_widget.dart';
+import 'package:smart_city_ambience/screens/home/emotion_output/word_cloud/word_cloud_widget.dart';
 
 
 class HomeScreen extends StatelessWidget {
