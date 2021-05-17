@@ -220,8 +220,7 @@ class _ProfileScreen extends State<ProfileScreen> {
         ),
         suffixIcon: IconButton(
           icon: isVisible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: Colors.grey,
-          // color: isVisible ? Colors.grey : Theme.of(context).primaryColor,
+          color: isVisible ?Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
               isVisible = !isVisible;
@@ -251,7 +250,7 @@ class _ProfileScreen extends State<ProfileScreen> {
             Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
         suffixIcon: IconButton(
           icon: isVisible2 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: Colors.grey,
+          color: isVisible2 ?Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
               isVisible2 = !isVisible2;
@@ -282,7 +281,7 @@ class _ProfileScreen extends State<ProfileScreen> {
           ),
           suffixIcon: IconButton(
           icon: isVisible4 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: Colors.grey,
+          color: isVisible4 ?Theme.of(context).primaryColor : Colors.grey,
             onPressed: () {
               setState(() {
                 isVisible4 = !isVisible4;
@@ -313,7 +312,7 @@ class _ProfileScreen extends State<ProfileScreen> {
         ),
         suffixIcon: IconButton(
           icon: isVisible5 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: Colors.grey,
+          color: isVisible5 ?Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
               isVisible5 = !isVisible5;
