@@ -1,5 +1,6 @@
 import 'package:smart_city_ambience/screens/chats/forum_card.dart';
 import 'package:smart_city_ambience/types/enahancedEmoji.dart';
+import 'package:smart_city_ambience/types/enhancedUser.dart';
 
 /**
  * 
@@ -39,4 +40,13 @@ class AddForumEntry {
   final Forum forum;
 
   AddForumEntry({this.forum});
+}
+
+/**
+ * 
+ */
+class UpdateUserInformation {
+  final EnhancedUser newUser;
+
+  UpdateUserInformation({this.newUser});
 }

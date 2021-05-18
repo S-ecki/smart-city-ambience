@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
+import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:image_picker/image_picker.dart';
-import 'guide.dart';
+import 'package:smart_city_ambience/types/enhancedUser.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -15,6 +17,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreen extends State<ProfileScreen> {
   File _image;
+
   var isVisible = true;
   var isVisible2 = true;
   var isVisible3 = true;
@@ -28,66 +31,87 @@ class _ProfileScreen extends State<ProfileScreen> {
     // ! new
     var provider = context.watch<User>();
 
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
-            },
+    return StoreConnector<ReactionsState, EnhancedUser>(
+      converter: (store) => store.state.user,
+      builder: (context, user) {
+        final TextEditingController nameController =
+            TextEditingController(text: user.name);
+        final TextEditingController birthController =
+            TextEditingController(text: user.birthDate);
+        final TextEditingController telNrController =
+            TextEditingController(text: user.telNr);
+
+        return Scaffold(
+          backgroundColor: Colors.grey[50],
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
+                },
+              ),
+            ],
+            title: Text("Profil"),
           ),
-        ],
-        title: Text("Profil"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: ListView(
-          children: <Widget>[
-            profilePicture(), //Profilbild
-            SizedBox(height: 20),
-            nameTextfield(), //Name
-            SizedBox(height: 20),
-            DateTextfield(), //Geburtsdatum
-            SizedBox(height: 20),
-            mailTextfield(provider), //E-Mail
-            SizedBox(height: 20),
-            numberTextfield(), //Telefonnummer
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content:
-                              Text("Daten auf letzen Stand zurückgesetzt."),
-                        ),
-                      );
-                    },
-                    child: Text("Zurücksetzen")),
-                Container(
-                  alignment: Alignment.bottomLeft,
-                  child: ElevatedButton(
-                    style: ButtonStyle(),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Profildaten gespeichert."),
-                        ),
-                      );
-                    },
-                    child: Text("Speichern"),
-                  ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: ListView(
+              children: <Widget>[
+                profilePicture(), //Profilbild
+                SizedBox(height: 20),
+                nameTextfield(nameController), //Name
+                SizedBox(height: 20),
+                DateTextfield(birthController), //Geburtsdatum
+                SizedBox(height: 20),
+                mailTextfield(provider), //E-Mail
+                SizedBox(height: 20),
+                numberTextfield(telNrController), //Telefonnummer
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  Text("Daten auf letzen Stand zurückgesetzt."),
+                            ),
+                          );
+                        },
+                        child: Text("Zurücksetzen")),
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      child: ElevatedButton(
+                        style: ButtonStyle(),
+                        onPressed: () {
+                          StoreProvider.of<ReactionsState>(context).dispatch(
+                            UpdateUserInformation(
+                              newUser: EnhancedUser(
+                                  name: nameController.text,
+                                  birthDate: birthController.text,
+                                  email: provider.email,
+                                  telNr: telNrController.text),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Profildaten gespeichert."),
+                            ),
+                          );
+                        },
+                        child: Text("Speichern"),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -151,7 +175,10 @@ class _ProfileScreen extends State<ProfileScreen> {
                             child: Column(children: <Widget>[
                               Text(
                                 "Foto auswählen",
-                                style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .copyWith(fontSize: 20),
                               ),
                               SizedBox(
                                 height: 21,
@@ -170,7 +197,10 @@ class _ProfileScreen extends State<ProfileScreen> {
                                     },
                                     label: Text(
                                       "Kamera",
-                                      style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .copyWith(fontSize: 20),
                                     ),
                                   ),
                                   TextButton.icon(
@@ -184,7 +214,10 @@ class _ProfileScreen extends State<ProfileScreen> {
                                     },
                                     label: Text(
                                       "Gallerie",
-                                      style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .copyWith(fontSize: 20),
                                     ),
                                   )
                                 ],
@@ -202,9 +235,11 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget nameTextfield() {
+  Widget nameTextfield(TextEditingController controller) {
+    print(controller);
+
     return TextFormField(
-      initialValue: "Paula",
+      controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderSide: BorderSide()),
         focusedBorder: OutlineInputBorder(
@@ -218,7 +253,7 @@ class _ProfileScreen extends State<ProfileScreen> {
         ),
         suffixIcon: IconButton(
           icon: isVisible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible ?Theme.of(context).primaryColor : Colors.grey,
+          color: isVisible ? Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
               isVisible = !isVisible;
@@ -232,8 +267,8 @@ class _ProfileScreen extends State<ProfileScreen> {
 
   Widget mailTextfield(User provider) {
     return TextFormField(
-      initialValue: provider?.email ?? "", // empty string when called on null,
       enabled: false,
+      initialValue: provider.email ?? "",
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderSide: BorderSide(
@@ -247,8 +282,9 @@ class _ProfileScreen extends State<ProfileScreen> {
         prefixIcon:
             Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
         suffixIcon: IconButton(
-          icon: isVisible2 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible2 ?Theme.of(context).primaryColor : Colors.grey,
+          icon:
+              isVisible2 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: isVisible2 ? Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
               isVisible2 = !isVisible2;
@@ -260,9 +296,10 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget DateTextfield() {
+  Widget DateTextfield(TextEditingController controller) {
+    print(controller);
     return TextFormField(
-      initialValue: "01-02-1998",
+      controller: controller,
       decoration: InputDecoration(
           border: OutlineInputBorder(
               borderSide: BorderSide(
@@ -278,8 +315,10 @@ class _ProfileScreen extends State<ProfileScreen> {
             color: Theme.of(context).primaryColor,
           ),
           suffixIcon: IconButton(
-          icon: isVisible4 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible4 ?Theme.of(context).primaryColor : Colors.grey,
+            icon: isVisible4
+                ? Icon(Icons.visibility)
+                : Icon(Icons.visibility_off),
+            color: isVisible4 ? Theme.of(context).primaryColor : Colors.grey,
             onPressed: () {
               setState(() {
                 isVisible4 = !isVisible4;
@@ -291,9 +330,9 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget numberTextfield() {
+  Widget numberTextfield(TextEditingController controller) {
     return TextFormField(
-            initialValue: "068012312356",
+      controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderSide: BorderSide(
@@ -309,8 +348,9 @@ class _ProfileScreen extends State<ProfileScreen> {
           color: Theme.of(context).primaryColor,
         ),
         suffixIcon: IconButton(
-          icon: isVisible5 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible5 ?Theme.of(context).primaryColor : Colors.grey,
+          icon:
+              isVisible5 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: isVisible5 ? Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
               isVisible5 = !isVisible5;

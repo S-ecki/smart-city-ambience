@@ -13,19 +13,19 @@ ReactionsState reactionsStateReducer(
     currentState.enhancedEmojis[action.eventId]
         ?.insert(0, action.enhancedEmoji);
     return ReactionsState(
-      enhancedEmojis: currentState.enhancedEmojis,
-      comments: currentState.comments,
-      forumEntries: currentState.forumEntries,
-    );
+        enhancedEmojis: currentState.enhancedEmojis,
+        comments: currentState.comments,
+        forumEntries: currentState.forumEntries,
+        user: currentState.user);
   }
   if (action is RemoveReaction) {
     currentState.enhancedEmojis[action.eventId].removeWhere((enhancedEmoji) =>
         enhancedEmoji.emoji.name == action.enhancedEmoji.emoji.name);
     return ReactionsState(
-      enhancedEmojis: currentState.enhancedEmojis,
-      comments: currentState.comments,
-      forumEntries: currentState.forumEntries,
-    );
+        enhancedEmojis: currentState.enhancedEmojis,
+        comments: currentState.comments,
+        forumEntries: currentState.forumEntries,
+        user: currentState.user);
   }
   if (action is AddComment) {
     if (currentState.comments[action.eventId].containsKey(action.userName)) {
@@ -35,18 +35,25 @@ ReactionsState reactionsStateReducer(
       currentState.comments[action.eventId][action.userName] = [action.comment];
     }
     return ReactionsState(
-      enhancedEmojis: currentState.enhancedEmojis,
-      comments: currentState.comments,
-      forumEntries: currentState.forumEntries,
-    );
+        enhancedEmojis: currentState.enhancedEmojis,
+        comments: currentState.comments,
+        forumEntries: currentState.forumEntries,
+        user: currentState.user);
   }
   if (action is AddForumEntry) {
     currentState.comments[action.forum.forumId] = {};
     return ReactionsState(
-      enhancedEmojis: currentState.enhancedEmojis,
-      comments: currentState.comments,
-      forumEntries: currentState.forumEntries + [action.forum],
-    );
+        enhancedEmojis: currentState.enhancedEmojis,
+        comments: currentState.comments,
+        forumEntries: currentState.forumEntries + [action.forum],
+        user: currentState.user);
+  }
+  if (action is UpdateUserInformation) {
+    return ReactionsState(
+        enhancedEmojis: currentState.enhancedEmojis,
+        comments: currentState.comments,
+        forumEntries: currentState.forumEntries,
+        user: action.newUser);
   }
   return currentState;
 }

@@ -11,10 +11,10 @@ import 'package:smart_city_ambience/redux/reactionsState.dart';
 import 'package:smart_city_ambience/redux/reactionsState.reducer.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/theme/smort_theme.dart';
+import 'package:smart_city_ambience/types/enhancedUser.dart';
 import 'package:smart_city_ambience/types/word_cloud.dart';
 import 'Authentification/Widgets/AuthWrapper.dart';
 import "package:redux/redux.dart";
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       enhancedEmojis: {for (var event in dummyEvents) event.eventId: []},
       forumEntries: dummyForumEntries,
       comments: dummyComments,
+      user: EnhancedUser(birthDate: "", email: "", name: "", telNr: ""),
     ),
   );
 
@@ -51,7 +52,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: smortTheme(context),
           home: AuthWrapper(),
-          
           routes: SmortRoutes.myRoutes,
         ),
       ),

@@ -45,7 +45,7 @@ class AuthActionButton extends StatelessWidget {
     if (!formKey.currentState.validate()) {
       return;
     }
-    if (label.toLowerCase() == "log in") {
+    if (label.toLowerCase() == "einloggen") {
       FireBaseSignInResponse response = await context
           .read<AuthServcice>()
           .signIn(
