@@ -15,19 +15,6 @@ ThemeData smortTheme(BuildContext context) {
 
     backgroundColor: Colors.grey[200],
 
-    tabBarTheme: TabBarTheme(
-      labelColor: darkAccentColor,
-      unselectedLabelColor: Colors.grey,
-      indicator: UnderlineTabIndicator(
-        borderSide: BorderSide(color: accentColor, width: 2),
-      ),
-    ),
-
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: darkAccentColor,
-      unselectedLabelStyle: TextStyle(color: Colors.grey),
-    ),
-
     // text style for headline/body etc can be defined here (size/ weight/ font...)
     // it gets applied on default
     textTheme: GoogleFonts.ralewayTextTheme(),
@@ -39,6 +26,20 @@ ThemeData smortTheme(BuildContext context) {
           fontSize: 19,
         ),
       ),
+    ),
+
+    tabBarTheme: TabBarTheme(
+      labelStyle: GoogleFonts.raleway(),
+      labelColor: darkAccentColor,
+      unselectedLabelColor: Colors.grey,
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(color: accentColor, width: 2),
+      ),
+    ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: darkAccentColor,
+      unselectedLabelStyle: TextStyle(color: Colors.grey),
     ),
   );
 }

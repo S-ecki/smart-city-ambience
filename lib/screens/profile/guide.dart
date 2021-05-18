@@ -18,7 +18,7 @@ class Guide extends StatelessWidget {
                 child: Text(
                   "Verhaltenskodex für Gleichberechtigung und Anti- Diskriminierung",
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 25),
