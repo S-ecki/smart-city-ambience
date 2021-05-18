@@ -18,7 +18,7 @@ class AuthInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.black) ),
+      data: ThemeData(textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.black), errorColor: Colors.yellowAccent ),
           child: TextFormField(
         keyboardType:
             label == "Email" ? TextInputType.emailAddress : TextInputType.text,
@@ -55,7 +55,7 @@ class AuthInputField extends StatelessWidget {
     );
   }
   final _textFieldBorder = OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey[700]),
+            borderSide: BorderSide(color: Colors.grey[400]),
             borderRadius: BorderRadius.circular(20),
           );
 }

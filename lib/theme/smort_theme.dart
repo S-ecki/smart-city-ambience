@@ -15,6 +15,8 @@ ThemeData smortTheme(BuildContext context) {
     // accentColor: Colors.amber,
 
     backgroundColor: Colors.grey[200],
+    
+    errorColor: Colors.white,
 
     // text style for headline/body etc can be defined here (size/ weight/ font...)
     // it gets applied on default

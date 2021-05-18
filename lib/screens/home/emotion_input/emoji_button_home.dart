@@ -20,9 +20,8 @@ class EmojiButtonHome extends StatelessWidget {
         return Container(
           width: null,
           child: Text(
-            
             enhancedEmoji.emoji.code,
-            style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 13),
+            style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 26),
           ),
         );
       },
