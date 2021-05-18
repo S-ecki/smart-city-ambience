@@ -4,7 +4,7 @@ import 'package:smart_city_ambience/Authentification/RegisterScreen.dart';
 import 'package:smart_city_ambience/navbar/navbar_screen.dart';
 import 'package:smart_city_ambience/screens/eventDetailScreen/eventDetailScreen.dart';
 import 'package:smart_city_ambience/screens/forumDetailScreen/forumDetailScreen.dart';
-import 'package:smart_city_ambience/screens/profile/guide.dart';
+import 'package:smart_city_ambience/screens/guide/guide.dart';
 import 'package:smart_city_ambience/screens/profile/profile_screen.dart';
 
 class SmortRoutes {

@@ -17,12 +17,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreen extends State<ProfileScreen> {
   File _image;
-
-  var isVisible = true;
+  var isVisible1 = true;
   var isVisible2 = true;
-  var isVisible3 = true;
-  var isVisible4 = true;
-  var isVisible5 = true;
+  var isVisible3 = false;
+  var isVisible4 = false;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -251,14 +249,18 @@ class _ProfileScreen extends State<ProfileScreen> {
           Icons.person,
           color: Theme.of(context).primaryColor,
         ),
-        suffixIcon: IconButton(
-          icon: isVisible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible ? Theme.of(context).primaryColor : Colors.grey,
-          onPressed: () {
-            setState(() {
-              isVisible = !isVisible;
-            });
-          },
+        suffixIcon: myTooltip(
+          IconButton(
+            icon: isVisible1
+                ? Icon(Icons.visibility)
+                : Icon(Icons.visibility_off),
+            color: isVisible1 ? Theme.of(context).primaryColor : Colors.grey,
+            onPressed: () {
+              setState(() {
+                isVisible1 = !isVisible1;
+              });
+            },
+          ),
         ),
         labelText: "Name",
       ),
@@ -281,15 +283,18 @@ class _ProfileScreen extends State<ProfileScreen> {
         )),
         prefixIcon:
             Icon(Icons.mail_outline, color: Theme.of(context).primaryColor),
-        suffixIcon: IconButton(
-          icon:
-              isVisible2 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible2 ? Theme.of(context).primaryColor : Colors.grey,
-          onPressed: () {
-            setState(() {
-              isVisible2 = !isVisible2;
-            });
-          },
+        suffixIcon: myTooltip(
+          IconButton(
+            icon: isVisible2
+                ? Icon(Icons.visibility)
+                : Icon(Icons.visibility_off),
+            color: isVisible2 ? Theme.of(context).primaryColor : Colors.grey,
+            onPressed: () {
+              setState(() {
+                isVisible2 = !isVisible2;
+              });
+            },
+          ),
         ),
         labelText: "E-Mail",
       ),
@@ -314,16 +319,18 @@ class _ProfileScreen extends State<ProfileScreen> {
             Icons.calendar_today,
             color: Theme.of(context).primaryColor,
           ),
-          suffixIcon: IconButton(
-            icon: isVisible4
-                ? Icon(Icons.visibility)
-                : Icon(Icons.visibility_off),
-            color: isVisible4 ? Theme.of(context).primaryColor : Colors.grey,
-            onPressed: () {
-              setState(() {
-                isVisible4 = !isVisible4;
-              });
-            },
+          suffixIcon: myTooltip(
+            IconButton(
+              icon: isVisible4
+                  ? Icon(Icons.visibility)
+                  : Icon(Icons.visibility_off),
+              color: isVisible4 ? Theme.of(context).primaryColor : Colors.grey,
+              onPressed: () {
+                setState(() {
+                  isVisible4 = !isVisible4;
+                });
+              },
+            ),
           ),
           labelText: "Geburtsdatum",
           hintText: " DD-MM-YYYY"),
@@ -347,18 +354,27 @@ class _ProfileScreen extends State<ProfileScreen> {
           Icons.phone,
           color: Theme.of(context).primaryColor,
         ),
-        suffixIcon: IconButton(
+        suffixIcon: myTooltip(IconButton(
           icon:
-              isVisible5 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-          color: isVisible5 ? Theme.of(context).primaryColor : Colors.grey,
+              isVisible3 ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+          color: isVisible3 ? Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
-              isVisible5 = !isVisible5;
+              isVisible3 = !isVisible3;
             });
           },
-        ),
+        )),
         labelText: "Nummer",
       ),
     );
   }
+}
+
+Tooltip myTooltip(Widget child) {
+  return Tooltip(
+    padding: EdgeInsets.all(4),
+    margin: EdgeInsets.all(2),
+    message: "Ändert die Sichtbarkeit dieses Feldes für andere NutzerInnen",
+    child: child,
+  );
 }
