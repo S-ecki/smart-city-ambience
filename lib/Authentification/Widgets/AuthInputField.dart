@@ -18,14 +18,20 @@ class AuthInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.black), errorColor: Colors.yellowAccent ),
-          child: TextFormField(
+      data: ThemeData(
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.white,
+        ),
+        errorColor: Colors.yellowAccent,
+      ),
+      child: TextFormField(
+        style: TextStyle(color: Colors.white),
         keyboardType:
             label == "Email" ? TextInputType.emailAddress : TextInputType.text,
         obscureText: isPasswordField,
         controller: controller,
         validator: (value) {
-          if (controller.text.isEmpty) return "Kann nicht leer sein";
+          if (controller.text.isEmpty) return "Darf nicht leer sein";
           if (label.toLowerCase() == "email") {
             return EmailValidator.validate(controller.text)
                 ? null
@@ -49,13 +55,17 @@ class AuthInputField extends StatelessWidget {
           focusedErrorBorder: _textFieldBorder,
           focusedBorder: _textFieldBorder,
           labelText: label,
-          labelStyle:Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
+          labelStyle: Theme.of(context)
+              .textTheme
+              .bodyText1
+              .copyWith(color: Colors.white),
         ),
       ),
     );
   }
+
   final _textFieldBorder = OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey[400]),
-            borderRadius: BorderRadius.circular(20),
-          );
+    borderSide: BorderSide(color: Colors.grey[400]),
+    borderRadius: BorderRadius.circular(20),
+  );
 }
