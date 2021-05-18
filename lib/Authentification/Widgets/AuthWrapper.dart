@@ -17,13 +17,10 @@ class AuthWrapper extends StatelessWidget {
     final fireUser = context.watch<User>();
 
     if (fireUser == null) {
-      return NavbarScreen();
+      return LoginPage();
     }
-    // ! new
     // routes to tabscreen, which contains bottom nav bar
     // with chat / home / event screen
     return NavbarScreen();
-              //)
-              //);
   }
 }
