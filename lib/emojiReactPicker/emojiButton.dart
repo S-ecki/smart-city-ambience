@@ -42,16 +42,16 @@ class EmojiButton extends StatelessWidget {
                               element.emoji.name == enhancedEmoji.emoji.name)
                           .length
                           .toString(),
-                      style: TextStyle(fontSize: 8),
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 8),
                     ),
                     child: Text(
                       enhancedEmoji.emoji.code,
-                      style: TextStyle(fontSize: 20),
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
                     ),
                   )
                 : Text(
                     enhancedEmoji.emoji.code,
-                    style: TextStyle(fontSize: 20),
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),
                   ),
           ),
           // use this to add to store, eventid fixed

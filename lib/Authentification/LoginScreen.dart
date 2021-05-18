@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
                               margin: EdgeInsets.only(top: 16),
                               child: AuthInputField(
                                 controller: passwordController,
-                                label: "Password",
+                                label: "Passwort",
                                 isPasswordField: true,
                               ),
                             ),
@@ -62,7 +62,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       AuthActionButton(
-                        label: "Log In",
+                        label: "Einloggen",
                         formKey: _formKey,
                         emailController: emailController,
                         passwordController: passwordController,
@@ -72,10 +72,8 @@ class LoginPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "No Account?",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            "Noch kein Account?",
+                            style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
                           ),
                           TextButton(
                             onPressed: () {
@@ -83,11 +81,8 @@ class LoginPage extends StatelessWidget {
                               .pushNamed(SmortRoutes.registratinScreen);
                             },
                             child: Text(
-                              "Register",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              "Registrieren",
+                              style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],

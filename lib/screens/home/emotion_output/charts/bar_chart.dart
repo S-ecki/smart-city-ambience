@@ -6,13 +6,12 @@ import 'package:smart_city_ambience/types/enahancedEmoji.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class BarChart extends StatelessWidget {
-
-
   Widget build(BuildContext context) {
     return StoreConnector<ReactionsState, Map<String, List<EnhancedEmoji>>>(
       converter: (store) => store.state.enhancedEmojis,
       builder: (context, Map<String, List<EnhancedEmoji>> enhancedEmojis) =>
           SfCartesianChart(
+        palette: [Colors.green[900], Colors.amber[600], Colors.red[900]],
         plotAreaBorderWidth: 0,
         // title: ChartTitle(text: 'Some Title'),
         legend: Legend(
@@ -44,7 +43,6 @@ class BarChart extends StatelessWidget {
   /// on the stacked column chart
   List<StackedColumnSeries<BarChartData, String>> _getStackedColumnSeries(
       Map<String, List<EnhancedEmoji>> enhancedEmojis) {
-
     // extract all set emojis from app
     int _positiveMay = getEmojiCount(EmojiType.Positive, enhancedEmojis);
     int _neutralMay = getEmojiCount(EmojiType.Neutral, enhancedEmojis);
@@ -56,7 +54,8 @@ class BarChart extends StatelessWidget {
       BarChartData("Februar", 143, 39, 61),
       BarChartData("März", 83, 12, 60),
       BarChartData("April", 101, 41, 44),
-      BarChartData("Mai", 63 + _positiveMay, 13 + _neutralMay, 38 + _negativeMay),
+      BarChartData(
+          "Mai", 63 + _positiveMay, 13 + _neutralMay, 38 + _negativeMay),
     ];
 
     return <StackedColumnSeries<BarChartData, String>>[
@@ -99,7 +98,6 @@ class BarChart extends StatelessWidget {
     ];
   }
 }
-
 
 class BarChartData {
   String month;

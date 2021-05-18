@@ -46,7 +46,7 @@ class GoogleSocialLoginButton extends StatelessWidget {
               ),
             ),
             Text(
-              "Login With Google",
+              "Einloggen mit Google",
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ],

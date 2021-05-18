@@ -20,7 +20,7 @@ class PieChart extends StatelessWidget {
             position: LegendPosition.bottom,
             ),
         series: _getDefaultDoughnutSeries(enhancedEmojis),
-
+        palette: [Colors.green[900], Colors.amber[600], Colors.red[900]],
         tooltipBehavior: TooltipBehavior(enable: true),
         margin: EdgeInsets.all(8),
         annotations: <CircularChartAnnotation>[

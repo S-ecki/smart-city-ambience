@@ -55,7 +55,7 @@ class RegisterPage extends StatelessWidget {
                               margin: EdgeInsets.only(top: 16),
                               child: AuthInputField(
                                 controller: passwordController,
-                                label: "Password",
+                                label: "Passwort",
                                 isPasswordField: true,
                               ),
                             ),
@@ -64,7 +64,7 @@ class RegisterPage extends StatelessWidget {
                               child: AuthInputField(
                                 passwordController: passwordController,
                                 controller: confirmPasswordController,
-                                label: "Confirm Password",
+                                label: "Passwort bestätigen",
                                 isPasswordField: true,
                               ),
                             ),
@@ -72,7 +72,7 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       AuthActionButton(
-                        label: "Register",
+                        label: "Registrieren",
                         formKey: _formKey,
                         emailController: emailController,
                         passwordController: passwordController,
@@ -81,21 +81,16 @@ class RegisterPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Already have an Account?",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                            "Du hast schon einen Account?",
+                            style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
                           ),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
                             child: Text(
-                              "Log in",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              "Einloggen",
+                              style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white, fontWeight: FontWeight.bold,),
                             ),
                           ),
                         ],

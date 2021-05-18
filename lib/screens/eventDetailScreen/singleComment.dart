@@ -28,16 +28,11 @@ class SingleComment extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: userName + ": ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(fontWeight: FontWeight.bold)
                   ),
                   TextSpan(
                     text: comment,
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
                   )
                 ],
               ),

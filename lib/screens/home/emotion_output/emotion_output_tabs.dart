@@ -18,7 +18,7 @@ class EmotionOutputTabs extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(6, 6, 0, 0),
                   child: SizedBox(
-                    width: 300,
+                    width: 350,
                     height: dimens.maxHeight * 0.15,
                     child: ListTile(
                         title: Text(
@@ -31,7 +31,6 @@ class EmotionOutputTabs extends StatelessWidget {
                 ),
                 // number of children must correspond to TabView children
                 SizedBox(
-                  // height: dimens.maxHeight * 0.2,
                   child: TabBar(
                     tabs: [
                       Tab(

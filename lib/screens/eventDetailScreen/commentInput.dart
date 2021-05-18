@@ -39,9 +39,6 @@ class CommentInput extends StatelessWidget {
             contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             hintText: "Kommentar...",
             isDense: true,
-            labelStyle: TextStyle(
-              color: Colors.white,
-            ),
             suffixIcon: InkWell(
               borderRadius: BorderRadius.circular(20),
               onTap: () => handleOnSave(context),

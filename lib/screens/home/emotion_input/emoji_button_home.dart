@@ -22,7 +22,7 @@ class EmojiButtonHome extends StatelessWidget {
           child: Text(
             
             enhancedEmoji.emoji.code,
-            style: TextStyle(fontSize: 13),
+            style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 13),
           ),
         );
       },
