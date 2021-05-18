@@ -1,21 +1,20 @@
 ## Readme - M3
 
-* Gruppe:	[16:45]
+* Gruppe:	16:45
 * Team-Nr.:	Team 204
 * Projektthema:	Smart-City-Ambience
 
 ### Implementierung
 
-Framework:	[Flutter]
+Framework:	Flutter
 
-API-Version:	[Android API-Level 27-30]
+API-Version:	Android API-Level 27-30
 
 Gerät(e), auf dem(denen) getestet wurde:
-[Pixel2 API 30]
+Pixel2 API 30
 
 Externe Libraries und Frameworks:
-[\
-dependencies:\
+
   flutter:\
     sdk: flutter\
   badges: ^1.2.0\
@@ -35,10 +34,8 @@ dependencies:\
   syncfusion_flutter_charts: ^18.4.0\
   syncfusion_flutter_sliders: ^18.4.0\
   uuid: 3.0.4\
-]
 
-Dauer der Entwicklung:\
-[XX Stunden]
 
-Weitere Anmerkungen:\
-[...]
+Dauer der Entwicklung: XX Stunden
+
+Weitere Anmerkungen: [...]
