@@ -8,17 +8,14 @@
 
 Framework:	Flutter
 
-API-Version:	Android API-Level 27-30
+API-Version:	Android API-Level 30
 
 Gerät(e), auf dem(denen) getestet wurde:
 Pixel2 API 30
 
 Externe Libraries und Frameworks:
 
-  flutter:\
-    sdk: flutter\
   badges: ^1.2.0\
-  cupertino_icons: ^1.0.2\
   customtogglebuttons: ^0.0.5\
   email_validator: ^2.0.1\
   firebase_auth: ^0.20.1\
