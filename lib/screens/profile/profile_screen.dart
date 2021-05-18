@@ -268,7 +268,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   Widget mailTextfield(User provider) {
     return TextFormField(
       enabled: false,
-      initialValue: provider.email ?? "",
+      initialValue: provider?.email ?? "",
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderSide: BorderSide(

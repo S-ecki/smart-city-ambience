@@ -40,7 +40,8 @@ class AuthServcice {
   }
 
   /**
-   * 
+   * This code is copies by this website: 
+   *  https://firebase.flutter.dev/docs/auth/social
    */
   Future<FireBaseSignInResponse> signInWithGoogle() async {
     // Trigger the authentication flow
