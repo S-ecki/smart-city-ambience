@@ -3,13 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import "material_color_generator.dart";
 
 ThemeData smortTheme(BuildContext context) {
-  final darkAccentColor = Color(0xFF34252F);
-  final accentColor = Color(0xFFBEC5AD);
+  final primaryColor = generateMaterialColor(Color(0xFF7d3331));
+  final accentColor = Color(0xFF2e463a);
+  final navBarColor = Color(0xFFffe6a7);
 
   return ThemeData(
     // Material Color with own Color Palette can be created as follows
-    primarySwatch: generateMaterialColor(Color(0xFFA4B494)),
-    accentColor: darkAccentColor,
+    primarySwatch: primaryColor,
+    accentColor: accentColor,
     // primarySwatch: Colors.pink,
     // accentColor: Colors.amber,
 
@@ -30,7 +31,7 @@ ThemeData smortTheme(BuildContext context) {
 
     tabBarTheme: TabBarTheme(
       labelStyle: GoogleFonts.raleway(),
-      labelColor: darkAccentColor,
+      labelColor: accentColor,
       unselectedLabelColor: Colors.grey,
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(color: accentColor, width: 2),
@@ -38,8 +39,8 @@ ThemeData smortTheme(BuildContext context) {
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: darkAccentColor,
-      unselectedLabelStyle: TextStyle(color: Colors.grey),
+      selectedItemColor: navBarColor,
+      unselectedItemColor: Colors.black54,
     ),
   );
 }

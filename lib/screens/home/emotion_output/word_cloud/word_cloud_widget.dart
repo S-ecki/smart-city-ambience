@@ -24,7 +24,7 @@ class WordCloudWidget extends StatelessWidget {
           text: TextWrapper(
               text: wordList[i],
               color: colorList[rand.nextInt(colorList.length)],
-              size: rand.nextInt(15) + 10),
+              size: rand.nextInt(18) + 12),
         ),
       );
     }
