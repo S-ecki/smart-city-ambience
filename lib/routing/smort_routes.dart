@@ -25,7 +25,6 @@ class SmortRoutes {
     navBarScreen: (ctx) => NavbarScreen(),
     eventDetailScreen: (ctx) => EventDetailScreen(),
     rules: (ctx) => Guide(),
-    tutorial: (ctx) => NavbarScreen(), // ! change
     forumDetailScreen: (ctx) => ForumDetailScreen(),
 
     // add all routes that dont get accessed through tabs here

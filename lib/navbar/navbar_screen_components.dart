@@ -48,7 +48,7 @@ class OptionsButton extends StatelessWidget {
             ),
             PopupMenuItem(
               child: Text("Nutzungsanleitung"),
-              value: SmortRoutes.tutorial,
+              enabled: false,
             ),
             PopupMenuItem(
               child: Text("Einstellungen"),
