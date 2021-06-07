@@ -47,7 +47,7 @@ class CommentInput extends StatelessWidget {
             suffixIcon: InkWell(
               borderRadius: BorderRadius.circular(20),
               onTap: () => handleOnSave(context, user),
-              child: Icon(Icons.post_add),
+              child: Icon(Icons.send),
             ),
           ),
         ),
