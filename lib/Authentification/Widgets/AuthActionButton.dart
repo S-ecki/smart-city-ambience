@@ -53,7 +53,8 @@ class AuthActionButton extends StatelessWidget {
       if (response == FireBaseSignInResponse.Failed) {
         showAlertDialog(context);
       } else {
-        Navigator.of(context).pushNamed(SmortRoutes.navBarScreen);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            SmortRoutes.navBarScreen, (route) => false);
       }
     } else {
       FireBaseSignInResponse response = await context
@@ -63,7 +64,8 @@ class AuthActionButton extends StatelessWidget {
       if (response == FireBaseSignInResponse.Failed) {
         showAlertDialog(context);
       } else {
-        Navigator.of(context).pushNamed(SmortRoutes.navBarScreen);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            SmortRoutes.navBarScreen, (route) => false);
       }
     }
   }

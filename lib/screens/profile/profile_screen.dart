@@ -56,7 +56,8 @@ class _ProfileScreen extends State<ProfileScreen> {
                 icon: Icon(Icons.logout),
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
-                  Navigator.of(context).pushNamed(SmortRoutes.loginScreen);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+            SmortRoutes.loginScreen, (route) => false);
                 },
               ),
             ],
