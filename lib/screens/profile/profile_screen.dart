@@ -21,6 +21,7 @@ class _ProfileScreen extends State<ProfileScreen> {
   var isVisible2 = true;
   var isVisible3 = false;
   var isVisible4 = false;
+  bool showAlertDialogBool = true;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
                   Navigator.of(context).pushNamedAndRemoveUntil(
-            SmortRoutes.loginScreen, (route) => false);
+                      SmortRoutes.loginScreen, (route) => false);
                 },
               ),
             ],
@@ -258,6 +259,7 @@ class _ProfileScreen extends State<ProfileScreen> {
             color: isVisible1 ? Theme.of(context).primaryColor : Colors.grey,
             onPressed: () {
               callback();
+              showAlertDialogBool ? _showAlertDialog("Name") : null;
               setState(() {
                 isVisible1 = !isVisible1;
               });
@@ -293,6 +295,7 @@ class _ProfileScreen extends State<ProfileScreen> {
             color: isVisible2 ? Theme.of(context).primaryColor : Colors.grey,
             onPressed: () {
               callback();
+              showAlertDialogBool ? _showAlertDialog("Email") : null;
               setState(() {
                 isVisible2 = !isVisible2;
               });
@@ -330,6 +333,7 @@ class _ProfileScreen extends State<ProfileScreen> {
               color: isVisible4 ? Theme.of(context).primaryColor : Colors.grey,
               onPressed: () {
                 callback();
+                showAlertDialogBool ? _showAlertDialog("Geburtsdatum") : null;
                 setState(() {
                   isVisible4 = !isVisible4;
                 });
@@ -365,11 +369,39 @@ class _ProfileScreen extends State<ProfileScreen> {
           onPressed: () {
             setState(() {
               callback();
+              showAlertDialogBool ? _showAlertDialog("Nummer") : null;
               isVisible3 = !isVisible3;
             });
           },
         )),
         labelText: "Nummer",
+      ),
+    );
+  }
+
+  _showAlertDialog(String fieldName) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text("Sichtbarkeit geändert"),
+        content: Text(
+            "Die Sichtbarkeit des Feldes \"$fieldName\" wurde geändert. \n\nDies bestimmt, welche Deiner Informationen andere User in den Foren sehen können. \n\nDas Minimum der Sichtbarkeit ist die Email Adresse."),
+        actions: [
+          TextButton(
+            onPressed: () {
+              showAlertDialogBool = false;
+              Navigator.of(ctx).pop();
+            },
+            child: Text("Nicht mehr anzeigen"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // showAlertDialogBool = false;
+              Navigator.of(ctx).pop();
+            },
+            child: Text("Verstanden"),
+          ),
+        ],
       ),
     );
   }
