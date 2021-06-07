@@ -41,6 +41,9 @@ ThemeData smortTheme(BuildContext context) {
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedLabelStyle: TextStyle().copyWith(fontSize: 18),
+      unselectedLabelStyle: TextStyle().copyWith(fontSize: 16, color: Colors.black),
+      unselectedIconTheme: IconThemeData().copyWith(color: Colors.black),
       selectedItemColor: navBarColor,
       unselectedItemColor: Colors.black54,
     ),

@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_city_ambience/redux/reactionsState.actions.dart';
 import 'package:smart_city_ambience/redux/reactionsState.dart';
+import 'package:smart_city_ambience/routing/smort_routes.dart';
 import 'package:smart_city_ambience/screens/home/emotion_input/emoji_button_home.dart';
 import 'package:smart_city_ambience/screens/home/emotion_input/emotion_input_box.dart';
 import 'package:smart_city_ambience/screens/home/emotion_output/charts/chart_functions.dart';
@@ -26,6 +27,8 @@ class _EmotionInputState extends State<EmotionInput> {
   // used for ToggleButtons
   // initially filled with 12x false - all 12 emojis are not selected
   List<bool> _isSelected;
+
+  bool showAlertDialogBool = true;
 
   @override
   void initState() {
@@ -50,13 +53,14 @@ class _EmotionInputState extends State<EmotionInput> {
         child: Column(
           children: [
             EmotionInputBox(text: "Wie fühlst du dich heute?"),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               width: 360,
               alignment: Alignment.center,
               child: CustomToggleButtons(
-                fillColor: Colors.grey[200],
-                
+                fillColor: Colors.grey[300],
                 renderBorder: false,
                 isSelected: _isSelected,
                 // fill with all emojis
@@ -74,9 +78,13 @@ class _EmotionInputState extends State<EmotionInput> {
                 },
               ),
             ),
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
             EmotionInputBox(text: "Verbalisiere deine heutigen Gefühle"),
-            SizedBox(height: 15,), 
+            SizedBox(
+              height: 15,
+            ),
             HomeTextField(focusNode: _focusNode, controller: _controller),
             // save button
             SizedBox(
@@ -86,8 +94,12 @@ class _EmotionInputState extends State<EmotionInput> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                TextButton(onPressed: () => _onPressedCancel(), child: Text("Abbrechen")),
-                ElevatedButton(onPressed: () => _onPressedSave(), child: Text("Speichern")),
+                    TextButton(
+                        onPressed: () => _onPressedCancel(),
+                        child: Text("Abbrechen")),
+                    ElevatedButton(
+                        onPressed: () => _onPressedSave(),
+                        child: Text("Speichern")),
                   ],
                 ),
               ),
@@ -106,7 +118,9 @@ class _EmotionInputState extends State<EmotionInput> {
     // clear input and unfocus
     _controller.clear();
     _focusNode.unfocus();
-    _notifyScaffold("Gefühl gespeichert.");
+
+    // show popup or scaffold messenger
+    showAlertDialogBool ? _showAlertDialog() : _notifyScaffold("Gefühle gespeichert.");
 
     // number of neutral emojis before adding
 
@@ -131,12 +145,10 @@ class _EmotionInputState extends State<EmotionInput> {
   }
 
   void _onPressedCancel() {
-
     // clear input and unfocus
     _controller.clear();
     _focusNode.unfocus();
     _notifyScaffold("Vorgang abgebrochen.");
-
 
     for (int i = 0; i < 12; ++i) {
       // reset all emojis to unselected
@@ -149,7 +161,31 @@ class _EmotionInputState extends State<EmotionInput> {
     );
   }
 
-
+  _showAlertDialog() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text("Speichern erfolgreich"),
+        content: Text(
+            "Deine Emotionen und Gefühle wurden zur Visualisierung hinzugefügt."),
+        actions: [
+          TextButton(
+            onPressed: () {
+              showAlertDialogBool = false;
+              Navigator.of(ctx).pop();
+            },
+            child: Text("Nicht mehr anzeigen"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: Text("Verstanden"),
+          ),
+        ],
+      ),
+    );
+  }
 
   void _notifyScaffold(String text) {
     // let user know it was saved
