@@ -24,6 +24,18 @@ class LocationButton extends StatelessWidget {
               child: SmortSlider(),
             ),
           ],
+          onCanceled: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                duration: Duration(days: 365),
+                content: Text("City Radius wurde geändert."),
+                action: SnackBarAction(
+                  label: "verstanden",
+                  onPressed: () {},
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -134,7 +146,10 @@ class ForumFAB extends StatelessWidget {
                 },
                 child: Text(
                   "Forumeintrag hinzufügen",
-                  style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      .copyWith(color: Colors.white),
                 ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
