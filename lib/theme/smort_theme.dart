@@ -47,5 +47,9 @@ ThemeData smortTheme(BuildContext context) {
       selectedItemColor: navBarColor,
       unselectedItemColor: Colors.black54,
     ),
+
+    snackBarTheme: SnackBarThemeData(
+      actionTextColor: navBarColor
+    )
   );
 }
