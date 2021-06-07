@@ -22,11 +22,8 @@ class _ProfileScreen extends State<ProfileScreen> {
   var isVisible3 = false;
   var isVisible4 = false;
 
-  final ImagePicker _picker = ImagePicker();
-
   @override
   Widget build(BuildContext context) {
-    // ! new
     var provider = context.watch<User>();
 
     return StoreConnector<ReactionsState, EnhancedUser>(
@@ -38,6 +35,18 @@ class _ProfileScreen extends State<ProfileScreen> {
             TextEditingController(text: user.birthDate);
         final TextEditingController telNrController =
             TextEditingController(text: user.telNr);
+
+        void saveFields() {
+          StoreProvider.of<ReactionsState>(context).dispatch(
+            UpdateUserInformation(
+              newUser: EnhancedUser(
+                  name: nameController.text,
+                  birthDate: birthController.text,
+                  email: provider.email,
+                  telNr: telNrController.text),
+            ),
+          );
+        }
 
         return Scaffold(
           backgroundColor: Colors.grey[50],
@@ -59,13 +68,13 @@ class _ProfileScreen extends State<ProfileScreen> {
               children: <Widget>[
                 profilePicture(), //Profilbild
                 SizedBox(height: 20),
-                nameTextfield(nameController), //Name
+                nameTextfield(nameController, saveFields), //Name
                 SizedBox(height: 20),
-                DateTextfield(birthController), //Geburtsdatum
+                DateTextfield(birthController, saveFields), //Geburtsdatum
                 SizedBox(height: 20),
-                mailTextfield(provider), //E-Mail
+                mailTextfield(provider, saveFields), //E-Mail
                 SizedBox(height: 20),
-                numberTextfield(telNrController), //Telefonnummer
+                numberTextfield(telNrController, saveFields), //Telefonnummer
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -83,25 +92,16 @@ class _ProfileScreen extends State<ProfileScreen> {
                     Container(
                       alignment: Alignment.bottomLeft,
                       child: ElevatedButton(
-                        style: ButtonStyle(),
-                        onPressed: () {
-                          StoreProvider.of<ReactionsState>(context).dispatch(
-                            UpdateUserInformation(
-                              newUser: EnhancedUser(
-                                  name: nameController.text,
-                                  birthDate: birthController.text,
-                                  email: provider.email,
-                                  telNr: telNrController.text),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("Profildaten gespeichert."),
-                            ),
-                          );
-                        },
-                        child: Text("Speichern"),
-                      ),
+                          child: Text("Speichern"),
+                          style: ButtonStyle(),
+                          onPressed: () {
+                            saveFields();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Profildaten gespeichert."),
+                              ),
+                            );
+                          }),
                     ),
                   ],
                 ),
@@ -233,7 +233,7 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget nameTextfield(TextEditingController controller) {
+  Widget nameTextfield(TextEditingController controller, Function callback) {
     print(controller);
 
     return TextFormField(
@@ -256,6 +256,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                 : Icon(Icons.visibility_off),
             color: isVisible1 ? Theme.of(context).primaryColor : Colors.grey,
             onPressed: () {
+              callback();
               setState(() {
                 isVisible1 = !isVisible1;
               });
@@ -267,7 +268,7 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget mailTextfield(User provider) {
+  Widget mailTextfield(User provider, Function callback) {
     return TextFormField(
       enabled: false,
       initialValue: provider?.email ?? "",
@@ -290,6 +291,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                 : Icon(Icons.visibility_off),
             color: isVisible2 ? Theme.of(context).primaryColor : Colors.grey,
             onPressed: () {
+              callback();
               setState(() {
                 isVisible2 = !isVisible2;
               });
@@ -301,7 +303,7 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget DateTextfield(TextEditingController controller) {
+  Widget DateTextfield(TextEditingController controller, Function callback) {
     print(controller);
     return TextFormField(
       controller: controller,
@@ -326,6 +328,7 @@ class _ProfileScreen extends State<ProfileScreen> {
                   : Icon(Icons.visibility_off),
               color: isVisible4 ? Theme.of(context).primaryColor : Colors.grey,
               onPressed: () {
+                callback();
                 setState(() {
                   isVisible4 = !isVisible4;
                 });
@@ -337,7 +340,7 @@ class _ProfileScreen extends State<ProfileScreen> {
     );
   }
 
-  Widget numberTextfield(TextEditingController controller) {
+  Widget numberTextfield(TextEditingController controller, Function callback) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
@@ -360,6 +363,7 @@ class _ProfileScreen extends State<ProfileScreen> {
           color: isVisible3 ? Theme.of(context).primaryColor : Colors.grey,
           onPressed: () {
             setState(() {
+              callback();
               isVisible3 = !isVisible3;
             });
           },
