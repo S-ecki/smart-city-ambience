@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
+import 'package:smart_city_ambience/Authentification/Service/responseTypes.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 
 /**
@@ -30,7 +31,7 @@ class GoogleSocialLoginButton extends StatelessWidget {
         onPressed: () async {
           FireBaseSignInResponse response =
               await context.read<AuthServcice>().signInWithGoogle();
-          if (response == FireBaseSignInResponse.Success) {
+          if (response.enumResponse == EFireBaseSignInResponse.Success) {
             Navigator.of(context).pushNamed(SmortRoutes.navBarScreen);
           }
         },

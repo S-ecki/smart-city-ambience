@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-enum FireBaseSignInResponse { Success, Failed }
+import 'package:smart_city_ambience/Authentification/Service/responseTypes.dart';
 
 /**
  * 
@@ -20,9 +19,14 @@ class AuthServcice {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: mail, password: password);
-      return FireBaseSignInResponse.Success;
+      return FireBaseSignInResponse(
+        enumResponse: EFireBaseSignInResponse.Success,
+      );
     } on FirebaseAuthException catch (e) {
-      return FireBaseSignInResponse.Failed;
+      print(e.message);
+      return FireBaseSignInResponse(
+          enumResponse: EFireBaseSignInResponse.Failed,
+          errorMessage: e.message);
     }
   }
 
@@ -33,9 +37,14 @@ class AuthServcice {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: mail, password: password);
-      return FireBaseSignInResponse.Success;
+      return FireBaseSignInResponse(
+        enumResponse: EFireBaseSignInResponse.Success,
+      );
     } on FirebaseAuthException catch (e) {
-      return FireBaseSignInResponse.Failed;
+      print(e.message);
+      return FireBaseSignInResponse(
+          enumResponse: EFireBaseSignInResponse.Failed,
+          errorMessage: e.message);
     }
   }
 
@@ -60,6 +69,7 @@ class AuthServcice {
     // Once signed in, return the UserCredential
     await FirebaseAuth.instance.signInWithCredential(credential);
 
-    return FireBaseSignInResponse.Success;
+    return FireBaseSignInResponse(
+        enumResponse: EFireBaseSignInResponse.Success);
   }
 }

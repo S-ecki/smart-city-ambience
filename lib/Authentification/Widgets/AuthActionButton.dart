@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_city_ambience/Authentification/Service/AuthService.dart';
+import 'package:smart_city_ambience/Authentification/Service/responseTypes.dart';
 import 'package:smart_city_ambience/routing/smort_routes.dart';
 
 class AuthActionButton extends StatelessWidget {
@@ -17,13 +18,13 @@ class AuthActionButton extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final String label;
 
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context, String googleError) {
+
+
     AlertDialog alert = AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       title: Text(
-        label.toLowerCase() == "log in"
-            ? "No user found"
-            : "Registration failed",
+        "Fehler bei der Anmeldung.\n\nGoogle hat folgenden Fehler gemeldet:\n$googleError"
       ),
       content: Icon(
         Icons.error,
@@ -50,8 +51,8 @@ class AuthActionButton extends StatelessWidget {
           .read<AuthServcice>()
           .signIn(
               mail: emailController.text, password: passwordController.text);
-      if (response == FireBaseSignInResponse.Failed) {
-        showAlertDialog(context);
+      if (response.enumResponse == EFireBaseSignInResponse.Failed) {
+        showAlertDialog(context, response.errorMessage);
       } else {
         Navigator.of(context).pushNamedAndRemoveUntil(
             SmortRoutes.navBarScreen, (route) => false);
@@ -61,8 +62,8 @@ class AuthActionButton extends StatelessWidget {
           .read<AuthServcice>()
           .signUp(
               mail: emailController.text, password: passwordController.text);
-      if (response == FireBaseSignInResponse.Failed) {
-        showAlertDialog(context);
+      if (response.enumResponse == EFireBaseSignInResponse.Failed) {
+        showAlertDialog(context, response.errorMessage);
       } else {
         Navigator.of(context).pushNamedAndRemoveUntil(
             SmortRoutes.navBarScreen, (route) => false);

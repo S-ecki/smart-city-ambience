@@ -35,19 +35,14 @@ class AuthInputField extends StatelessWidget {
           if (label.toLowerCase() == "email") {
             return EmailValidator.validate(controller.text)
                 ? null
-                : "Ungültige Email - Bist du schon registriert?";
+                : "Ungültige Email";
           }
-          if (label.toLowerCase() == "confirm password") {
+          if (label.toLowerCase() == "passwort bestätigen") {
+            print("pw ${passwordController.text} + conf ${controller.text}");
             return passwordController.text == controller.text
                 ? null
                 : "Passwort falsch";
           }
-          if (label.toLowerCase() == "password") {
-            return controller.text.length > 7
-                ? null
-                : "Passwort muss mindestens 8 Zeichen beinhalten";
-          }
-          return null;
         },
         decoration: InputDecoration(
           enabledBorder: _textFieldBorder,
