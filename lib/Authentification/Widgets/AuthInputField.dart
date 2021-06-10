@@ -41,7 +41,7 @@ class AuthInputField extends StatelessWidget {
             print("pw ${passwordController.text} + conf ${controller.text}");
             return passwordController.text == controller.text
                 ? null
-                : "Passwort falsch";
+                : "Passwörter stimmen nicht überein";
           }
         },
         decoration: InputDecoration(
