@@ -142,6 +142,11 @@ class ForumFAB extends StatelessWidget {
                     Navigator.of(context).pop();
                     titleController.clear();
                     descriptionController.clear();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Forumbeitrag wurde erstellt."),
+                      ),
+                    );
                   }
                 },
                 child: Text(
